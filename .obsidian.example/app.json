@@ -1,0 +1,14 @@
+{
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": ".attachments",
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "userIgnoreFilters": [
+    "logs/",
+    "old/",
+    "anchors-*",
+    "atomicity-*",
+    "*.bak",
+    "*.tmp"
+  ]
+}

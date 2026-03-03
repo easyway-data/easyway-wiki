@@ -1,0 +1,67 @@
+---
+id: ew-02-logiche-easyway
+title: 02 logiche easyway
+summary: Prefazione e Guida alla Documentazione Funzionale/Architetturale (Naming, Logging, Onboarding, notifiche).
+status: active
+owner: team-docs
+created: '2025-01-01'
+updated: '2026-01-16'
+tags: [domain/docs, layer/index, audience/dev, privacy/internal, language/it]
+llm:
+  include: true
+  pii: none
+  chunk_hint: 250-400
+  redaction: [email, phone]
+entities: []
+next: Verificare allineamento sezioni.
+type: guide
+---
+[Home](./start-here.md) > [[domains/docs-governance|Docs]] > [[Layer - Index|Index]]
+
+# Prefazione – EasyWay Data Portal  
+## Guida alla Documentazione Funzionale e Architetturale
+
+Questa documentazione raccoglie e formalizza l’analisi funzionale e le scelte architetturali alla base dello sviluppo di **EasyWay Data Portal**.
+
+Il documento è pensato come **riferimento unificato e versionabile** per tutto il team di sviluppo, architetti, DevOps e stakeholder, garantendo:
+- **Chiarezza delle regole e dei flussi** a cui attenersi in ogni fase,
+- **Coerenza tra analisi, implementazione e gestione operativa**,
+- **Facilità di onboarding per nuovi sviluppatori o fornitori**.
+
+La struttura e le macro-sezioni sono state definite in modo da coprire tutti gli aspetti chiave del progetto, dalla sicurezza all’esperienza utente, dalla scalabilità alla governance.
+
+**Tutte le sezioni riportate sono state validate come “PRONTA PER CODICE”**: ciò significa che ogni parte è pronta per essere tradotta in codice, script, template o pipeline, mantenendo la tracciabilità delle scelte e la conformità alle best practice definite dal team.
+
+## Macro-sezioni documentate
+
+- **Architettura Microservizi**  
+  Definizione dei domini funzionali, struttura a container, API Gateway, isolamenti e principi di scalabilità.
+
+- **Policy Configurazione & Security Microservizi/Gateway**  
+  Gestione delle identity tecniche, isolamento tenant, secret management, networking sicuro, ACL centralizzati.
+
+- **Logging & Audit**  
+  Policy di logging centralizzato, audit trail, alert automatici, retention, compliance (GDPR/SOC2/DORA).
+
+- **Best Practice Naming & Scalabilità**  
+  Convenzioni di naming, regole di scaling orizzontale/verticale, organizzazione ambienti, resource group.
+
+- **Flussi Onboarding/Login**  
+  Tutti i processi di registrazione, login locale/federato, gestione reset, onboarding prospect/demo e verticali PA (SPID/CIE).
+
+- **Integrazione API Esterne**  
+  Linee guida per l’integrazione di API esterne (Microsoft Graph, Shopify, Fatture in Cloud, Amazon), policy sicurezza, mapping dati e gestione tenant.
+
+- **Gestione Notifiche**  
+  Tipologie, flussi, canali notifiche (email, Teams, dashboard), preferenze utente, logging e template personalizzati.
+
+- **Gestione Template Email via Excel su Storage**  
+  Modello per template email/configurabili, versionabili, caricati su Storage, con logica di merge variabili, supporto multilingua e audit.
+
+**Tutte le scelte qui documentate sono alla base dello sviluppo della piattaforma e saranno mantenute allineate a ogni evoluzione del progetto.**  
+**Ogni sezione è pronta per essere esportata, integrata o sviluppata secondo lo standard “ready for code”.**
+
+
+
+
+
