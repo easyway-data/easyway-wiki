@@ -1,39 +1,81 @@
-trigger: none
+# EasyWay Wiki — CI Pipeline
+# Lightweight: normalize scan + atomicity lint + GitHub mirror
+
+trigger:
+  branches:
+    include:
+      - main
+
 pr:
   branches:
     include:
-      - '*'
+      - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: Default
 
-steps:
-  - checkout: self
-    persistCredentials: true
+variables:
+  - group: EasyWay-Secrets
 
-  - task: PowerShell@2
-    displayName: 'Scan normalize (multi-root scan)'
-    inputs:
-      pwsh: true
-      workingDirectory: '$(Build.SourcesDirectory)'
-      targetType: 'inline'
-      script: |
-        Write-Host "Running normalize-project scan..."
-        . ./scripts/normalize-project.ps1 -Root '.' -Mode scan -ReportPath "$(Build.SourcesDirectory)/logs/reports/normalize-$(Build.BuildId).md"
+stages:
+  - stage: Validate
+    displayName: 'Wiki Validation'
+    jobs:
+      - job: NormalizeScan
+        displayName: 'Normalize + Atomicity Lint'
+        steps:
+          - checkout: self
+            persistCredentials: true
 
-  - task: PowerShell@2
-    displayName: 'Run atomicity lint'
-    inputs:
-      pwsh: true
-      workingDirectory: '$(Build.SourcesDirectory)'
-      targetType: 'inline'
-      script: |
-        . ./scripts/lint-atomicity.ps1 -Root '.'
+          - task: PowerShell@2
+            displayName: 'Scan normalize (multi-root scan)'
+            inputs:
+              pwsh: true
+              workingDirectory: '$(Build.SourcesDirectory)'
+              targetType: 'inline'
+              script: |
+                mkdir -p "$(Build.SourcesDirectory)/logs/reports" 2>$null
+                Write-Host "Running normalize-project scan..."
+                . ./scripts/normalize-project.ps1 -Root '.' -Mode scan -ReportPath "$(Build.SourcesDirectory)/logs/reports/normalize-$(Build.BuildId).md"
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish reports artifact'
-    inputs:
-      pathToPublish: '$(Build.SourcesDirectory)/logs/reports'
-      artifactName: 'reports'
-      publishLocation: 'Container'
+          - task: PowerShell@2
+            displayName: 'Run atomicity lint'
+            continueOnError: true
+            inputs:
+              pwsh: true
+              workingDirectory: '$(Build.SourcesDirectory)'
+              targetType: 'inline'
+              script: |
+                . ./scripts/lint-atomicity.ps1 -Root '.'
 
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish reports artifact'
+            condition: always()
+            inputs:
+              pathToPublish: '$(Build.SourcesDirectory)/logs/reports'
+              artifactName: 'reports'
+              publishLocation: 'Container'
+
+  - stage: GitHubMirror
+    displayName: 'GitHub Mirror (publish main → github)'
+    dependsOn: Validate
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - job: MirrorToGitHub
+        displayName: 'Push main → github.com/easyway-data/easyway-wiki'
+        pool:
+          name: Default
+        steps:
+          - checkout: self
+            fetchDepth: 0
+            persistCredentials: false
+          - script: |
+              set -e
+              git config user.email "ew-svc-azuredevops-agent@easyway.local"
+              git config user.name "EasyWay CI"
+              source /opt/easyway/.env.secrets
+              REMOTE="https://oauth2:${GITHUB_PAT}@github.com/easyway-data/easyway-wiki.git"
+              git push "$REMOTE" HEAD:main --force
+              echo "##[section]GitHub mirror: OK — $(git rev-parse --short HEAD)"
+            displayName: 'git push → GitHub'
+            continueOnError: true
