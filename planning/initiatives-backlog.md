@@ -62,10 +62,15 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 |---|---|---|
 | Re-enable deploy stages in pipeline | Alta | Disabilitati in S58, pending multi-repo setup con `deploy.sh` |
 | Fix 3 container falliti | Alta | Build context punta a `agents/Dockerfile` che non esiste piu nel monorepo |
+| Fix GitHubMirror URL in portal pipeline | Alta | Riga 251: ancora `belvisogi/EasyWayDataPortal` → `easyway-data/easyway-portal` |
+| Pipeline split per-repo | Media | Oggi 1 pipeline portal (semplificata) + 1 vecchia in infra (monstre). Servono pipeline dedicate per wiki, agents, infra |
+| GitHub branch protection rules | Media | Portare regole ADO su GitHub: require PR, require review, no force push, status checks required, CODEOWNERS |
+| Pipeline trigger optimization | Bassa | Oggi ogni push a develop triggera full build+test anche per docs-only changes. Path filter o skip CI |
 | Iron Dome hooks ripristino | Media | `ewctl commit` pre-commit hooks da riattivare |
 | GitHub PAT `.env.github` e `.env.publish` scaduti | Media | 401 errors, rigenerare |
 
 **Dipendenze**: i container dipendono dal fix dei Dockerfile path dopo polyrepo split.
+**Sessione dedicata**: pipeline split + GitHub governance richiedono pianificazione architetturale (GEDI).
 
 ## 4. Database — Scelta Tecnologica
 
