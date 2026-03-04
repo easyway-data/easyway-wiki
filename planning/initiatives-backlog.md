@@ -112,6 +112,18 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | RAG re-index automatico post wiki update | Bassa | Qdrant ingest dopo merge su easyway-wiki |
 | PRD → Epic → Wiki → RAG pipeline | Futura | Flusso completo documentato in MEMORY.md |
 
+## 9. Archivio — Materiale Recuperabile
+
+Fonte: `C:\old\EasyWayDataPortal-archive\` (127 file, 1.2 MB, no git)
+
+| Item | Priorita | Fonte | Note |
+|---|---|---|---|
+| mvp_wiki_dq revival — skill DQ per wiki | Media | `archive/mvp_wiki_dq/` | 6 script PS (scorecard, orphans, gap, tags, links, graph-view). Complementari al RAG Qdrant. Candidati per skill in easyway-agents |
+| Legacy DDL SQL preservation | Bassa | `archive/old/db/_ARCHIVED_DDL/` | Schema originale EasyWay DataPortal (tables, SP, provisioning). Rilevante per scelta database §4 |
+| UX specs agentiche | Bassa | `archive/old/wiki-loose/Wiki/UX/` | `agentic-ux-guidelines.md` + `agentic-ux.md` — bozze UX per agent-console |
+
+**Scartabili**: `.bak` files (backup superati), CSV/JSONL duplicati (artefatti generati), artifacts (log snippets)
+
 ---
 
 ## Completate (Archivio)
