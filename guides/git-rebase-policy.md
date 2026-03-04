@@ -98,6 +98,23 @@ git push --force
 | Work item linking | Attiva, blocking | Non impattata dal rebase (WI linkato alla PR, non al commit) |
 | File size restriction | Attiva, blocking | Non impattata |
 
+## Prevenzione Conflitti: PR Sequencing (Lesson S63b)
+
+> **Prima di creare una PR, verificare se ne esiste una pendente sugli stessi file verso lo stesso target.**
+
+| Situazione | Azione |
+|---|---|
+| Nessuna PR pendente sugli stessi file | Procedi normalmente |
+| PR pendente sugli stessi file, non ancora mergiata | **Accorpa**: includi le modifiche nella nuova PR, abbandona la precedente con commento |
+| PR pendente su file diversi | PR parallele OK, nessun rischio |
+
+**Perche**: due PR che toccano lo stesso file verso lo stesso target generano conflitti merge garantiti. La seconda PR richiedera sempre un rebase dopo il merge della prima. Meglio accorpare subito.
+
+**Come abbandonare**:
+1. Crea la nuova PR con tutte le modifiche (vecchie + nuove)
+2. Commenta sulla PR vecchia: "Accorpata in PR #NNN — stessi file modificati"
+3. Abbandona la PR vecchia
+
 ## Principi GEDI Applicati
 
 - **Measure Twice, Cut Once**: la distinzione feature/protetto va fatta PRIMA del rebase
