@@ -5,7 +5,7 @@ summary: Iniziative e task pending che diventeranno Epic/PBI su ADO quando pront
 status: active
 owner: team-platform
 created: '2026-03-04'
-updated: '2026-03-04'  # Session 62
+updated: '2026-03-04'  # Session 66
 tags: [planning, backlog, roadmap, initiatives, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -60,14 +60,18 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 
 | Item | Priorita | Note |
 |---|---|---|
-| Re-enable deploy stages in pipeline | Alta | Disabilitati in S58, pending multi-repo setup con `deploy.sh` |
+| Re-enable deploy stages in pipeline | Media | deploy.sh prod funzionante (S65-66), valutare se serve anche stage pipeline o basta deploy.sh |
 | Fix 3 container falliti | Alta | Build context punta a `agents/Dockerfile` che non esiste piu nel monorepo |
-| Fix GitHubMirror URL in portal pipeline | Alta | Riga 251: ancora `belvisogi/EasyWayDataPortal` → `easyway-data/easyway-portal` |
+| ~~Fix GitHubMirror URL in portal pipeline~~ | ~~Alta~~ | ✓ Completato PR #282 (S63) |
 | Pipeline split per-repo | Media | Oggi 1 pipeline portal (semplificata) + 1 vecchia in infra (monstre). Servono pipeline dedicate per wiki, agents, infra |
 | GitHub branch protection rules | Media | Portare regole ADO su GitHub: require PR, require review, no force push, status checks required, CODEOWNERS |
 | Pipeline trigger optimization | Bassa | Oggi ogni push a develop triggera full build+test anche per docs-only changes. Path filter o skip CI |
 | Iron Dome hooks ripristino | Media | `ewctl commit` pre-commit hooks da riattivare |
 | GitHub PAT `.env.github` e `.env.publish` scaduti | Media | 401 errors, rigenerare |
+| PAT scope: aggiungere Build (Read) | Media | Briefing 401 su build API — PAT manca scope Build Read per log pipeline |
+| Rimuovere `version` obsoleto dai docker-compose | Bassa | Warning in deploy: "attribute `version` is obsolete" su 2 file compose |
+| Dependabot: 3 vulnerabilita high su easyway-infra | Alta | Dipendenze con CVE da risolvere |
+| ewctl.ado-pr.psm1 refactoring | Media | Estrarre logica ArtifactLink+conflict da Create-ReleasePR.ps1 in modulo condiviso (GEDI Case #24) |
 
 **Dipendenze**: i container dipendono dal fix dei Dockerfile path dopo polyrepo split.
 **Sessione dedicata**: pipeline split + GitHub governance richiedono pianificazione architetturale (GEDI).
@@ -135,6 +139,11 @@ Fonte: `C:\old\EasyWayDataPortal-archive\` (127 file, 1.2 MB, no git)
 
 | Item | Completato | Sessione |
 |---|---|---|
+| **Docker network coherence fix + Compose Coherence Gate** | 2026-03-04 | S65-66 |
+| **deploy.sh prod validated + orphan cleanup** | 2026-03-04 | S66 |
+| **WI auto-linking in Create-ReleasePR.ps1** | 2026-03-04 | S64 |
+| **GEDI Cases #24-#25 documented** | 2026-03-04 | S65 |
+| **GitHubMirror URL fix PR #282** | 2026-03-04 | S63 |
 | **La Fabbrica Phase 3c COMPLETATA** | 2026-03-04 | S62 |
 | PR #278 infra GitHub mirror target update | 2026-03-04 | S62 |
 | PR #275 wiki rename refs merged | 2026-03-04 | S62 |

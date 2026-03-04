@@ -32,3 +32,4 @@ tags: [chronicle, index]
 | 2026-03-04 | [La Fabbrica Phase 3b — CI/CD + Deploy Multi-Repo](2026-03-04-la-fabbrica-phase-3b-cicd.md) | infrastructure | S58 |
 | 2026-03-04 | [La Fabbrica Chiude — Phase 3c Complete](2026-03-04-la-fabbrica-chiude.md) | milestone | S62 |
 | 2026-03-04 | [Session 63 — The Last Mirror](2026-03-04-mirror-fix-session-63.md) | fix | S63 |
+| 2026-03-04 | [Session 66 — The Coherence Gate](2026-03-04-coherence-gate-session-66.md) | infrastructure | S66 |

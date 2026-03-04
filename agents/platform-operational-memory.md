@@ -2173,3 +2173,83 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 **Q&A**:
 - Q: Cosa causa la build failure? A: Non determinabile senza build logs (PAT scope). Localmente tutto passa. Possibile: node version mismatch, npm cache stale, rete CI
 - Q: GitHub repo gia rinominato? A: Si, Session 62 ha creato `easyway-data/easyway-portal` su GitHub (PR #278 infra). Il mirror URL nel portal pipeline era l'ultimo riferimento rimasto.
+
+---
+
+### Session 64 — COMPLETATA (2026-03-04)
+
+**Cosa**: WI auto-linking in Create-ReleasePR.ps1 — ArtifactLink + conflict pre-check implementati inline
+
+**Perche**:
+- Branch policy ADO richiede ArtifactLink bidirezionale sui Work Items (workItemRefs nel body PR non basta)
+- Modulo ewctl.ado-pr.psm1 mai implementato come modulo separato (GEDI Case #24)
+
+**Come**:
+1. Implementata logica ArtifactLink in `Create-ReleasePR.ps1`: WI discovery via API, PATCH con `application/json-patch+json`
+2. PAT split: `$Headers` (PR creator) per lookup, `$wiAuth` (scrum-master) per PATCH WI
+3. PR #292 (agents): docs GEDI Case #24
+
+**Q&A**:
+- Q: Perche non creare il modulo? A: GEDI Case #24 (Il Fantasma del Modulo) — logica funzionante in script, refactoring in modulo condiviso quando ci sono 3+ callers reali
+
+---
+
+### Session 65 — COMPLETATA (2026-03-04)
+
+**Cosa**: Deploy multi-repo completato + network split Docker scoperto e fixato + Compose Coherence Gate
+
+**Perche**:
+- Stack easyway-prod con 8 servizi up, ma Caddy restituiva HTTP 500
+- Root cause: `external: true` nelle reti compose con `-p easyway-prod` crea reti separate (network split)
+- GEDI Case #25 (La Rete Spezzata): 6 principi simultanei, severity gate
+
+**Come**:
+1. Deploy 4 repo aggiornati su server: portal PR #288, infra PR #293, agents PR #292, wiki PR #286
+2. Workaround: `docker network connect easyway-prod_easyway-net easyway-gateway-caddy`
+3. Fix strutturale: `name: easyway-net` in tutti e 3 i compose files (docker-compose.yml, apps, prod)
+4. Compose Coherence Gate in deploy.sh: `docker compose config` dry-run + check no `external: true` + check `easyway-net:` exists
+5. 3 PR create: #294 (infra fix+gate), #295 (wiki guide), #296 (agents GEDI cases)
+6. GEDI Case #25 documentato con 6 principi, citazione "Batti il ferro finche e caldo" (Salvatore Belviso)
+
+**Q&A**:
+- Q: Perche non external: true? A: Con `-p easyway-prod`, compose crea `easyway-prod_easyway-net` come rete separata. `name: easyway-net` forza il nome fisso indipendentemente dal project name.
+- Q: Dove va il Coherence Gate? A: DOPO fetch+secrets (servono env vars), PRIMA di compose up
+
+**Backlog -> Prossime sessioni**:
+- Redeploy con deploy.sh prod per validare Coherence Gate (→ fatto in S66)
+- Cleanup orphan containers e reti (→ fatto in S66)
+
+---
+
+### Session 66 — COMPLETATA (2026-03-04)
+
+**Cosa**: Validazione deploy.sh prod con Coherence Gate + cleanup infrastruttura Docker + aggiornamento wiki
+
+**Perche**:
+- 3 PR (S65) da validare: #294 (infra network fix), #295 (wiki guide), #296 (agents GEDI)
+- Orphan containers e reti Docker da pulire
+- Wiki docs da aggiornare (ado-pr-structural-validation.md, backlog)
+
+**Come**:
+1. Verificato: 3 PR gia merged (completed)
+2. Aggiornato server infra a PR #294 (e801cd9)
+3. Lanciato `deploy.sh prod`:
+   - Testudo check: OK (4 repo + docker)
+   - Coherence check: OK (config validated, network unified)
+   - Stack easyway-prod: 10 servizi up su `easyway-net`
+4. Cleanup:
+   - Disconnesso Caddy da rete orfana `easyway-prod_easyway-net`
+   - Spostato easyway-seq da `easywaydataportal_easyway-net` a `easyway-net`
+   - Rimosso 4 reti orfane: easyway-prod_easyway-net, easyway-dev_easyway-net, easyway_easyway-net, easywaydataportal_easyway-net
+5. Wiki: aggiornato ado-pr-structural-validation.md con banner PLANNED, initiatives-backlog con item S64-66
+
+**Q&A**:
+- Q: Container easyway-api e easyway-meta-db sono ancora orphan? A: No — dopo deploy.sh sono gestiti dal compose project (easyway-api ricreato, meta-db Running)
+- Q: Warning "network easyway-net exists but was not created for project"? A: Benigno — la rete con nome fisso e condivisa tra tutti i compose project. Non usare `external: true` (anti-pattern).
+
+**Stato server post-S66**:
+- 10 servizi prod su `easyway-net` (portal, runner, orchestrator, memory, storage, storage-s3, cortex, api, meta-db, caddy)
+- 4 servizi cert su reti cert dedicate
+- 1 atelier (Forgejo) su rete propria
+- 1 seq (logging) su easyway-net
+- 0 reti orfane, 0 container orfani
