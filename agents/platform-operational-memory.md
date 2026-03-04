@@ -727,6 +727,35 @@ ACT:     [raccomandazione concreta]
 
 ---
 
+## 5g. Initiatives Backlog — Lista dei Desideri (Session 61)
+
+### Regola operativa
+
+> **Ogni idea, appunto, task, miglioramento, bug o iniziativa futura DEVE essere aggiunta SUBITO** a `planning/initiatives-backlog.md` nella sezione appropriata. Se non lo scrivi ora, lo perdi.
+
+### Flusso
+
+```
+Idea/appunto → Wiki initiatives-backlog.md (sala d'attesa)
+  → (quando maturo) Epic/PBI su ADO
+    → Sviluppo (feature branch)
+      → Wiki (implementato, Cosa/Perche/Come/Q&A)
+```
+
+### File
+
+- **Backlog wiki**: `planning/initiatives-backlog.md`
+- **Sezioni**: La Fabbrica, Infrastruttura, Database, Agents, HALE-BOPP, Knowledge Lifecycle
+- **Archivio**: sezione "Completate" in fondo al file
+
+### Perche
+
+- Le idee nascono durante le sessioni e si perdono se non catturate
+- La wiki e la fonte di verita pre-ADO — ADO e per task maturi con owner e sprint
+- Qualunque agente o sessione futura puo "pescare" dalla lista dei desideri
+
+---
+
 ## 6. PowerShell Coding Standards
 
 ### Encoding: Em Dash nei file .ps1
