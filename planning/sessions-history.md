@@ -33,6 +33,7 @@ type: planning
 | S67 | 2026-03-04 | PAT router ado-auth.sh + GitHubMirror fix | #303, #305 | #50 |
 | S68 | 2026-03-04 | Branch cleanup -291 + GitHub mirror sync + PAT renewal | — | — |
 | S69 | 2026-03-04 | Iron Dome pre-commit restored + secrets scan bugfix | #310 | — |
+| S70 | 2026-03-04 | PR Readiness Check + npm audit fix + 5 PR | #309, #310, #312-#314 | #53-#57 |
 
 ---
 

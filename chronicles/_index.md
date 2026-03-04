@@ -35,3 +35,4 @@ tags: [chronicle, index]
 | 2026-03-04 | [Session 66 — The Coherence Gate](2026-03-04-coherence-gate-session-66.md) | infrastructure | S66 |
 | 2026-03-04 | [Session 67 — Il Mazzo di Chiavi](2026-03-04-pat-router-session-67.md) | infrastructure | S67 |
 | 2026-03-04 | [Session 68 — La Grande Potatura](2026-03-04-branch-cleanup-session-68.md) | infrastructure | S68 |
+| 2026-03-04 | [Session 70 — The Readiness Gate](2026-03-04-pr-readiness-session-70.md) | tooling | S70 |
