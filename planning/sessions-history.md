@@ -32,6 +32,7 @@ type: planning
 | S66 | 2026-03-04 | deploy.sh prod validation + Docker cleanup | — | — |
 | S67 | 2026-03-04 | PAT router ado-auth.sh + GitHubMirror fix | #303, #305 | #50 |
 | S68 | 2026-03-04 | Branch cleanup -291 + GitHub mirror sync + PAT renewal | — | — |
+| S69 | 2026-03-04 | Iron Dome pre-commit restored + secrets scan bugfix | #310 | — |
 
 ---
 
