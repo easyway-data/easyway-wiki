@@ -30,3 +30,4 @@ tags: [chronicle, index]
 | 2026-03-03 | [Phase 1 — Agents Extraction](2026-03-03-phase-1-agents-extraction.md) | milestone | S56 |
 | 2026-03-04 | [La Fabbrica Phase 2+3a — Il Grande Cleanup](2026-03-04-la-fabbrica-phase-2-3a.md) | milestone | S57 |
 | 2026-03-04 | [La Fabbrica Phase 3b — CI/CD + Deploy Multi-Repo](2026-03-04-la-fabbrica-phase-3b-cicd.md) | infrastructure | S58 |
+| 2026-03-04 | [La Fabbrica Chiude — Phase 3c Complete](2026-03-04-la-fabbrica-chiude.md) | milestone | S62 |

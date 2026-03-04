@@ -5,7 +5,7 @@ summary: Iniziative e task pending che diventeranno Epic/PBI su ADO quando pront
 status: active
 owner: team-platform
 created: '2026-03-04'
-updated: '2026-03-04'
+updated: '2026-03-04'  # Session 62
 tags: [planning, backlog, roadmap, initiatives, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -28,18 +28,35 @@ type: planning
 
 ---
 
-## 1. La Fabbrica — Polyrepo Finalization (Phase 3c)
+## 1. La Fabbrica — Polyrepo Finalization ✓ COMPLETATA
+
+Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
+
+**Residui**:
 
 | Item | Stato | Note |
 |---|---|---|
-| PR #274 portal docs/session-60-refs-update → develop | Pending approval | Approvare PRIMA di #273 |
-| PR #273 portal develop → main (Release S60) | Pending approval | Approvare DOPO #274 |
-| PR #275 wiki docs/session-60-rename-refs → main | Pending approval | |
-| PR #276 agents initial-import → main | Merged (S61) | GitHub mirror fatto |
+| GitHub mirror wiki — 2 commit dietro ADO | Da sync | Pipeline GitHubMirror non copre wiki/infra, push manuale necessario |
+| GitHub mirror infra — 2 commit dietro ADO | Da sync | Idem |
+| Branch cleanup portal — ~144 locali + ~195 remoti | Da fare | Debito tecnico enorme accumulato pre-polyrepo |
+| GitHub Actions sync-to-ado.yml | Da configurare | Workflow vive in easyway-infra ma GitHub Actions lo cerca nel repo easyway-portal |
+| .cursorrules GitHub refs update | Da fare | ~15 riferimenti a `belvisogi/EasyWayDataPortal` da aggiornare a `easyway-data/easyway-portal` |
 
-**Criterio di completamento**: tutte le PR merged, tutti i repo allineati ADO ↔ GitHub.
+## 2. Branch Cleanup — Debito Tecnico (Portal)
 
-## 2. Infrastruttura & CI/CD
+**Inventario (2026-03-04)**:
+- Locali: 144 branch (48 gia merged in main)
+- Remoti: 195 branch (50 gia merged in main)
+- **Azione**: eliminare i 48+50 branch merged, poi valutare gli unmerged
+
+| Batch | Tipo | Count | Azione |
+|---|---|---|---|
+| Merged locali | `git branch --merged main` | 48 | `git branch -d <name>` — sicuro |
+| Merged remoti | `git branch -r --merged main` | 50 | `git push origin --delete <name>` — richiede approvazione |
+| Unmerged locali | `git branch --no-merged main` | ~96 | Valutare caso per caso |
+| Unmerged remoti | `git branch -r --no-merged main` | ~145 | Valutare caso per caso |
+
+## 3. Infrastruttura & CI/CD
 
 | Item | Priorita | Note |
 |---|---|---|
@@ -50,7 +67,7 @@ type: planning
 
 **Dipendenze**: i container dipendono dal fix dei Dockerfile path dopo polyrepo split.
 
-## 3. Database — Scelta Tecnologica
+## 4. Database — Scelta Tecnologica
 
 | Item | Priorita | Note |
 |---|---|---|
@@ -59,7 +76,7 @@ type: planning
 
 **Contesto**: il server e ARM64 (OCI), SQL Edge non supporta ARM nativamente. PostgreSQL e il candidato naturale, allineato con HALE-BOPP.
 
-## 4. Agents Platform
+## 5. Agents Platform
 
 | Item | Priorita | Note |
 |---|---|---|
@@ -67,7 +84,7 @@ type: planning
 | Agent runner L2/L3 test post-polyrepo | Media | Verificare che i path `Import-AgentSecrets` funzionino ancora |
 | Skills registry update post-polyrepo | Media | `agents/skills/registry.json` — path references da verificare |
 
-## 5. HALE-BOPP
+## 6. HALE-BOPP
 
 | Item | Priorita | ADO | Note |
 |---|---|---|---|
@@ -77,7 +94,17 @@ type: planning
 
 **Org GitHub**: `hale-bopp-data` (Apache 2.0, full open source)
 
-## 6. Knowledge Lifecycle — Level 2 (Automazione)
+## 7. Security & Secrets Management
+
+| Item | Priorita | Note |
+|---|---|---|
+| Full RBAC env segregation | Media | Implementare modello `.env.discovery/.planner/.executor` da `infra/config/environments/README.md` — oggi tutto in unico `.env.local` |
+| PAT resolver function `Get-AdoPat -Role <role>` | Bassa | Elimina hardcoding nomi variabile PAT negli script; shell wrapper per bash |
+| Secrets Registry expiry alerting | Bassa | `Invoke-SecretsScan.ps1` esiste ma non e automatizzato — n8n cron? |
+
+**Contesto**: GEDI Case #19 (S62) — `.env.local` ha 4 PAT separati per scope (bene), ma serviti da un unico file leggibile da tutti i processi. Il modello RBAC multi-file in `infra/config/environments/` e documentato ma non implementato.
+
+## 8. Knowledge Lifecycle — Level 2 (Automazione)
 
 | Item | Priorita | Note |
 |---|---|---|
@@ -91,6 +118,12 @@ type: planning
 
 | Item | Completato | Sessione |
 |---|---|---|
+| **La Fabbrica Phase 3c COMPLETATA** | 2026-03-04 | S62 |
+| PR #278 infra GitHub mirror target update | 2026-03-04 | S62 |
+| PR #275 wiki rename refs merged | 2026-03-04 | S62 |
+| PR #273, #274 portal rename refs merged | 2026-03-04 | S62 |
+| factory.yml aggiornato con stato reale | 2026-03-04 | S62 |
+| Tutti i repo locali sync su main | 2026-03-04 | S62 |
 | easyway-agents import 672 file su main | 2026-03-04 | S61 |
 | easyway-agents GitHub mirror sync | 2026-03-04 | S61 |
 | ADO repo rename EasyWayDataPortal → easyway-portal | 2026-03-03 | S60 |
