@@ -2377,3 +2377,36 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 **Q&A**:
 - Q: Perche pipeline per-repo e non un'unica pipeline multi-repo? A: Ogni repo ha esigenze diverse (wiki: lint+mirror, agents: lint+test+mirror, infra: validate+mirror). Pipeline separate sono piu semplici e falliscono in modo indipendente.
 - Q: Perche branch protection anche su GitHub? A: I repo pubblici (wiki, agents) accettano contributi esterni. Senza protection, un push diretto su main bypassa il review process.
+
+### Session 72 — COMPLETATA (2026-03-04)
+
+**Cosa**: HALE-BOPP GitHub Launch — 3 repo open-source creati e operativi
+
+**Perche**:
+- I 3 moduli HALE-BOPP (db, etl, argos) esistevano solo come cartelle locali senza git, CI, ne documentazione pubblica
+- PBI #37 richiedeva GitHub repo + CI + release readiness
+
+**Come**:
+1. **Nomenclatura brand-first**: package names allineati a `hale-bopp-{db,etl,argos}`, licenza Apache-2.0
+2. **Layout filesystem ristrutturato**:
+   - `DB-HALE-BOPP → db/`, `ETL-HALE-BOPP → etl/`, `ARGOS-HALE-BOPP → argos/`
+   - Docs strategici spostati in `docs/` (non git)
+3. **Shared files**: LICENSE, CODE_OF_CONDUCT, CONTRIBUTING, .gitignore, README (inglese) in tutti e 3
+4. **GitHub Actions CI**: `ci.yml` per ogni repo:
+   - DB: PostgreSQL 16 service container + pytest
+   - ETL: pip install -e . + pytest
+   - ARGOS: pytest puro
+5. **Git init + push**: 3 repo su org `hale-bopp-data`
+6. **GitHub metadata**: description, topics, branch protection su main (require PR, 1 reviewer, no force push)
+7. **factory.yml aggiornato**: path relativi, ci: github-actions, GitHub mirrors section
+
+| Repo | GitHub | CI | Test |
+|---|---|---|---|
+| hale-bopp-db | hale-bopp-data/hale-bopp-db | green | 17/17 |
+| hale-bopp-etl | hale-bopp-data/hale-bopp-etl | green | 16/16 |
+| hale-bopp-argos | hale-bopp-data/hale-bopp-argos | green | 14/14 |
+
+**Q&A**:
+- Q: Perche brand-first naming (`hale-bopp-db` non `db-hale-bopp`)? A: Coerenza con GitHub org name, facilita discovery, tutti i repo sotto lo stesso prefisso.
+- Q: Perche Apache-2.0 e non MIT? A: Patent grant esplicito, piu adatto per progetti data governance enterprise.
+- Q: Perche 3 repo separati e non monorepo? A: Coerente con filosofia "muscles" — ogni modulo e indipendente, deployabile singolarmente, con CI dedicata.
