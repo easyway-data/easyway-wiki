@@ -5,7 +5,7 @@ summary: Iniziative e task pending che diventeranno Epic/PBI su ADO quando pront
 status: active
 owner: team-platform
 created: '2026-03-04'
-updated: '2026-03-04'  # Session 68
+updated: '2026-03-04'  # Session 71
 tags: [planning, backlog, roadmap, initiatives, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -40,7 +40,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ~~GitHub mirror infra~~ | ~~Da sync~~ | ✓ Pushed S68 — idem |
 | ~~Branch cleanup portal~~ | ~~Da fare~~ | ✓ S68: da 100+151 a 2+9 branch. 9 residui protetti da ADO policy |
 | GitHub Actions sync-to-ado.yml | Da configurare | Workflow vive in easyway-infra ma GitHub Actions lo cerca nel repo easyway-portal |
-| .cursorrules GitHub refs update | Da fare | ~15 riferimenti a `belvisogi/EasyWayDataPortal` da aggiornare a `easyway-data/easyway-portal` |
+| ~~.cursorrules GitHub refs update~~ | ~~Da fare~~ | ✓ S71: verificato — i ~15 riferimenti sono storici (session notes, chronicles). Refs operativi (pipeline, git remote) gia aggiornati S63 |
 
 ## 2. Branch Cleanup — Debito Tecnico ✓ COMPLETATA S68
 
@@ -54,7 +54,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | infra | 6 + 10 | 1 + 1 | **-14** |
 
 **9 branch portal protetti** da ADO branch policy (ForcePush) — eliminabili solo da admin ADO web.
-**Dependabot**: 30 vulnerabilita su easyway-portal (1 critical, 22 high) — da fixare.
+~~**Dependabot**: 30 vulnerabilita su easyway-portal (1 critical, 22 high) — da fixare.~~ ✓ S70: npm audit fix PR #312 (0 vulns)
 
 ## 3. Infrastruttura & CI/CD
 
@@ -63,8 +63,8 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | Re-enable deploy stages in pipeline | Media | deploy.sh prod funzionante (S65-66), valutare se serve anche stage pipeline o basta deploy.sh |
 | Fix 3 container falliti | Alta | Build context punta a `agents/Dockerfile` che non esiste piu nel monorepo |
 | ~~Fix GitHubMirror URL in portal pipeline~~ | ~~Alta~~ | ✓ Completato PR #282 (S63) |
-| Pipeline split per-repo | Media | Oggi 1 pipeline portal (semplificata) + 1 vecchia in infra (monstre). Servono pipeline dedicate per wiki, agents, infra |
-| GitHub branch protection rules | Media | Portare regole ADO su GitHub: require PR, require review, no force push, status checks required, CODEOWNERS |
+| ~~Pipeline split per-repo~~ | ~~Media~~ | ✓ S71: PR #316-#318, pipeline registrate e verdi. Wiki (normalize+lint), agents (manifest+shellcheck), infra (compose validate+shellcheck). GitHub mirror da server secrets |
+| ~~GitHub branch protection rules~~ | ~~Media~~ | ✓ S71: wiki + agents (public) protetti (no delete, force push per mirror CI). Portal + infra (private) richiedono GitHub Pro |
 | Pipeline trigger optimization | Bassa | Oggi ogni push a develop triggera full build+test anche per docs-only changes. Path filter o skip CI |
 | ~~Iron Dome hooks ripristino~~ | ~~Media~~ | ✓ S69: pre-commit bash hook + setup-hooks.sh + bugfix single-line scan. PR #310 |
 | Iron Dome modularizzazione | Media | Pattern registry YAML, `.iron-dome.json` per-repo config, parametri esclusione. Candidato per spin-off open-source (vedi §6 HALE-BOPP) |
@@ -72,12 +72,12 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ~~PAT scope: aggiungere Build (Read)~~ | ~~Media~~ | ✓ Completato S66 — briefing ora mostra pipeline runs |
 | ~~Rimuovere `version` obsoleto dai docker-compose~~ | ~~Bassa~~ | ✓ Completato PR #299 (S66) |
 | ~~Dependabot: 3 vulnerabilita high su easyway-infra~~ | ~~Alta~~ | ✓ Completato PR #298 (S66) — minimatch 0 vulns |
-| CI deploy gates: disabilitare in pipeline | Alta | ✓ PR #300 (S66, GEDI Case #26) — da mergiare |
+| ~~CI deploy gates: disabilitare in pipeline~~ | ~~Alta~~ | ✓ PR #300 merged (S66, GEDI Case #26) |
 | ewctl.ado-pr.psm1 refactoring | Media | Estrarre logica ArtifactLink+conflict da Create-ReleasePR.ps1 in modulo condiviso (GEDI Case #24) |
 | **easyway-ado: ADO tooling configurabile** | Media | Migrare Get-ADOBriefing, Create-ReleasePR, Publish-WikiPages, ado-auth.sh nel repo `easyway-ado`. Renderli configurabili (org/project/repo come config JSON, non hardcoded). Oggi vivono in easyway-agents con valori EasyWay hardcoded |
 
 **Dipendenze**: i container dipendono dal fix dei Dockerfile path dopo polyrepo split.
-**Sessione dedicata**: pipeline split + GitHub governance richiedono pianificazione architetturale (GEDI).
+**S71**: ADO branch protection configurata su wiki, agents, infra (min reviewers + merge strategy + WI linking). GitHub branch protection pending.
 
 ## 4. Database — Scelta Tecnologica
 
@@ -132,7 +132,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | GitHub mirror drift prevention | Media | wiki e infra sync dietro ADO. Mirror GitHub devono essere **read-only** tranne bot sync. Se qualcuno pusha direttamente su GitHub mirror → drift. Aggiungere branch protection rules su GitHub: solo bot puo pushare a main |
 | Secrets management evolution | Media | `/opt/easyway/.env.secrets` e un file unico con God-Tokens (DEEPSEEK, GITEA, QDRANT). Post-polyrepo, container diversi servono sottoinsiemi diversi. Valutare: HashiCorp Vault / Azure Key Vault per rimpiazzare `.env.secrets` locale quando architettura cresce |
 
-**Dipendenze**: CI/CD testing dipende da pipeline split (§3). Secrets evolution dipende da RBAC segregation (§7).
+**Dipendenze**: ~~CI/CD testing dipende da pipeline split (§3)~~. Pipeline split completato S71. Secrets evolution dipende da RBAC segregation (§7).
 
 ## 9. Knowledge Lifecycle — Level 2 (Automazione)
 
@@ -160,6 +160,10 @@ Fonte: `C:\old\EasyWayDataPortal-archive\` (127 file, 1.2 MB, no git)
 
 | Item | Completato | Sessione |
 |---|---|---|
+| **Pipeline split per-repo (wiki, agents, infra) — 3 pipeline verdi** | 2026-03-04 | S71 |
+| **ADO branch protection su wiki, agents, infra** | 2026-03-04 | S71 |
+| **npm audit fix portal: 0 vulnerabilita (PR #312)** | 2026-03-04 | S70 |
+| **PR Readiness Check in Get-ADOBriefing (PR #313)** | 2026-03-04 | S70 |
 | **Branch cleanup 4 repo: -291 branch** | 2026-03-04 | S68 |
 | **GitHub PAT rinnovato + credential store server** | 2026-03-04 | S68 |
 | **GitHub mirror 4 repo pushed** | 2026-03-04 | S68 |
