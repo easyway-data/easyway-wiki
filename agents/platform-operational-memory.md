@@ -2274,3 +2274,73 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Branch cleanup fase 2 (97+149 unmerged)
 - Pipeline split per-repo (wiki, agents, infra)
 - Iron Dome hooks ripristino
+
+### Session 67 — COMPLETATA (2026-03-04)
+
+**Cosa**: PAT router `ado-auth.sh` + GitHubMirror pipeline fix
+**Perche**: Pipeline GitHubMirror falliva per URL repo errata post-rename. PAT management frammentato tra script.
+**Come**:
+1. Creato `ado-auth.sh` — router centralizzato PAT per azioni ADO (pr, wi, build, general, github)
+2. Fix GitHubMirror: URL aggiornata da `EasyWayDataPortal` a `easyway-portal`
+3. PR #303 (portal fix/ci-github-mirror-non-blocking → develop), PR #304 (fix URL), PR #305 Release develop→main
+4. GEDI Case #27 documentato
+
+**Q&A**:
+- Q: Perche un router PAT e non un unico PAT? A: Segregazione scope — principio least-privilege. Ogni azione usa solo i permessi necessari.
+
+### Session 68 — COMPLETATA (2026-03-04)
+
+**Cosa**: Branch cleanup massivo + GitHub mirror sync + PAT renewal
+**Perche**: 144+195 branch accumulati su portal, molti merged e obsoleti. Mirror GitHub non sincronizzato per wiki e infra.
+**Come**:
+1. Eliminati 93 branch merged (portal: da 144+195 a 97+149)
+2. Push manuale GitHub mirror per wiki e infra
+3. PAT renewal per token in scadenza
+4. PR #308 (wiki closeout S68)
+
+### Session 69 — COMPLETATA (2026-03-04)
+
+**Cosa**: Iron Dome pre-commit hooks ripristino + secrets scan bugfix
+**Perche**: Pre-commit hooks disabilitati durante La Fabbrica migration. Secrets scan aveva false positive.
+**Come**:
+1. Ripristinati pre-commit hooks universali (tutti i repo della Fabbrica)
+2. Fix secrets scan: pattern matching migliorato per ridurre false positive
+3. GEDI Cases #28-#29 documentati
+4. PR #309 (agents docs GEDI), PR #310 (agents feat iron-dome)
+
+### Session 70 — COMPLETATA (2026-03-04)
+
+**Cosa**: PR Readiness Check + npm audit fix + 5 PR create/merge
+
+**Perche**:
+- PR #309 e #310 bloccate: mancavano Work Items linkati (ADO policy)
+- 5 CVE in portal (1 critical) da npm audit
+- Get-ADOBriefing mancava di visibilita sullo stato readiness delle PR
+
+**Come**:
+1. **PR Readiness Check** integrato in `Get-ADOBriefing.ps1`:
+   - Query project-level (tutti i repo, non solo portal)
+   - Per ogni PR aperta: check WI linkati + policy evaluations
+   - Output `[OK]` / `[BLOCKED]` con motivo specifico
+2. **Sbloccate PR #309 e #310**: creati WI #53 e #54, ArtifactLink bidirezionale
+3. **npm audit fix portal**: 5 CVE (1 critical minimatch) → 0 vulnerabilita. PR #312.
+4. **Backlog wiki**: aggiunta voce "easyway-ado tooling migration" in initiatives-backlog
+5. **5 PR create, tutte [OK]**:
+
+| PR | Repo | WI | Contenuto |
+|---|---|---|---|
+| #309 | agents | #53 | GEDI Cases #28-#29 |
+| #310 | agents | #54 | Iron Dome pre-commit hooks |
+| #312 | portal | #55 | npm audit fix 5 CVE |
+| #313 | agents | #56 | Briefing readiness check |
+| #314 | wiki | #57 | Backlog easyway-ado |
+
+**Q&A**:
+- Q: Perche query project-level e non per-repo? A: Evita N chiamate API separate. Un singolo endpoint restituisce PR da tutti i repo del progetto.
+- Q: Perche ArtifactLink e non solo `workItemRefs` nel body PR? A: ADO policy richiede link bidirezionale. `workItemRefs` non basta per soddisfare la branch policy "Check for linked work items".
+
+**Backlog -> Prossime sessioni**:
+- Pipeline split per-repo (CI/CD dedicata per wiki, agents, infra)
+- Branch protection su wiki, agents, infra (require PR, require review, no force push, WI linking)
+- GitHub mirror sync per wiki e infra (behind)
+- Pipeline PAT: aggiungere scope Build (Read & Execute) per automazione re-run
