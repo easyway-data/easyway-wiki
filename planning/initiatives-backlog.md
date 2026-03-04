@@ -68,9 +68,10 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | Pipeline trigger optimization | Bassa | Oggi ogni push a develop triggera full build+test anche per docs-only changes. Path filter o skip CI |
 | Iron Dome hooks ripristino | Media | `ewctl commit` pre-commit hooks da riattivare |
 | GitHub PAT `.env.github` e `.env.publish` scaduti | Media | 401 errors, rigenerare |
-| PAT scope: aggiungere Build (Read) | Media | Briefing 401 su build API — PAT manca scope Build Read per log pipeline |
-| Rimuovere `version` obsoleto dai docker-compose | Bassa | Warning in deploy: "attribute `version` is obsolete" su 2 file compose |
-| Dependabot: 3 vulnerabilita high su easyway-infra | Alta | Dipendenze con CVE da risolvere |
+| ~~PAT scope: aggiungere Build (Read)~~ | ~~Media~~ | ✓ Completato S66 — briefing ora mostra pipeline runs |
+| ~~Rimuovere `version` obsoleto dai docker-compose~~ | ~~Bassa~~ | ✓ Completato PR #299 (S66) |
+| ~~Dependabot: 3 vulnerabilita high su easyway-infra~~ | ~~Alta~~ | ✓ Completato PR #298 (S66) — minimatch 0 vulns |
+| CI deploy gates: disabilitare in pipeline | Alta | ✓ PR #300 (S66, GEDI Case #26) — da mergiare |
 | ewctl.ado-pr.psm1 refactoring | Media | Estrarre logica ArtifactLink+conflict da Create-ReleasePR.ps1 in modulo condiviso (GEDI Case #24) |
 
 **Dipendenze**: i container dipendono dal fix dei Dockerfile path dopo polyrepo split.
@@ -139,6 +140,10 @@ Fonte: `C:\old\EasyWayDataPortal-archive\` (127 file, 1.2 MB, no git)
 
 | Item | Completato | Sessione |
 |---|---|---|
+| **CI deploy gates disabled + GEDI Case #26** | 2026-03-04 | S66 |
+| **Dependabot minimatch 3 CVEs fixed (PR #298)** | 2026-03-04 | S66 |
+| **docker-compose version removed (PR #299)** | 2026-03-04 | S66 |
+| **PAT Build Read scope aggiunto** | 2026-03-04 | S66 |
 | **Docker network coherence fix + Compose Coherence Gate** | 2026-03-04 | S65-66 |
 | **deploy.sh prod validated + orphan cleanup** | 2026-03-04 | S66 |
 | **WI auto-linking in Create-ReleasePR.ps1** | 2026-03-04 | S64 |
