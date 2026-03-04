@@ -2112,3 +2112,40 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Rinominare GitHub repo `belvisogi/EasyWayDataPortal` → `easyway-portal` (opzionale)
 - Ripristino Iron Dome hooks dal repo easyway-agents
 - Fix 3 container falliti (build context agents/Dockerfile)
+
+### Session 62 — COMPLETATA (2026-03-04)
+
+**Cosa**:
+1. La Fabbrica Phase 3c chiusa — tutte le PR merged (#273, #274, #275, #276, #278), tutti i repo su main
+2. factory.yml aggiornato con stato reale: 4 fasi completed, sub-phases 3a/3b/3c, GitHub mirror status
+3. Branch cleanup: 47 locali + 46 remoti eliminati (merged in main) — da 144+195 a 97+149
+4. Backlog rinnovato: Phase 3c archiviata, sezione branch cleanup aggiunta, numerazione sezioni aggiornata
+5. GEDI Case #20 documentato: branch cleanup con framework decisionale strutturato
+6. Chronicle scritta: "La Fabbrica Chiude"
+7. Wiki stash recuperato e applicato (backlog updates da sessione precedente)
+
+**Perche**:
+- La Fabbrica era tecnicamente completa ma non formalmente chiusa — factory.yml ancora con Phase 3 "planned"
+- 144 branch locali nel portal erano debito tecnico accumulato in 26 sessioni
+- GEDI invocato dall'utente per avere framework decisionale, non perche non sapesse la risposta
+
+**Come**:
+- PR #278 gia merged all'apertura sessione — nessun intervento necessario
+- `git fetch origin && git checkout main && git reset --hard origin/main` su tutti e 4 i repo
+- `git branch --merged main | grep -v protected | xargs git branch -d` per locali
+- `git push origin --delete` per remoti (1 bloccato da policy ADO — fix/secrets-remediation)
+- factory.yml: aggiunta sezione `github_mirrors` con stato sync real-time
+- GEDI OODA: Measure Twice (escludere protetti) + Start Small (locale prima) + Testudo (develop/baseline sacri)
+
+**Q&A**:
+- Q: Perche `fix/secrets-remediation` non si cancella? A: ADO ha policy ForcePush su quel branch — la Testudo funziona
+- Q: Wiki e infra GitHub mirror sono dietro? A: Si, 2 commit ciascuno. Pipeline GitHubMirror copre solo il portal. Push manuale necessario.
+- Q: 97+149 branch restanti? A: Tutti unmerged — richiedono valutazione caso per caso (prossima sessione)
+
+**Backlog -> Prossime sessioni**:
+- Branch cleanup fase 2: valutare 97+149 unmerged
+- GitHub mirror sync per wiki e infra (push manuale o pipeline dedicata)
+- GitHub Actions sync-to-ado.yml: vive in easyway-infra ma GitHub lo cerca nel repo portal
+- Re-enable deploy stages nella pipeline
+- Fix 3 container con Dockerfile path rotto
+- HALE-BOPP Sprint 1 completamento
