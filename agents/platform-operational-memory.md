@@ -1961,11 +1961,63 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - GitHub: org `easyway-data`, org `hale-bopp-data`
 - PR #246: Phase 0 import wiki su easyway-wiki (initial-import -> main)
 
-**Backlog -> Session 55**
-- Completare PR #246 su easyway-wiki (rinominare initial-import -> main dopo merge)
-- Push easyway-wiki su GitHub (easyway-data/easyway-wiki)
-- Phase 1: subtree split agents/ + scripts/pwsh/ → easyway-agents
-- Sostituire Wiki/ con submodule nel monorepo
-- Aggiornare CI/CD per submodule checkout
-- Commit session 54 changes sul monorepo (feat/session-54-fabbrica-sprint1 → develop)
-- Release PR develop → main
+---
+
+### Session 55-56 — ewctl.ado-pr module + La Fabbrica Phase 1 Agents
+
+(Documentata nel monorepo — vedasi git history commit 355fadb per dettaglio completo)
+
+**Sintesi**: Creato modulo `ewctl.ado-pr.psm1` (405 righe, 6 funzioni) per PR governance strutturale. Completata Phase 1 agents extraction (672 file). Wiki sync. Guida ArtifactLink. PRs #247-#258.
+
+---
+
+### Session 57 — La Fabbrica Phase 2 + Phase 3a: Il Grande Cleanup
+
+**Cosa**:
+1. Phase 2: estratto `easyway-infra` (1434 file, 224K+ righe) — docker-compose, Caddyfile, azure-pipelines, scripts/infra|ops|linux|ci, config, release, forgejo, terraform
+2. Phase 3a: rimosso dal monorepo tutto il contenuto estratto (Wiki/, agents/, control-plane/, scripts estratti, file legacy) — 1420 file, 231K righe eliminate
+3. Push di tutti e 3 i repo su GitHub org easyway-data
+4. PBI #42 creato e linkato con ArtifactLink bidirezionale
+
+**Perche**:
+- Phase 2 completa la separazione infrastruttura/codice — La Fabbrica 3 su 4 fasi completate
+- Phase 3a elimina la duplicazione: i file estratti vivono nei nuovi repo, non piu nel monorepo
+- GitHub push rende i repo accessibili per contributor esterni e backup
+- Il monorepo ora contiene SOLO il portal (portal-api, apps/portal-frontend, packages, tests, db, docs, etl)
+
+**Come**:
+- easyway-infra: `mkdir + cp` da 7+ directory + file root → git init → commit → push ADO via feat/initial-import PR
+- ADO repo creation: PAT locale non ha scope "Create Repository" → creato manualmente da UI
+- GitHub: PAT owner (`GITHUB_PAT` in `.env.local`), org easyway-data. Creato easyway-infra via API GitHub. Force push per sovrascrivere Initial Commit default.
+- Phase 3a: `git rm -rf` su Wiki/, agents/, control-plane/, scripts estratti + `git rm -f` su file root obsoleti
+- Git hooks: `pre-commit` aggiornato da PowerShell (Iron Dome, rimosso) a bash (security checklist); `prepare-commit-msg` = no-op
+- Innovation docs (Blueprint, Guardiani del Codice) salvati in `C:\old\#innovazione_agenti\`
+- GEDI consultato per Phase 3: decisione "Start Small" — cleanup sicuro ora, CI/CD migration in Phase 3b
+
+**Q&A**:
+- Q: Perche non rimuovere anche docker-compose/Caddyfile/azure-pipelines dal monorepo? A: GEDI "Start Small" — CI/CD pipeline attiva, server fa deploy dal monorepo. Migrazione CI in Phase 3b.
+- Q: Perche force push su GitHub? A: I repo GitHub avevano solo "Initial commit" di default da UI — zero contenuto reale.
+- Q: Perche Iron Dome hooks non funzionano? A: `scripts/pwsh/git-hooks/` rimosso nel cleanup. Hook ricreati come bash/no-op. Ripristino da easyway-agents in Phase 3b.
+- Q: Dove sono ora gli script? A: `scripts/pwsh/` (Create-ReleasePR, Get-ADOBriefing, etc.) → easyway-agents. Non piu nel monorepo.
+
+**PRs Session 57**:
+- PR #259: feat/session-57-fabbrica-phase2 → develop (Phase 2 docs)
+- PR #260: Release Session 57 develop → main
+- PR #261: easyway-infra feat/initial-import → main (1434 file)
+- PR #262: feat/phase3-cleanup → develop (Phase 3a, -1420 file)
+- PR #263: Release Session 57 Phase 3a develop → main
+
+**Lessons**:
+- L1: Nessun PAT di servizio ha scope "Create Repository" — aggiungere scope o creare da UI
+- L2: `release/` contiene snapshot deploy (agents, wiki, scripts, www, init.sql) — legittimo in infra
+- L3: Git hooks che puntano a file rimossi bloccano il commit — aggiornare PRIMA del cleanup
+- L4: `workItemRefs` nella PR creation body ORA crea automaticamente ArtifactLink (comportamento cambiato?)
+- L5: `Create-ReleasePR.ps1` non esiste piu nel monorepo — Release PR create via curl ADO API
+
+**Backlog -> Session 58 (Phase 3b)**:
+- CI/CD: `azure-pipelines.yml` semplificato per solo portal-api build/test
+- Rename repo `EasyWayDataPortal` → `easyway-portal` su ADO
+- Server multi-repo: clonare easyway-infra sul server, docker-compose da li
+- Ripristino Iron Dome hooks dal repo easyway-agents
+- Rimuovere docker-compose/Caddyfile/azure-pipelines dal monorepo (ora in easyway-infra)
+- Aggiornare `factory.yml` Phase 3 status
