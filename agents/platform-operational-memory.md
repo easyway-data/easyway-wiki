@@ -2344,3 +2344,36 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Branch protection su wiki, agents, infra (require PR, require review, no force push, WI linking)
 - GitHub mirror sync per wiki e infra (behind)
 - Pipeline PAT: aggiungere scope Build (Read & Execute) per automazione re-run
+
+### Session 71 — COMPLETATA (2026-03-04)
+
+**Cosa**: Pipeline fix + ADO/GitHub branch protection + pipeline split per-repo + backlog cleanup
+
+**Perche**:
+- Pipeline run #109 fallita per GitHub PAT mancante nella variable group
+- I repo satellite (wiki, agents, infra) non avevano branch protection ne pipeline dedicata
+- Backlog wiki con voci obsolete e .cursorrules con riferimenti non aggiornati
+
+**Come**:
+1. **Pipeline fix**: re-run #109 verde dopo fix GitHub PAT in EasyWay-Secrets variable group
+2. **S70 closeout**: PR #315 (mergiata), WI #58 — platform-operational-memory, chronicle, sessions-history
+3. **ADO branch protection**: 5 policy a livello di progetto + policy repo-specifiche per wiki, agents, infra
+   - Require PR, minimum 1 reviewer, no force push, WI linking
+4. **Pipeline split per-repo**: 3 pipeline dedicate (wiki, agents, infra) con GitHub mirror
+   - PR #316 (wiki), #317 (agents), #318 (infra) — tutte mergiate, 3 run verdi
+   - WI #59 per tutte e tre
+5. **GitHub branch protection**: wiki e agents protetti (require PR, no force push)
+6. **Backlog update + refs audit**: PR #319 (mergiata), WI #58
+   - Chiuse 6 voci backlog: pipeline split, ADO branch protection, GitHub branch protection, npm audit vulns, .cursorrules refs, CI deploy gates
+
+| PR | Repo | WI | Contenuto |
+|---|---|---|---|
+| #315 | wiki | #58 | S70 closeout |
+| #316 | wiki | #59 | Wiki pipeline + GitHub mirror |
+| #317 | agents | #59 | Agents pipeline + GitHub mirror |
+| #318 | infra | #59 | Infra pipeline + GitHub mirror |
+| #319 | wiki | #58 | Backlog update + refs audit |
+
+**Q&A**:
+- Q: Perche pipeline per-repo e non un'unica pipeline multi-repo? A: Ogni repo ha esigenze diverse (wiki: lint+mirror, agents: lint+test+mirror, infra: validate+mirror). Pipeline separate sono piu semplici e falliscono in modo indipendente.
+- Q: Perche branch protection anche su GitHub? A: I repo pubblici (wiki, agents) accettano contributi esterni. Senza protection, un push diretto su main bypassa il review process.
