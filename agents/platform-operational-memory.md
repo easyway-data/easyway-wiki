@@ -2106,10 +2106,8 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: 3 container falliti al restart? A: easyway-runner, easyway-cert-runner, easyway-rag-service — build context `agents/Dockerfile` non esiste piu nel portal (estratto in easyway-agents). Pre-existing, non legato al rename
 
 **Backlog -> Prossime sessioni**:
-- Merge easyway-agents `initial-import` → main (672 file, branch eliminato — ricreare da backup o re-extract)
 - Re-enable deploy stages in pipeline con deploy.sh da easyway-infra
 - Scelta database: Oracle Cloud / SQL Server Azure / PostgreSQL
-- Rinominare GitHub repo `belvisogi/EasyWayDataPortal` → `easyway-portal` (opzionale)
 - Ripristino Iron Dome hooks dal repo easyway-agents
 - Fix 3 container falliti (build context agents/Dockerfile)
 
@@ -2149,3 +2147,29 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Re-enable deploy stages nella pipeline
 - Fix 3 container con Dockerfile path rotto
 - HALE-BOPP Sprint 1 completamento
+- Pipeline split per-repo (wiki, agents, infra — oggi solo portal ha pipeline)
+- GitHub branch protection rules (portare regole ADO)
+- Rigenerare PAT con scope Build per accesso log CI
+
+---
+
+### Session 63 — COMPLETATA
+
+**Cosa**: Fix GitHubMirror URL in portal pipeline + CI build investigation + wiki backlog update + fix Get-ADOBriefing.ps1
+
+**Perche**:
+- GitHubMirror stage puntava ancora a `belvisogi/EasyWayDataPortal` dopo rename+migration completati in S62
+- Build failure su develop (Build #20260304.10) da investigare
+- Wiki backlog aveva 4 nuovi item CI/CD dalla S62 non pushati
+- Get-ADOBriefing.ps1 aveva vecchio repo name
+
+**Come**:
+1. Fix `azure-pipelines.yml` righe 240+251: `belvisogi/EasyWayDataPortal` → `easyway-data/easyway-portal`
+2. Build investigation locale: `npm ci` + `tsc` + `npm test` tutti OK (7 suite, 33 test green). Failure CI probabilmente ambiente server (PAT senza scope Build impedisce accesso log)
+3. PBI #44 creato, PR #282 (portal fix→develop), PR #283 (wiki docs→main)
+4. GEDI Case #21: "Closeout vs. Continue" — GEDI consiglia closeout pulito, task architetturali rimanenti meritano sessioni dedicate
+5. Fix `Get-ADOBriefing.ps1` default `$Repo` param: `EasyWayDataPortal` → `easyway-portal`
+
+**Q&A**:
+- Q: Cosa causa la build failure? A: Non determinabile senza build logs (PAT scope). Localmente tutto passa. Possibile: node version mismatch, npm cache stale, rete CI
+- Q: GitHub repo gia rinominato? A: Si, Session 62 ha creato `easyway-data/easyway-portal` su GitHub (PR #278 infra). Il mirror URL nel portal pipeline era l'ultimo riferimento rimasto.
