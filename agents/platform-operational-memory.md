@@ -63,7 +63,7 @@ File `AGENTS.md` dentro `Wiki/**/archive/**` o `Wiki/**/indices/**` sono storici
 1. Modifica locale in C:\old\EasyWayDataPortal\
 2. git add + git commit (usa ewctl commit per Iron Dome)
 3. git push origin <branch>
-4. SSH al server -> cd ~/EasyWayDataPortal && git pull
+4. SSH al server -> cd ~/easyway-portal && git pull
 5. Solo DOPO -> test nel container
 ```
 
@@ -196,10 +196,10 @@ networks: [easyway-net, qdrant-net]
 | Admin | `easywayadmin` / (vedi `/opt/easyway/.env.secrets` sul server) |
 | Compose | `docker-compose.gitea.yml` |
 | Push mirror | Azure DevOps (auto ogni 10min + on-commit) |
-| Note | GitLab: containers `Exited`, volumi preservati in `~/EasyWayDataPortal/gitlab/` |
+| Note | GitLab: containers `Exited`, volumi preservati in `~/easyway-portal/gitlab/` |
 
 ### easyway-runner
-- Volume mount: `/app/agents` -> `~/EasyWayDataPortal/agents` sull'host
+- Volume mount: `/app/agents` -> `~/easyway-portal/agents` sull'host
 - L1 (scripted): 22 agenti | L2 (LLM+RAG): 7 agenti | L3: 6 agenti (review, security, infra, levi, scrummaster, pr_gate)
 - Skills registry: `agents/skills/registry.json` v2.9.0 (25 skill, incl. `orchestration.parallel-agents`, `utilities.import-secrets`)
 
@@ -228,7 +228,7 @@ develop
     | PR 2 (release): develop -> main  [titolo: "[Release] Session N — ..."]
     v
 main
-    | SSH: cd ~/EasyWayDataPortal && git pull
+    | SSH: cd ~/easyway-portal && git pull
     v
 server aggiornato
     | (se wiki cambiata) WIKI_PATH=Wiki node scripts/ingest_wiki.js
@@ -244,9 +244,9 @@ git push origin feat/<name>
 # Azure DevOps: PR feat/<name> -> develop  (merge)
 # Azure DevOps: PR develop -> main  [Release]  (merge)
 # SSH server (se PAT valido):
-cd ~/EasyWayDataPortal && git pull origin main
+cd ~/easyway-portal && git pull origin main
 # SSH server (se PAT scaduto — aggiornare remote prima):
-git remote set-url origin 'https://Tokens:<PAT>@dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/EasyWayDataPortal' && git pull origin main
+git remote set-url origin 'https://Tokens:<PAT>@dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-portal' && git pull origin main
 ```
 
 ### Qdrant full re-index (comando completo)
@@ -358,7 +358,7 @@ Il comando sopra esegue init Azure + `az repos pr create` nello stesso processo 
 az repos pr create `
   --organization https://dev.azure.com/EasyWayData `
   --project "EasyWay-DataPortal" `
-  --repository EasyWayDataPortal `
+  --repository easyway-portal `
   --source-branch feat/<nome-branch> `
   --target-branch develop `
   --title "feat(scope): descrizione breve max 70 char" `
@@ -370,7 +370,7 @@ az repos pr create `
 az repos pr create `
   --organization https://dev.azure.com/EasyWayData `
   --project "EasyWay-DataPortal" `
-  --repository EasyWayDataPortal `
+  --repository easyway-portal `
   --source-branch develop `
   --target-branch main `
   --title "[Release] Session N — titolo" `
@@ -386,13 +386,13 @@ az repos pr create `
 - Se az fallisce con "not authorized": il PAT e' scaduto o non ha scope corretto
 - **PAT scope per automazione completa**: `Code (Read & Write)` + `Pull Request Contribute` + `Work Items (Read, Write & Manage)`
   (senza Work Items non si puo' creare WI da API per soddisfare la policy obbligatoria del branch `develop`)
-- **Push HTTPS obbligatorio per visibilita' REST API**: il push SSH `git@ssh.dev.azure.com` potrebbe non essere subito visibile via REST API. Prima del merge, eseguire: `git push https://<PAT>@dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/EasyWayDataPortal <branch>`
+- **Push HTTPS obbligatorio per visibilita' REST API**: il push SSH `git@ssh.dev.azure.com` potrebbe non essere subito visibile via REST API. Prima del merge, eseguire: `git push https://<PAT>@dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-portal <branch>`
 - **Policy `develop` richiede work item**: ogni PR verso `develop` deve avere almeno un Work Item linkato. Il PAT deve avere Work Items scope per crearlo automaticamente.
 
 **Merge automatico completo** (quando PAT ha tutti gli scope):
 ```powershell
 # 1. Push HTTPS (garantisce visibilita' API)
-git push https://<PAT>@dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/EasyWayDataPortal feat/<name>
+git push https://<PAT>@dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-portal feat/<name>
 # 2. Crea PR + linka WI + completa (via Initialize-AzSession + script REST API)
 pwsh scripts/pwsh/Initialize-AzSession.ps1
 az repos pr create --source-branch feat/<name> --target-branch develop --title "..." --description "..."
@@ -962,7 +962,7 @@ pwsh scripts/pwsh/ado-apply.ps1
 11. **Emoji con byte 0x94 in UTF-8** (es. U+1F504 🔄, U+1F50D 🔍) causano lo stesso problema dell'em dash in PS5.1 `ParseFile`. Usare testo ASCII nelle stringhe PS. Il problema NON si manifesta sotto `pwsh` (PS7).
 12. **`WIKI_PATH` per ingest_wiki.js**: passare sempre una DIRECTORY, non un file singolo. Il glob aggiunge `/**/*.md` — un path a file singolo restituisce 0 file trovati.
 13. **Sync-PlatformMemory duplicate marker bug**: `IndexOf("# AUTO-SYNC-END")` trova la PRIMA occorrenza, ma la wiki puo' contenere quel testo come esempio documentale in code block. Usare `LastIndexOf` per il marker di chiusura — garantisce di trovare sempre il vero `# AUTO-SYNC-END` finale.
-14. **`git push origin` (SSH) vs HTTPS Azure DevOps**: Il remote SSH `git@ssh.dev.azure.com:v3/...` e il remote HTTPS `https://dev.azure.com/...` sono ENTRAMBI Azure DevOps, ma il push SSH non sempre e' visibile immediatamente via REST API. Per PR creation/merge via API, fare prima `git push https://<PAT>@dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/EasyWayDataPortal <branch>` per garantire visibilita'. Script: `C:\temp\push-https.ps1`.
+14. **`git push origin` (SSH) vs HTTPS Azure DevOps**: Il remote SSH `git@ssh.dev.azure.com:v3/...` e il remote HTTPS `https://dev.azure.com/...` sono ENTRAMBI Azure DevOps, ma il push SSH non sempre e' visibile immediatamente via REST API. Per PR creation/merge via API, fare prima `git push https://<PAT>@dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-portal <branch>` per garantire visibilita'. Script: `C:\temp\push-https.ps1`.
 15. **PAT scope per PR automation completa**: `Code (Read & Write)` + `Pull Request Contribute` + **`Work Items (Read, Write & Manage)`**. Senza Work Items, non si puo' creare WI da API ne' linkarlo alla PR (policy obbligatoria su `develop`). Per merge automatico: aggiungere Work Items scope al PAT e re-salvare in `C:\old\.env.local`.
 16. **`"$key: value"` in PS**: la colon dopo una variabile viene interpretata come scope qualifier. Usare `"$($key): value"` o `"${key}: value"` per evitare il parser error.
 17. **Merge strategy `develop->main`** (Session 9): impostata su "Merge (no fast-forward)" su Azure DevOps. Con Squash si generavano conflitti da history divergente. Cambiamento definitivo — non ripristinare Squash.
@@ -985,7 +985,7 @@ pwsh scripts/pwsh/ado-apply.ps1
 34. **`node:20-alpine` non ha python3** (Session 28): l'immagine base del container API non include Python. Qualsiasi chiamata a `execFile('python3', ...)` produce `ENOENT`. Soluzione: usare la Qdrant REST API direttamente via `fetch()` con filter `match:{text:query}` dopo aver creato un text index sul campo `content`. Non serve nessuna dipendenza ML/Python nell'API Node.js.
 35. **Qdrant full-text search** richiede text index (Session 28): prima di usare `match:{text:"..."}` nel filter, creare esplicitamente l'indice: `PUT /collections/{name}/index` con `{"field_name":"content","field_schema":"text"}`. Senza indice, Qdrant risponde 400 "Index required for payload search".
 36. **Docker network isolation multi-stack** (Session 28): se due servizi sono deployati con `docker compose` separati (es. `docker-compose.apps.yml` vs `docker-compose.yml` radice), i container non vedono la rete dell'altro per default. Fix: `docker network connect <target-net> <container>` + persistere in compose: `networks: {qdrant-net: {external: true, name: <nome-network>}}`.
-37. **EACCES `/app/data` in container** (Session 28): il container Node.js gira come `node` (uid=1000). Se la directory host è owned da `ubuntu` (uid=1001), il container non può scrivere. Fix: `sudo chown -R 1000:1000 ~/EasyWayDataPortal/data/`. Verificare sempre con `id` nel container: `docker exec <name> id node`.
+37. **EACCES `/app/data` in container** (Session 28): il container Node.js gira come `node` (uid=1000). Se la directory host è owned da `ubuntu` (uid=1001), il container non può scrivere. Fix: `sudo chown -R 1000:1000 ~/easyway-portal/data/`. Verificare sempre con `id` nel container: `docker exec <name> id node`.
 38. **Merge conflict "Added in both"** (Session 28): si verifica quando due branch creano un file nuovo con lo stesso path, entrambi mergiati nella stessa base branch. Non si risolve con un semplice fixup; creare un nuovo branch dalla base (develop) pulita, applicare la versione corretta del file, e aprire una nuova PR abbandonando quella in conflitto.
 39. **X-EasyWay-Key auth ordine** (Session 28): il middleware `authenticateJwt` deve controllare prima l'header `X-EasyWay-Key` (machine-to-machine) e fare early `return next()` se match, PRIMA del check JWT. Altrimenti il JWT fallisce per assenza di token e la richiesta M2M viene rifiutata con 401.
 40. **ADO curl Basic auth** (Session 28): usare `B64=$(echo -n ":$PAT" | base64 -w0)` + `-H "Authorization: Basic $B64"`. Il flag `-u ":$PAT"` di curl causa un redirect 302 non-authenticated. La `-w0` in `base64` evita il newline finale che invalida il base64 su alcune versioni Linux.
@@ -1312,7 +1312,7 @@ Formato sezione auto-generata in `.cursorrules`:
 | DONE | Cron scheduler autonomo | node-cron: infra-drift (6h), openapi-validate (lun 09:00), sprint-report (lun 08:00); `CRON_ENABLED=true` server |
 | DONE | ADO auto-issue su cron failure | `createAdoIssue()` apre Bug ADO con Basic auth PAT se severity HIGH / violations > 0 |
 | DONE | Hotfix: `knowledgeController` rewrite | `node:20-alpine` non ha python3 — controller riscritto con `fetch()` su Qdrant HTTP REST |
-| DONE | Hotfix: EACCES `/app/data` | `chown -R 1000:1000 ~/EasyWayDataPortal/data/` — node uid=1000, non 1001 |
+| DONE | Hotfix: EACCES `/app/data` | `chown -R 1000:1000 ~/easyway-portal/data/` — node uid=1000, non 1001 |
 | DONE | Hotfix: Qdrant network isolation | API su `easyway-net`, Qdrant su `easywaydataportal_easyway-net` — `docker network connect` + persist in `docker-compose.apps.yml` |
 | DONE | Qdrant text index `content` | `PUT /collections/easyway_wiki/index {"field_name":"content","field_schema":"text"}` richiesto per full-text match |
 | DONE | PR #160 feat→develop + PR #161 develop→main | server git pull, docker build + restart |
@@ -1944,7 +1944,7 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Push: force-push bloccato da branch policy → push su `initial-import` → PR ADO
 
 **Q&A**
-- *Perche non rinominare EasyWayDataPortal?* GEDI (Pragmatic Action + Start Small): rinominare ora ha costo alto (CI/CD, URLs, scripts) per beneficio basso — il monorepo viene archiviato a Phase 3
+- *Perche non rinominare EasyWayDataPortal?* (SUPERATO — Session 60: rinominato in `easyway-portal` su ADO + server. GitHub mirror resta `belvisogi/EasyWayDataPortal`)
 - *Perche 2 org GitHub e non 1?* HALE-BOPP ha identita propria — un dev cerca "schema governance" e trova `hale-bopp-data`, non deve navigare dentro EasyWay
 - *Wiki senza develop?* Si — documentazione non ha build/staging. Solo main
 - *Perche Apache 2.0 e non MIT?* Permissiva come MIT ma protegge i marchi e include grant brevetti — enterprise-friendly
@@ -2016,8 +2016,70 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 
 **Backlog -> Session 58 (Phase 3b)**:
 - CI/CD: `azure-pipelines.yml` semplificato per solo portal-api build/test
-- Rename repo `EasyWayDataPortal` → `easyway-portal` su ADO
-- Server multi-repo: clonare easyway-infra sul server, docker-compose da li
+- ~~Rename repo `EasyWayDataPortal` → `easyway-portal` su ADO~~ DONE (Session 60)
+- ~~Server multi-repo: clonare easyway-infra sul server, docker-compose da li~~ DONE (Session 58)
 - Ripristino Iron Dome hooks dal repo easyway-agents
-- Rimuovere docker-compose/Caddyfile/azure-pipelines dal monorepo (ora in easyway-infra)
-- Aggiornare `factory.yml` Phase 3 status
+- ~~Rimuovere docker-compose/Caddyfile/azure-pipelines dal monorepo (ora in easyway-infra)~~ DONE (Session 58)
+- ~~Aggiornare `factory.yml` Phase 3 status~~ DONE (Session 58)
+
+### Session 58 — COMPLETATA (2026-03-03)
+
+**Cosa**:
+1. Phase 3b CI/CD: `azure-pipelines.yml` semplificato da 779 a ~230 righe (-78%)
+2. `deploy.sh` creato in easyway-infra: Electrical Socket Pattern con `--project-directory`
+3. easyway-infra clonato sul server (`~/easyway-infra`)
+4. docker-compose/Caddyfile/azure-pipelines rimossi dal monorepo (ora in easyway-infra)
+
+**Perche**:
+- Pipeline monorepo conteneva 7 wiki lint jobs, Enforcer, Orchestrator, ewctl gates — tutto estratto
+- deploy.sh centralizza il flusso multi-repo: un solo comando per pull + compose + secrets
+- Server deve usare docker-compose da easyway-infra, non dal portal
+
+**Come**:
+- GEDI review: preservati gate portal-specific funzionanti (DBDrift, Checklist)
+- PRs: #265, #266, #267, #268 (tutti merged via Session 59)
+
+### Session 59 — COMPLETATA (2026-03-03)
+
+**Cosa**:
+1. Merge di 3 PR pendenti: #266, #267, #268 (Phase 3b)
+2. GEDI: 5 interventi — evitato merge duplicato, ordinato operazioni per rischio, identificato bug da non toccare
+
+### Session 60 — COMPLETATA (2026-03-04)
+
+**Cosa**:
+1. ADO repo rinominato da `EasyWayDataPortal` a `easyway-portal` (fatto dall'utente)
+2. ~61 riferimenti aggiornati in easyway-portal e easyway-infra (server paths, ADO URLs, CLI args)
+3. Server: cartella `~/EasyWayDataPortal` rinominata in `~/easyway-portal` + symlink retrocompatibilita
+4. Fix bug sql-edge: rimosso `depends_on: sql-edge` da agent-runner (sql-edge ha `profiles: [sql]`)
+5. GEDI Case #16 documentato nel Casebook
+6. Branch `initial-import` eliminato su easyway-agents (PR #250 gia merged)
+7. easyway-infra aggiornato sul server dopo merge PR #272
+8. Wiki e .cursorrules aggiornati con nuovi path
+
+**Perche**:
+- Il repo ADO rinominato (`easyway-portal`) richiede aggiornamento di tutti i riferimenti
+- Server folder rename per coerenza naming tra ADO repo e filesystem
+- sql-edge era placeholder temporaneo — scelta DB futura (Oracle Cloud/SQL Server Azure/PostgreSQL)
+- GEDI Case auto-documentation: lezione S60, documentare subito senza aspettare
+
+**Come**:
+- Categorizzazione riferimenti: server paths (`~/`), ADO URLs (`_git/`), CLI (`--repository`), GitHub URLs (NON toccare), local paths (NON toccare)
+- Server rename: `docker compose down` → `mv` → `docker compose up` → symlink per bind mounts residui
+- sql-edge fix: rimosso da `depends_on` e `environment` di agent-runner in docker-compose.yml
+- GEDI consultato per timing server rename: ha raccomandato defer, utente ha overridato ("possiamo solo perche non siamo in prod")
+- PRs: #269 (portal feat→develop), #272 (infra feat→main), #273 (Release develop→main, pending)
+
+**Q&A**:
+- Q: Perche non rinominare anche il repo GitHub? A: GitHub mirror `belvisogi/EasyWayDataPortal` resta invariato — rename su GitHub e' un'azione separata, basso impatto
+- Q: Perche symlink `~/EasyWayDataPortal → ~/easyway-portal`? A: Docker ricrea directory mancanti come root per bind mounts — il symlink evita il problema
+- Q: sql-edge rimosso definitivamente? A: Solo da depends_on. Il servizio resta in docker-compose con `profiles: [sql]`, disponibile per x86 dev locale
+- Q: 3 container falliti al restart? A: easyway-runner, easyway-cert-runner, easyway-rag-service — build context `agents/Dockerfile` non esiste piu nel portal (estratto in easyway-agents). Pre-existing, non legato al rename
+
+**Backlog -> Prossime sessioni**:
+- Merge easyway-agents `initial-import` → main (672 file, branch eliminato — ricreare da backup o re-extract)
+- Re-enable deploy stages in pipeline con deploy.sh da easyway-infra
+- Scelta database: Oracle Cloud / SQL Server Azure / PostgreSQL
+- Rinominare GitHub repo `belvisogi/EasyWayDataPortal` → `easyway-portal` (opzionale)
+- Ripristino Iron Dome hooks dal repo easyway-agents
+- Fix 3 container falliti (build context agents/Dockerfile)
