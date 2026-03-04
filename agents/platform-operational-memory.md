@@ -2247,9 +2247,30 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Container easyway-api e easyway-meta-db sono ancora orphan? A: No — dopo deploy.sh sono gestiti dal compose project (easyway-api ricreato, meta-db Running)
 - Q: Warning "network easyway-net exists but was not created for project"? A: Benigno — la rete con nome fisso e condivisa tra tutti i compose project. Non usare `external: true` (anti-pattern).
 
+6. Dependabot fix: `npm audit fix` su easyway-infra (minimatch 3 CVEs high → 0 vulnerabilita). PR #298.
+7. Rimosso `version` obsoleto da 5 docker-compose files (warning in deploy). PR #299.
+8. PAT scope Build (Read) aggiunto dall'utente → briefing ora mostra pipeline runs
+9. CI pipeline investigation: 5 build rosse. Causa: deploy gates (Checklist, DB Drift) falliscono sempre su CI agent (no DB/secrets). GEDI Case #26: "La Testuggine nel Vuoto"
+10. Deploy gates disabilitati: `ENABLE_CHECKLIST=false`, `ENABLE_DB_DRIFT=false`. PR #300 (portal feat→develop).
+11. GEDI Case #26 documentato nel Casebook. PR #301 (agents docs→main).
+
+**Q&A**:
+- Q: Container easyway-api e easyway-meta-db sono ancora orphan? A: No — dopo deploy.sh sono gestiti dal compose project (easyway-api ricreato, meta-db Running)
+- Q: Warning "network easyway-net exists but was not created for project"? A: Benigno — la rete con nome fisso e condivisa tra tutti i compose project. Non usare `external: true` (anti-pattern).
+- Q: Perche disabilitare gate che GEDI aveva salvato in S58? A: Contesto cambiato. Deploy ora via deploy.sh con Coherence Gate (S65). I gate nel CI non hanno infrastruttura per funzionare. Non e contraddizione — e adattamento (Adapt & Overcome).
+
 **Stato server post-S66**:
 - 10 servizi prod su `easyway-net` (portal, runner, orchestrator, memory, storage, storage-s3, cortex, api, meta-db, caddy)
 - 4 servizi cert su reti cert dedicate
 - 1 atelier (Forgejo) su rete propria
 - 1 seq (logging) su easyway-net
 - 0 reti orfane, 0 container orfani
+
+**Backlog -> Prossime sessioni**:
+- PR #300 e #301 da approvare e mergiare
+- Release PR develop→main per portal (include PR #300)
+- Redeploy server con deploy.sh prod (include PR #298 + #299 infra)
+- Verificare pipeline verde dopo merge PR #300
+- Branch cleanup fase 2 (97+149 unmerged)
+- Pipeline split per-repo (wiki, agents, infra)
+- Iron Dome hooks ripristino
