@@ -66,7 +66,8 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | Pipeline split per-repo | Media | Oggi 1 pipeline portal (semplificata) + 1 vecchia in infra (monstre). Servono pipeline dedicate per wiki, agents, infra |
 | GitHub branch protection rules | Media | Portare regole ADO su GitHub: require PR, require review, no force push, status checks required, CODEOWNERS |
 | Pipeline trigger optimization | Bassa | Oggi ogni push a develop triggera full build+test anche per docs-only changes. Path filter o skip CI |
-| Iron Dome hooks ripristino | Media | `ewctl commit` pre-commit hooks da riattivare |
+| ~~Iron Dome hooks ripristino~~ | ~~Media~~ | ✓ S69: pre-commit bash hook + setup-hooks.sh + bugfix single-line scan. PR #310 |
+| Iron Dome modularizzazione | Media | Pattern registry YAML, `.iron-dome.json` per-repo config, parametri esclusione. Candidato per spin-off open-source (vedi §6 HALE-BOPP) |
 | ~~GitHub PAT scaduto~~ | ~~Media~~ | ✓ Rinnovato S68 — `ADO-GitHub-Mirror` token, credential store su server, 3 posti (da 7) |
 | ~~PAT scope: aggiungere Build (Read)~~ | ~~Media~~ | ✓ Completato S66 — briefing ora mostra pipeline runs |
 | ~~Rimuovere `version` obsoleto dai docker-compose~~ | ~~Bassa~~ | ✓ Completato PR #299 (S66) |
@@ -101,8 +102,10 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | hale-bopp-db Sprint 1 completamento | Media | PBI #34-#37 | 17 test verdi, schema governance funzionante |
 | hale-bopp-etl rewrite | Bassa | — | Rimuovere Dagster, custom runner ~300 righe |
 | hale-bopp-argos conversione | Bassa | — | Da servizio HTTP a libreria Python |
+| **hale-bopp-iron-dome** (NUOVO) | Media | — | Pre-commit secrets scanner modulare. Spin-off da `ewctl.secrets-scan.psm1`. Pattern registry YAML, per-repo config, multi-language (PS+bash). Apache 2.0 |
 
 **Org GitHub**: `hale-bopp-data` (Apache 2.0, full open source)
+**Nota**: Iron Dome nasce come modulo interno EasyWay (S49) e matura come hook universale (S69). Candidato naturale per open-source: problema universale, zero dipendenze business.
 
 ## 7. Security & Secrets Management
 
