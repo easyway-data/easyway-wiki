@@ -8,7 +8,7 @@ audience:
   - developers
   - ai-assistants
   - scrum-masters
-last-updated: 2026-03-03
+last-updated: 2026-03-04
 id: ew-guides-ado-pr-structural-validation
 summary: Come il modulo ewctl.ado-pr.psm1 rende strutturali conflict check, work item linking e merge strategy in ogni PR.
 status: active
@@ -25,8 +25,9 @@ type: guide
 # ADO PR Structural Validation
 
 **Modulo**: `scripts/pwsh/modules/ewctl/ewctl.ado-pr.psm1`
-**Versione**: 1.1.0 (Session 56)
-**Script che lo usano**: Create-ReleasePR, Publish-WikiPages, New-PbiBranch
+**Status**: ⚠️ **PLANNED — non ancora implementato** (GEDI Case #24)
+**Logica reale**: la funzionalita descritta (ArtifactLink, conflict pre-check, PAT governance) vive direttamente in `Create-ReleasePR.ps1` (Session 64). Il modulo condiviso e pianificato come refactoring futuro.
+**Script che lo usano**: Create-ReleasePR (implementato inline), Publish-WikiPages, New-PbiBranch (pending refactoring)
 
 ---
 
