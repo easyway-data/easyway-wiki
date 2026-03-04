@@ -121,7 +121,19 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 
 **Contesto**: GEDI Case #19 (S62) — `.env.local` ha 4 PAT separati per scope (bene), ma serviti da un unico file leggibile da tutti i processi. Il modello RBAC multi-file in `infra/config/environments/` e documentato ma non implementato.
 
-## 8. Knowledge Lifecycle — Level 2 (Automazione)
+## 8. Sfide Ecosistemiche — Aree di Attenzione
+
+> Emerse durante review architetturale post-polyrepo (S69). Rischi sistemici che richiedono attenzione proattiva.
+
+| Item | Priorita | Note |
+|---|---|---|
+| CI/CD cross-repo integration testing | Alta | 8 repo interconnessi. Se API portal cambia, n8n workflow si rompe? Serve versionamento semantico dei contratti API + test integrazione tra repo. deploy.sh (Electrical Socket) e il bridge, ma non valida compatibilita |
+| GitHub mirror drift prevention | Media | wiki e infra sync dietro ADO. Mirror GitHub devono essere **read-only** tranne bot sync. Se qualcuno pusha direttamente su GitHub mirror → drift. Aggiungere branch protection rules su GitHub: solo bot puo pushare a main |
+| Secrets management evolution | Media | `/opt/easyway/.env.secrets` e un file unico con God-Tokens (DEEPSEEK, GITEA, QDRANT). Post-polyrepo, container diversi servono sottoinsiemi diversi. Valutare: HashiCorp Vault / Azure Key Vault per rimpiazzare `.env.secrets` locale quando architettura cresce |
+
+**Dipendenze**: CI/CD testing dipende da pipeline split (§3). Secrets evolution dipende da RBAC segregation (§7).
+
+## 9. Knowledge Lifecycle — Level 2 (Automazione)
 
 | Item | Priorita | Note |
 |---|---|---|
@@ -129,7 +141,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | RAG re-index automatico post wiki update | Bassa | Qdrant ingest dopo merge su easyway-wiki |
 | PRD → Epic → Wiki → RAG pipeline | Futura | Flusso completo documentato in MEMORY.md |
 
-## 9. Archivio — Materiale Recuperabile
+## 10. Archivio — Materiale Recuperabile
 
 Fonte: `C:\old\EasyWayDataPortal-archive\` (127 file, 1.2 MB, no git)
 
