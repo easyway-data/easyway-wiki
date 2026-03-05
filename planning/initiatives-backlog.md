@@ -100,13 +100,29 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 
 | Item | Priorita | ADO | Note |
 |---|---|---|---|
-| hale-bopp-db Sprint 1 completamento | Media | PBI #34-#37 | 17 test verdi, schema governance funzionante |
-| hale-bopp-etl rewrite | Bassa | — | Rimuovere Dagster, custom runner ~300 righe |
-| hale-bopp-argos conversione | Bassa | — | Da servizio HTTP a libreria Python |
+| ~~hale-bopp-db Sprint 1 completamento~~ | ~~Media~~ | ~~PBI #34-#37~~ | Done S72 — 17 test, GitHub Actions CI |
+| ~~hale-bopp-etl rewrite~~ | ~~Bassa~~ | ~~PBI #38~~ | Done S73 — v0.3.0 lightweight runner, 30 test, PR #1 merged |
+| ~~hale-bopp deploy su server~~ | ~~Alta~~ | — | Done S73 — 4 systemd services, tutti running |
+| ~~3 repo GitHub con README vetrina~~ | ~~Media~~ | — | Done S73 — badge CI, architettura ASCII, traceability ADO |
+| hale-bopp-argos conversione | Bassa | — | Da servizio HTTP a libreria Python (parcheggiato, servizio funziona) |
 | **hale-bopp-iron-dome** (NUOVO) | Media | — | Pre-commit secrets scanner modulare. Spin-off da `ewctl.secrets-scan.psm1`. Pattern registry YAML, per-repo config, multi-language (PS+bash). Apache 2.0 |
+| PostgreSQL integration test | Media | — | DB + ETL + ARGOS end-to-end con Postgres reale |
 
 **Org GitHub**: `hale-bopp-data` (Apache 2.0, full open source)
+**Services running**: DB :8100, ETL webhook :3001, ETL watcher (poll), ARGOS :8200 — systemd, auto-restart, bind 127.0.0.1
 **Nota**: Iron Dome nasce come modulo interno EasyWay (S49) e matura come hook universale (S69). Candidato naturale per open-source: problema universale, zero dipendenze business.
+
+## 6b. Connection Registry & Agent Multi-Platform (S73)
+
+| Item | Priorita | Note |
+|---|---|---|
+| ~~Connection Registry creato~~ | ~~Alta~~ | Done S73 — `agents/scripts/connections/` con github.sh, ado.sh, server.sh, qdrant.sh, connections.yaml |
+| ~~.env.local Unicode fix~~ | ~~Alta~~ | Done S73 — rimossi caratteri box-drawing, parser robusto KEY=VALUE |
+| Agent multi-platform (ADO + GitHub) | Media | Agenti esistenti (pr_gate, review) parlano solo ADO. Estendere via Electrical Socket Pattern: stessa interfaccia, connettore diverso. I connettori github.sh/ado.sh sono il layer di astrazione |
+| ADO-GitHub traceability convention | Bassa | Commit msg: `ADO: PBI #XX`. PR body: link GitHub. WI description: link PR GitHub. Automatizzabile in github.sh |
+| OpenRouter connector | Bassa | `connections/openrouter.sh` — completa il registry |
+
+**Wiki**: `guides/connection-registry.md` documenta il pattern.
 
 ## 7. Security & Secrets Management
 

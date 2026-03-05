@@ -2410,3 +2410,47 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche brand-first naming (`hale-bopp-db` non `db-hale-bopp`)? A: Coerenza con GitHub org name, facilita discovery, tutti i repo sotto lo stesso prefisso.
 - Q: Perche Apache-2.0 e non MIT? A: Patent grant esplicito, piu adatto per progetti data governance enterprise.
 - Q: Perche 3 repo separati e non monorepo? A: Coerente con filosofia "muscles" — ogni modulo e indipendente, deployabile singolarmente, con CI dedicata.
+
+---
+
+## Session 73 — COMPLETATA
+
+**Data**: 2026-03-05
+**Cosa**: HALE-BOPP Online + Connection Registry + ETL v0.3.0
+
+**Perche**:
+- I 3 servizi HALE-BOPP erano testati ma non deployati — nessuno in ascolto sulle porte
+- ETL aveva ancora codice Dagster su server (PR #1 non mergiata)
+- `.env.local` aveva caratteri Unicode che rompevano `source` in bash
+- Nessun layer di astrazione per connessioni esterne (GitHub, ADO, server, Qdrant)
+- Disco server al 91% (8.8GB liberi su 96GB visibili, 200GB reali OCI)
+
+**Come**:
+1. **Disk expansion**: rescan OCI paravirtualized (`/sys/class/block/sda/device/rescan`) + `growpart` + `resize2fs` — da 96GB a 193GB (46% usato)
+2. **ETL v0.3.0 merge**: PR #1 mergiata su GitHub via API, server aggiornato — 30/30 test
+3. **.env.local fix**: rimossi caratteri Unicode box-drawing dai commenti, parser robusto KEY=VALUE in `ado-auth.sh`
+4. **Connection Registry**: `agents/scripts/connections/` — 5 connettori (github.sh, ado.sh, server.sh, qdrant.sh, healthcheck-all.sh) + `connections.yaml` (registro dichiarativo tipo odbc.ini) + README + wiki guide
+5. **Systemd deploy**: 4 unit file creati, enabled, started — tutti running con healthcheck OK
+6. **README vetrina**: 3 repo GitHub aggiornati con badge CI, diagrammi architettura ASCII, traceability ADO nei commit
+7. **GitHub branch protection**: rimossa requirement review su ETL (owner unico, CI green basta)
+8. **Backlog aggiornato**: sezione 6b Connection Registry + Agent Multi-Platform
+
+| Service | Port | Systemd Unit | Status |
+|---|---|---|---|
+| DB | 8100 | hale-bopp-db.service | active (running) |
+| ETL webhook | 3001 | hale-bopp-etl-webhook.service | active (running) |
+| ETL watcher | - | hale-bopp-etl-watcher.service | active (running) |
+| ARGOS | 8200 | hale-bopp-argos.service | active (running) |
+
+| Connection | Connector | Healthcheck |
+|---|---|---|
+| GitHub | github.sh | OK (HTTP 200) |
+| ADO | ado.sh | OK (HTTP 200) |
+| Server | server.sh | OK (uptime 38d) |
+| Qdrant | qdrant.sh | da verificare (server-side) |
+
+**Q&A**:
+- Q: Perche systemd e non Docker? A: GEDI consiglio "start small, scale when needed" — venvs gia pronti, 0 disk extra. Docker quando servira PostgreSQL/Redis.
+- Q: Perche Connection Registry? A: `.env.local` con `source` falliva per Unicode. Pattern odbc.ini centralizza connessioni, ogni connettore ha interfaccia standard (Electrical Socket Pattern GEDI).
+- Q: ADO serve per HALE-BOPP? A: Solo come project manager (backlog, PBI tracking). Codice e PR vivono solo su GitHub. Traceability bidirezionale via `ADO: PBI #XX` nei commit.
+- Q: Agent multi-platform quando? A: Idea nel backlog. Connettori github.sh/ado.sh sono il layer di astrazione. Priorita bassa finche HALE-BOPP ha owner unico.

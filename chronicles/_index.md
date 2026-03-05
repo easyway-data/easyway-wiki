@@ -38,3 +38,4 @@ tags: [chronicle, index]
 | 2026-03-04 | [Session 70 — The Readiness Gate](2026-03-04-pr-readiness-session-70.md) | tooling | S70 |
 | 2026-03-04 | [Session 71 — The Hardening](2026-03-04-hardening-session-71.md) | infrastructure | S71 |
 | 2026-03-04 | [Session 72 — HALE-BOPP GitHub Launch](2026-03-04-hale-bopp-github-launch.md) | milestone | S72 |
+| 2026-03-05 | [Session 73 — HALE-BOPP Online](2026-03-05-hale-bopp-online.md) | milestone | S73 |
