@@ -78,6 +78,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ~~easyway-ado: feat→main guard~~ | ~~Media~~ | ✓ S77: check strutturale in `prCreate` — blocca feature→main, eccezioni per develop→main e release/hotfix |
 | ~~easyway-ado: MAX 2 retry nel client HTTP~~ | ~~Bassa~~ | ✓ S77: retry loop in `ado-client.ts` — max 2 tentativi, 500ms pausa, solo su errori di rete |
 | ~~easyway-ado: MCP safety-by-design comments~~ | ~~Bassa~~ | ✓ S77: commento strutturale in `mcp/index.ts` — pr vote/complete non esposti di proposito |
+| **n8n workflow repo dedicato** (`easyway-n8n`) | Media | S82: ~30 workflow previsti. Repo dedicato quando superano 10 (oggi 2-3). Versionamento indipendente, test/lint JSON, import/export script. Candidato Circle 3 (private ADO). Trigger: 10+ workflow o primo test automatico |
 | easyway-ado: Phase 4 — guardrails configurabili `.guardrails.yml` | Bassa | GEDI Case #33: Tier 1 (Palumbo, safety-by-design) resta hardcoded forever. Tier 2 (feat→main, duplicate PR, branch exceptions) configurabile via YAML quando ci saranno 5+ regole di flusso. Trigger: secondo progetto/team che usa easyway-ado |
 
 **Dipendenze**: i container dipendono dal fix dei Dockerfile path dopo polyrepo split.
