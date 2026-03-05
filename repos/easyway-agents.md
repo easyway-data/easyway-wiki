@@ -23,7 +23,7 @@ La piattaforma agenti: runner L2/L3, skills registry, ewctl, GEDI, Iron Dome, Co
 
 | Campo | Valore |
 |-------|--------|
-| **ADO repo** | `easyway-agents` (GUID: `fa068c67`) |
+| **ADO repo** | `easyway-agents` (GUID: `fa068c67-b5ee-4b41-aab3-38b0166ffb27`) |
 | **GitHub** | [easyway-data/easyway-agents](https://github.com/easyway-data/easyway-agents) (source-available) |
 | **Cerchio** | 2 (Source-available) |
 | **Linguaggio** | PowerShell / Python / bash |

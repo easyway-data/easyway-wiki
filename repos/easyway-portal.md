@@ -23,7 +23,7 @@ Il data portal. Applicazione web business-specific.
 
 | Campo | Valore |
 |-------|--------|
-| **ADO repo** | `easyway-portal` (GUID: `e29d5c59`) |
+| **ADO repo** | `easyway-portal` (GUID: `e29d5c59-28d0-4815-8f62-6f5c1465855c`) |
 | **GitHub** | Private — non mirrorato |
 | **Cerchio** | 3 (Private) |
 | **Linguaggio** | Node.js / Express / EJS |
