@@ -35,6 +35,7 @@ type: planning
 | S69 | 2026-03-04 | Iron Dome pre-commit restored + secrets scan bugfix | #310 | — |
 | S70 | 2026-03-04 | PR Readiness Check + npm audit fix + 5 PR | #309, #310, #312-#314 | #53-#57 |
 | S71 | 2026-03-04 | Pipeline fix + branch protection + pipeline split per-repo | #315-#319 | #58, #59 |
+| S72 | 2026-03-04 | HALE-BOPP GitHub Launch — 3 repo open-source | — | #37 |
 
 ---
 
