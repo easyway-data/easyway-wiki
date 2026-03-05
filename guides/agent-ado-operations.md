@@ -174,21 +174,66 @@ npx tsx bin/easyway-ado.ts wi update 103 --state Done
 | MCP non risponde | Server non buildato | `cd easyway/ado && npm install && npm run build` |
 | PowerShell quoting rotto | Caratteri speciali nel body | Usa il CLI invece di curl. Sul serio. |
 
-## Per Gemini / agenti che lavorano da directory esterne
+## Per agenti esterni (Gemini, Copilot, o qualsiasi AI da directory esterna)
 
-Se lavori da una directory diversa (es. `~/.gemini/antigravity/scratch`):
+Se lavori da una directory diversa (es. `~/.gemini/antigravity/scratch`), devi sapere 3 cose:
+
+### 1. Path: SEMPRE forward slash con bash
 
 ```bash
-# Opzione A: usa path assoluto
-npx --prefix C:\old\easyway\ado tsx C:\old\easyway\ado\bin\easyway-ado.ts briefing
+# SBAGLIATO - backslash vengono mangiati da bash
+bash C:\old\easyway\agents\scripts\ado-auth.sh wi        # -> "No such file"
 
-# Opzione B: cambia directory
-cd C:\old\easyway\ado && npx tsx bin/easyway-ado.ts briefing
+# CORRETTO - forward slash
+bash "C:/old/easyway/agents/scripts/ado-auth.sh" wi      # -> funziona
+bash /c/old/easyway/agents/scripts/ado-auth.sh wi        # -> funziona (Git Bash)
+bash /mnt/c/old/easyway/agents/scripts/ado-auth.sh wi    # -> funziona (WSL)
+```
+
+### 2. Git Bash vs WSL: mount diversi
+
+| Shell | Mount di `C:\` | Esempio path |
+|-------|---------------|-------------|
+| **Git Bash / MSYS** | `/c/` | `/c/old/.env.local` |
+| **WSL** | `/mnt/c/` | `/mnt/c/old/.env.local` |
+| **PowerShell** | `C:\` o `C:/` | `C:/old/.env.local` |
+
+Gli script `ado-auth.sh` e `_common.sh` cercano automaticamente in tutti e 3 i mount.
+Per forzare un root specifico: `export EASYWAY_ROOT=/mnt/c/old`.
+
+### 3. Env var EASYWAY_ROOT (opzionale, raccomandato)
+
+Se il tuo ambiente non trova automaticamente i file, imposta `EASYWAY_ROOT`:
+
+```bash
+# In WSL
+export EASYWAY_ROOT=/mnt/c/old
+
+# In Git Bash
+export EASYWAY_ROOT=/c/old
+
+# Poi tutto funziona normalmente
+B64=$(bash "$EASYWAY_ROOT/easyway/agents/scripts/ado-auth.sh" wi)
+bash "$EASYWAY_ROOT/easyway/agents/scripts/connections/ado.sh" healthcheck
+```
+
+### 4. CLI: il metodo piu sicuro da qualsiasi directory
+
+```bash
+# Opzione A: cd prima
+cd C:/old/easyway/ado && npx tsx bin/easyway-ado.ts briefing
+
+# Opzione B: npx con prefix
+npx --prefix C:/old/easyway/ado tsx C:/old/easyway/ado/bin/easyway-ado.ts briefing
 
 # Opzione C: imposta il PAT esplicitamente
-export ADO_PAT=$(grep ADO_PAT C:\old\.env.local | cut -d= -f2)
-npx --prefix C:\old\easyway\ado tsx C:\old\easyway\ado\bin\easyway-ado.ts wi list
+export ADO_PAT=$(grep ADO_PAT C:/old/.env.local | cut -d= -f2)
 ```
+
+### 5. Import-AgentSecrets (PowerShell) NON carica i PAT ADO
+
+`Import-AgentSecrets.ps1` carica i secrets infra (Deepseek, Gitea, Qdrant) da `/opt/easyway/.env.secrets`.
+I PAT ADO stanno in `C:\old\.env.local` — file diverso. Per i PAT ADO usa `ado-auth.sh` o il CLI.
 
 ## Link utili
 
