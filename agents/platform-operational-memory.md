@@ -2454,3 +2454,31 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche Connection Registry? A: `.env.local` con `source` falliva per Unicode. Pattern odbc.ini centralizza connessioni, ogni connettore ha interfaccia standard (Electrical Socket Pattern GEDI).
 - Q: ADO serve per HALE-BOPP? A: Solo come project manager (backlog, PBI tracking). Codice e PR vivono solo su GitHub. Traceability bidirezionale via `ADO: PBI #XX` nei commit.
 - Q: Agent multi-platform quando? A: Idea nel backlog. Connettori github.sh/ado.sh sono il layer di astrazione. Priorita bassa finche HALE-BOPP ha owner unico.
+
+## Session 78 — COMPLETATA
+
+**Data**: 2026-03-05
+**Cosa**: PBI #35 pip install hale-bopp-db + PBI #89 halebopp.sh connector + CRLF fix
+
+**Perche**:
+- hale-bopp-db non era installabile via pip — struttura `app/` non seguiva convenzioni PyPI
+- Nessun connettore HALE-BOPP nella Connection Registry — healthcheck manuale via SSH
+- `.env.local` ha CRLF (Windows), `_load_env` includeva `\r` nei valori → GitHub API 401
+
+**Come**:
+1. **PBI #35 — pip packaging**: rename `app/` → `hale_bopp_db/` (git mv + 16 import updates), pyproject.toml PyPI-ready (authors, classifiers, URLs, SPDX), `__version__ = "0.1.0"`, Dockerfile aggiornato, CI `pip install -e .[dev,api]`, README con Installation section. 17/17 test verdi, sdist+wheel verificati.
+2. **PBI #89 — halebopp.sh connector**: connettore HALE-BOPP (db/etl/argos) via SSH: healthcheck, health, diff, snapshot. Registrato in `connections.yaml` e `healthcheck-all.sh`.
+3. **CRLF fix**: `_load_env` in `github.sh` e `qdrant.sh` — strip `\r` con `tr -d '\r\n'`.
+4. **Wiki**: connection-registry guide aggiornata con halebopp.sh.
+5. **Backlog**: MongoDB agent catalog, `_common.sh` + env overlays.
+
+| PR | Repo | Contenuto | Stato |
+|---|---|---|---|
+| GitHub #1 | hale-bopp-db | pip packaging (rename + pyproject.toml) | Aperta |
+| ADO #335 | easyway-agents | halebopp.sh + CRLF fix _load_env | Aperta |
+| ADO #336 | easyway-wiki | connection guide + backlog update | Aperta |
+
+**Q&A**:
+- Q: Perche rename app/ → hale_bopp_db/? A: Convenzione PyPI richiede package name = directory name. `app/` e' generico e non funziona con `pip install -e .`.
+- Q: Perche halebopp.sh e non 3 connettori separati? A: I 3 motori condividono server e pattern di accesso SSH. Un unico connettore con sub-commands (db/etl/argos) segue il pattern degli altri connettori (github.sh, ado.sh).
+- Q: CRLF fix perche solo su 2 file? A: Solo github.sh e qdrant.sh usano `_load_env` che fa `source`. Gli altri connettori usano grep+cut che e' immune al `\r`.

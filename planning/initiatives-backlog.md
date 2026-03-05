@@ -100,6 +100,8 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | GEDI Casebook commit (Case #17, #18) | Bassa | Locale in `agents/agent_gedi/`, ora pushabile dopo merge PR #276 |
 | Agent runner L2/L3 test post-polyrepo | Media | Verificare che i path `Import-AgentSecrets` funzionino ancora |
 | Skills registry update post-polyrepo | Media | `agents/skills/registry.json` — path references da verificare |
+| **Levi 2.0 — Doc Guardian polyrepo** | **Alta** | S79: modernizzare path, `md:fix` multi-repo (wiki/agents/infra), `session:closeout` automatizza checklist. Usa easyway-ado SDK per WI update |
+| **Levi prodotto Obsidian** | Media | Levi come plugin/CLI standalone per studenti su Obsidian vault: frontmatter enforcement, link integrity, tag taxonomy, RAG-ready chunking. Target: vault accademici, tesi, appunti. Prodotto estraibile Circle 1 (open-source) |
 
 ## 6. HALE-BOPP
 
@@ -164,6 +166,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | Skill `session.closeout` automatica | Bassa | n8n trigger su PR merge per verificare aggiornamento wiki |
 | RAG re-index automatico post wiki update | Bassa | Qdrant ingest dopo merge su easyway-wiki |
 | PRD → Epic → Wiki → RAG pipeline | Futura | Flusso completo documentato in MEMORY.md |
+| **Levi per Nuove Pagine Gialle** | Media | Levi come doc-guardian per directory/catalogo aziende — scan qualita schede, frontmatter enforcement, link integrity, auto-tag per categorie. Pattern: ogni scheda e' un .md con frontmatter strutturato → Levi garantisce coerenza e completezza del catalogo |
 
 ## 10. Archivio — Materiale Recuperabile
 
