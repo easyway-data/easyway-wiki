@@ -39,9 +39,10 @@ C:\old\easyway\ado\
 ## Componenti chiave
 
 - **CLI**: 10 comandi (`briefing`, `wi get/list/query/create/update`, `pr list/get/create/policy`)
-- **MCP Server**: `mcp/index.ts` — 10 tool stub + zod validation
+- **MCP Server v0.3.0**: `mcp/index.ts` — 11 tool (10 ADO + 1 RAG) + zod validation
 - **PAT routing**: `ado-client.ts` — router automatico per scope (pr/wi/build/github/general)
 - **Guardrails**: Palumbo enforcement (WI obbligatorio), feat-to-main guard, duplicate PR guard
+- **RAG integration**: `ado_rag_resolve` tool — semantic search wiki via Qdrant (shell-out a `qdrant.sh`)
 - **Notification formatter**: output strutturato per chat channels
 
 ## Dipendenze
@@ -52,6 +53,7 @@ C:\old\easyway\ado\
 ## Roadmap
 
 - Phase 0-2: completate (S75-S76)
+- Phase 2.5: `ado_rag_resolve` tool + 23 test (S82)
 - Phase 3: MCP server full (resources, prompts, remaining tools)
 - Phase 4: guardrails configurabili `.guardrails.yml`
 - Phase 5: cleanup + GitHub mirror + npm publish

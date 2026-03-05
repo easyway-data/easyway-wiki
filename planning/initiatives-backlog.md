@@ -169,6 +169,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | Skill `session.closeout` automatica | Bassa | n8n trigger su PR merge per verificare aggiornamento wiki |
 | RAG re-index automatico post wiki update | Bassa | **PBI #97** — Qdrant ingest dopo merge su easyway-wiki. Rate limiting in ingest_wiki.js. Agent scopetta come cron |
 | MCP tool ado_rag_resolve in easyway-ado | Media | **PBI #98** — Tool MCP che usa rag-search (porta 8300) per risolvere WI da linguaggio naturale |
+| **n8n → .cursorrules auto-gen** | Media | S82: .cursorrules generato dalla wiki via n8n. Trigger: post-merge wiki. n8n legge sezioni chiave wiki, genera .cursorrules snello, committa su portal. Elimina drift tra wiki e cursorrules. Prerequisito: n8n repo dedicato (>10 workflow) |
 | PRD → Epic → Wiki → RAG pipeline | Futura | Flusso completo documentato in MEMORY.md |
 | **Levi per Nuove Pagine Gialle** | Media | Levi come doc-guardian per directory/catalogo aziende — scan qualita schede, frontmatter enforcement, link integrity, auto-tag per categorie. Pattern: ogni scheda e' un .md con frontmatter strutturato → Levi garantisce coerenza e completezza del catalogo |
 

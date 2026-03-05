@@ -111,6 +111,32 @@ to the correct PAT based on the action scope (principle of least privilege):
 | `build`   | `AZURE_DEVOPS_EXT_PAT`  | Code R/W + Build Read          |
 | `general` | `AZURE_DEVOPS_EXT_PAT`  | Briefing, branch list          |
 
+## Environment Overlays (S82)
+
+All connectors use `_common.sh` for shared helpers (`_load_env`, `_log_error`, `_classify_error`).
+
+**Auto-detect env file** (order of precedence):
+1. `CONN_ENV_FILE` explicit override
+2. `/c/old/.env.local` (Windows dev)
+3. `$HOME/.env.local` (Linux user)
+4. `/opt/easyway/.env.secrets` (server system)
+
+**Overlay mechanism**: set `CONN_ENV=<env>` to load `connections.<env>.env` that overrides base values.
+
+```bash
+# Run qdrant.sh with server-specific URLs
+CONN_ENV=server bash connections/qdrant.sh healthcheck
+
+# connections.server.env contains:
+# QDRANT_URL=http://localhost:6333
+# RAG_HTTP_PORT=8300
+```
+
+Available overlays:
+- `connections.server.env` — server-local URLs (Qdrant, RAG search)
+
+Create new overlays by adding `connections.<env>.env` files.
+
 ## Future Vision
 
 The `connections.yaml` registry is designed to be consumed by:
@@ -118,3 +144,4 @@ The `connections.yaml` registry is designed to be consumed by:
 - **Agents**: read registry to know which APIs are available
 - **CLI tools**: `ewctl connect <name>` to test/use connections
 - **Monitoring**: scheduled healthcheck-all for uptime tracking
+- **Cursor/Claude**: `.cursorrules` auto-generated from wiki via n8n (planned)
