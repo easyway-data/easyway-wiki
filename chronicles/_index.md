@@ -40,3 +40,4 @@ tags: [chronicle, index]
 | 2026-03-04 | [Session 72 — HALE-BOPP GitHub Launch](2026-03-04-hale-bopp-github-launch.md) | milestone | S72 |
 | 2026-03-05 | [Session 73 — HALE-BOPP Online](2026-03-05-hale-bopp-online.md) | milestone | S73 |
 | 2026-03-05 | [Session 75 — The Uncomfortable Truth](2026-03-05-the-uncomfortable-truth.md) | vision | S75 |
+| 2026-03-05 | [Session 78 — The Installable Engine](2026-03-05-pip-packaging-session-78.md) | milestone | S78 |
