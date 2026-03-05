@@ -2517,3 +2517,31 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche secrets-registry.json fuori dai repo? A: Contiene metadata sensibili (nomi PAT, date scadenza). Vive in `C:\old\` (locale) e `~/` (server), mai committato.
 - Q: Perche .cursorrules come indice? A: File troppo grande non viene letto bene dagli agenti. Indice snello + wiki dettagliata = meglio per manutenzione e aggiornamento.
 - Q: platform-operational-memory serve ancora? A: Si per storia (ricostruire il perche), no per operazioni quotidiane (ora coperte da wiki guides + .cursorrules indice).
+
+---
+
+## Session 84 — COMPLETATA (2026-03-05)
+
+**Cosa**: Deploy Hextech UI in produzione + fix script multi-agente + documentazione deploy flow + backlog infra strutturale.
+
+**Perche**: Gemini aveva completato il CSS Hextech ma non riusciva a fare il ciclo completo (commit→PBI→push→PR) perche gli script non funzionavano da directory esterne. Inoltre le modifiche UI dovevano arrivare in produzione.
+
+**Come**:
+1. **Multi-agent fix** (da S83): `_detect_root()` in `ado-auth.sh` e `_common.sh` con fallback multi-mount (EASYWAY_ROOT, /c/old, /mnt/c/old, C:/old). `ado.sh` arricchito con `wi-create`, `wi-update`, `wi-states`, `_validate_state()`, fix Content-Type override in `_api()`. GEDI Case #33 "Il Traduttore Universale".
+2. **Golden Path**: `wiki/guides/agent-ado-operations.md` riscritta con flusso 4 fasi (Setup → Work+Commit → PBI → Push+PR → STOP), sezione agenti esterni (5 sotto-sezioni), ricette rapide con connettori.
+3. **Deploy flow documentato**: `.cursorrules` sezione 3b — 3 step (feat→develop PR, develop→main PR, SSH deploy), comandi copia-incolla, regole critiche.
+4. **PR #353 mergiata** (feat/ui-hextech-modernization → develop): CSS Hextech Evolution (theme.css, framework.css, animations.css).
+5. **PR #354 creata e mergiata** ([Release] S83-S84 → main): 6 commit da develop a main.
+6. **Deploy server**: git fetch+reset OK, docker build OK, container ricreato. Ma nginx reverse proxy restituisce "Internal Server Error" — il problema e nel proxy host (porta 80→8080), non nel container (che risponde 200 su curl locale).
+7. **Backlog infra**: 4 item strutturali aggiunti — .env mancante per compose, container name conflict, nginx reverse proxy, standardizzazione compose vs docker run.
+
+| PR/Commit | Repo | Contenuto | Stato |
+|---|---|---|---|
+| PR #354 | easyway-portal | [Release] S83-S84: Hextech + .cursorrules v3.0 + Deploy Flow | Merged |
+| PR #353 | easyway-portal | feat/ui-hextech-modernization → develop | Merged |
+| PBI #103 | ADO | UI Modernizzazione Hextech Evolution | Done |
+
+**Q&A**:
+- Q: Perche il deploy non funziona dal browser? A: Il container portal (porta 8080) e healthy e risponde 200. Il problema e nel reverse proxy nginx dell'host (porta 80) che non forwarda correttamente. Da investigare config nginx host.
+- Q: Perche non usare docker compose per il deploy? A: I container esistenti sono stati creati manualmente (`docker run`), non con compose. Compose tenta di ricreare anche qdrant/azurite e fallisce per name conflict. Serve migrazione completa a compose.
+- Q: Perche _detect_root() e non un path fisso? A: Agenti diversi girano in shell diverse (Git Bash /c/, WSL /mnt/c/, PowerShell C:/). Il fallback multi-mount funziona ovunque senza configurazione.
