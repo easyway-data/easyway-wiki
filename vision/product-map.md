@@ -297,21 +297,34 @@ Docker Compose, deploy scripts, server config. Org-specific. Stays private.
 
 ## Summary: 10 Products from 1 Project
 
-| # | Product | Type | Circle Target | Current Maturity |
-|---|---------|------|:------------:|:----------------:|
-| 1 | **hale-bopp-db** | Schema governance | 1 | L2 partial |
-| 2 | **hale-bopp-etl** | ETL runner | 1 | L2 partial |
-| 3 | **hale-bopp-argos** | Policy gating | 1 | L2 partial |
-| 4 | **GEDI** | AI ethics framework | 1 | L3 (needs extraction) |
-| 5 | **Iron Dome** | Secrets scanner | 1 | L2 (needs extraction) |
-| 6 | **ewctl** | Governance CLI | 1 | L2 (needs extraction) |
-| 7 | **Maturity Checklist** | Methodology | 1 | L4 ready |
-| 8 | **Agentic Playbook** | Methodology guide | 1 | L1 (needs curation) |
-| 9 | **easyway-ado** | ADO SDK + MCP | 2 → 1 | L1 partial |
-| 10 | **easyway-agents** | Agent platform | 2 | L2 partial |
+| # | Product | Type | Circle | Maturity | Market | Unique Angle |
+|---|---------|------|:------:|:--------:|:------:|-------------|
+| 1 | **hale-bopp-db** | Schema governance | 1 | L2 | Crowded | Value is in the trio, not alone |
+| 2 | **hale-bopp-etl** | ETL runner | 1 | L2 | Crowded | Zero dependencies, radically lightweight |
+| 3 | **hale-bopp-argos** | Policy gating | 1 | L2 | Crowded | Bridges data quality + deploy gates |
+| 4 | **GEDI** | AI ethics framework | 1 | L3 | **Blue ocean** | Only advisory ethical framework for AI agents |
+| 5 | **Iron Dome** | Secrets scanner | 1 | L2 | Crowded | Better as ewctl module than standalone |
+| 6 | **ewctl** | Governance CLI | 1 | L2 | Some | SDLC governance CLI for AI agents |
+| 7 | **Maturity Checklist** | Methodology | 1 | L4 | Some | Radical simplicity (4 levels vs 36 practices) |
+| 8 | **Agentic Playbook** | Methodology guide | 1 | L1 | Some | Empirical — 75 real sessions, not theory |
+| 9 | **easyway-ado** | ADO SDK + MCP | 2 | L1 | Crowded | PAT routing + governance rules embedded |
+| 10 | **easyway-agents** | Agent platform | 2 | L2 | Some | Domain experts + identity governance + GEDI |
 
 > We started writing a data portal. We ended up with ten products,
 > a methodology, and a story worth telling.
+> All of it on a free ARM server. All of it documented. All of it real.
+
+### The crown jewels
+
+**GEDI** and the **Agentic Playbook** are what nobody else has. GEDI is the only ethical deliberation framework for AI coding agents that advises without blocking. The Playbook has 75 sessions of real evidence — not a blog post, a lab notebook.
+
+**HALE-BOPP** is crowded as individual tools but unique as an integrated trio (schema + ETL + policy, zero dependencies, AI-orchestrable). Market them together, not separately.
+
+**Iron Dome** and **easyway-ado** are better as internal modules than standalone products (Gitleaks has 24k stars; Microsoft's ADO MCP Server is GA since Nov 2025).
+
+### The real differentiator
+
+None of the competitors above were built on a free server by one person and an AI. The industry sells complexity. We sell the proof that you don't need it.
 
 ---
 
