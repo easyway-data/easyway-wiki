@@ -75,6 +75,9 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ~~CI deploy gates: disabilitare in pipeline~~ | ~~Alta~~ | ✓ PR #300 merged (S66, GEDI Case #26) |
 | ewctl.ado-pr.psm1 refactoring | Media | Estrarre logica ArtifactLink+conflict da Create-ReleasePR.ps1 in modulo condiviso (GEDI Case #24) |
 | ~~easyway-ado: Phase 0-2 completate~~ | ~~Media~~ | ✓ Phase 0-2 (S75-S76). CLI 10 comandi, PAT routing, MCP stub 10 tool, notification formatter, Palumbo enforcement. Residuo: Phase 3-5 (MCP full, npm publish). Vedi [use cases](use-cases/easyway-ado.md) |
+| ~~easyway-ado: feat→main guard~~ | ~~Media~~ | ✓ S77: check strutturale in `prCreate` — blocca feature→main, eccezioni per develop→main e release/hotfix |
+| easyway-ado: MAX 2 retry nel client HTTP | Bassa | `ado-client.ts` dovrebbe avere retry limiter (max 2 tentativi per la stessa azione). Regola MEMORY.md: "MAX 2 tentativi API ADO" — va nel codice |
+| easyway-ado: MCP safety-by-design comments | Bassa | Documentare nel MCP (`mcp/index.ts`) che `pr vote` e `pr complete` NON sono esposti di proposito — regola "MAI approvare/votare/completare PR senza ok umano" |
 
 **Dipendenze**: i container dipendono dal fix dei Dockerfile path dopo polyrepo split.
 **S71**: ADO branch protection configurata su wiki, agents, infra (min reviewers + merge strategy + WI linking). GitHub branch protection pending.
