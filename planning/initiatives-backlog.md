@@ -5,7 +5,7 @@ summary: Iniziative e task pending che diventeranno Epic/PBI su ADO quando pront
 status: active
 owner: team-platform
 created: '2026-03-04'
-updated: '2026-03-04'  # Session 71
+updated: '2026-03-05'  # Session 81 - ADO cleanup
 tags: [planning, backlog, roadmap, initiatives, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -67,7 +67,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ~~GitHub branch protection rules~~ | ~~Media~~ | ✓ S71: wiki + agents (public) protetti (no delete, force push per mirror CI). Portal + infra (private) richiedono GitHub Pro |
 | Pipeline trigger optimization | Bassa | Oggi ogni push a develop triggera full build+test anche per docs-only changes. Path filter o skip CI |
 | ~~Iron Dome hooks ripristino~~ | ~~Media~~ | ✓ S69: pre-commit bash hook + setup-hooks.sh + bugfix single-line scan. PR #310 |
-| Iron Dome modularizzazione | Media | Pattern registry YAML, `.iron-dome.json` per-repo config, parametri esclusione. Candidato per spin-off open-source (vedi §6 HALE-BOPP) |
+| Iron Dome modularizzazione | Media | **PBI #94** — Pattern registry YAML, `.iron-dome.json` per-repo config, parametri esclusione. Candidato per spin-off open-source (vedi §6 HALE-BOPP) |
 | ~~GitHub PAT scaduto~~ | ~~Media~~ | ✓ Rinnovato S68 — `ADO-GitHub-Mirror` token, credential store su server, 3 posti (da 7) |
 | ~~PAT scope: aggiungere Build (Read)~~ | ~~Media~~ | ✓ Completato S66 — briefing ora mostra pipeline runs |
 | ~~Rimuovere `version` obsoleto dai docker-compose~~ | ~~Bassa~~ | ✓ Completato PR #299 (S66) |
@@ -97,11 +97,13 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 
 | Item | Priorita | Note |
 |---|---|---|
-| GEDI Casebook commit (Case #17, #18) | Bassa | Locale in `agents/agent_gedi/`, ora pushabile dopo merge PR #276 |
+| GEDI Casebook commit (Case #17, #18) | Bassa | **PBI #92** — Locale in `agents/agent_gedi/`, ora pushabile dopo merge PR #276 |
 | Agent runner L2/L3 test post-polyrepo | Media | Verificare che i path `Import-AgentSecrets` funzionino ancora |
 | Skills registry update post-polyrepo | Media | `agents/skills/registry.json` — path references da verificare |
 | **Levi 2.0 — Doc Guardian polyrepo** | **Alta** | S79: modernizzare path, `md:fix` multi-repo (wiki/agents/infra), `session:closeout` automatizza checklist. Usa easyway-ado SDK per WI update |
+| GEDI spin-off open-source | Media | **PBI #93** — GEDI come advisory ethical framework standalone. Blue ocean, zero competitor. Packaging: manifest + casebook + integration guide. Circle 1 |
 | **Levi prodotto Obsidian** | Media | Levi come plugin/CLI standalone per studenti su Obsidian vault: frontmatter enforcement, link integrity, tag taxonomy, RAG-ready chunking. Target: vault accademici, tesi, appunti. Prodotto estraibile Circle 1 (open-source) |
+| Agent message queuing pattern | Media | Pattern per agenti che processano messaggi utente in coda mentre eseguono tool. 3 livelli: (1) coda semplice — iniettare al turno successivo (~50 righe SDK), (2) reazione immediata — loop check tra tool call, (3) vero parallelismo — multi-thread/multi-agent. Candidato Agentic Playbook |
 
 ## 6. HALE-BOPP
 
@@ -126,8 +128,8 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ~~Connection Registry creato~~ | ~~Alta~~ | Done S73 — `agents/scripts/connections/` con github.sh, ado.sh, server.sh, qdrant.sh, connections.yaml |
 | ~~.env.local Unicode fix~~ | ~~Alta~~ | Done S73 — rimossi caratteri box-drawing, parser robusto KEY=VALUE |
 | halebopp.sh connettore aggiunto | Done S78 | healthcheck 3 servizi via SSH, diff/snapshot via API. Fix CRLF `_load_env` in github.sh e qdrant.sh |
-| Connection Registry: `_common.sh` + env overlays | Media | Estrarre `_load_env` in `_common.sh` (sourced da tutti). Supportare `connections.{env}.yaml` overlays (dev/prod). Obiettivo: un solo punto parametrizzabile |
-| Agent multi-platform (ADO + GitHub) | Media | Agenti esistenti (pr_gate, review) parlano solo ADO. Estendere via Electrical Socket Pattern: stessa interfaccia, connettore diverso. I connettori github.sh/ado.sh sono il layer di astrazione |
+| Connection Registry: `_common.sh` + env overlays | Media | **PBI #90** — Estrarre `_load_env` in `_common.sh` (sourced da tutti). Supportare `connections.{env}.yaml` overlays (dev/prod). Obiettivo: un solo punto parametrizzabile |
+| Agent multi-platform (ADO + GitHub) | Media | **PBI #91** — Agenti esistenti (pr_gate, review) parlano solo ADO. Estendere via Electrical Socket Pattern: stessa interfaccia, connettore diverso. I connettori github.sh/ado.sh sono il layer di astrazione |
 | ADO-GitHub traceability convention | Bassa | Commit msg: `ADO: PBI #XX`. PR body: link GitHub. WI description: link PR GitHub. Automatizzabile in github.sh |
 | OpenRouter connector | Bassa | `connections/openrouter.sh` — completa il registry |
 
@@ -139,8 +141,8 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 |---|---|---|
 | Full RBAC env segregation | Media | Implementare modello `.env.discovery/.planner/.executor` da `infra/config/environments/README.md` — oggi tutto in unico `.env.local` |
 | PAT resolver function `Get-AdoPat -Role <role>` | Bassa | Elimina hardcoding nomi variabile PAT negli script; shell wrapper per bash |
-| Secrets Registry expiry alerting | **Alta** | `Invoke-SecretsScan.ps1` esiste ma non e automatizzato — n8n cron? **GEDI Case #28**: PAT scaduto ha rotto mirror per giorni senza allarme |
-| SSH key GitHub sul server | Media | Eliminare PAT da `~/.git-credentials`, usare deploy key SSH — zero scadenza, zero rotazione |
+| Secrets Registry expiry alerting | **Alta** | **PBI #95** — `Invoke-SecretsScan.ps1` esiste ma non e automatizzato — n8n cron? **GEDI Case #28**: PAT scaduto ha rotto mirror per giorni senza allarme |
+| SSH key GitHub sul server | Media | **PBI #96** — Eliminare PAT da `~/.git-credentials`, usare deploy key SSH — zero scadenza, zero rotazione |
 | ADO Variable Groups PAT scope | Bassa | Nessuno dei 4 PAT ha scope `Variable Groups: Read & Manage` — aggiornare ADO Library richiede portale web manuale |
 | ADO Build Queue PAT scope | Bassa | Nessuno dei 4 PAT ha scope `Build: Read & Execute` — non possiamo lanciare pipeline via API, solo dal portale |
 | GitHub PAT rotation calendar | Media | Token `ADO-GitHub-Mirror` scade **Jun 2 2026** — impostare reminder 2 settimane prima |
@@ -164,7 +166,8 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | Item | Priorita | Note |
 |---|---|---|
 | Skill `session.closeout` automatica | Bassa | n8n trigger su PR merge per verificare aggiornamento wiki |
-| RAG re-index automatico post wiki update | Bassa | Qdrant ingest dopo merge su easyway-wiki |
+| RAG re-index automatico post wiki update | Bassa | **PBI #97** — Qdrant ingest dopo merge su easyway-wiki. Rate limiting in ingest_wiki.js. Agent scopetta come cron |
+| MCP tool ado_rag_resolve in easyway-ado | Media | **PBI #98** — Tool MCP che usa rag-search (porta 8300) per risolvere WI da linguaggio naturale |
 | PRD → Epic → Wiki → RAG pipeline | Futura | Flusso completo documentato in MEMORY.md |
 | **Levi per Nuove Pagine Gialle** | Media | Levi come doc-guardian per directory/catalogo aziende — scan qualita schede, frontmatter enforcement, link integrity, auto-tag per categorie. Pattern: ogni scheda e' un .md con frontmatter strutturato → Levi garantisce coerenza e completezza del catalogo |
 
@@ -186,6 +189,12 @@ Fonte: `C:\old\EasyWayDataPortal-archive\` (127 file, 1.2 MB, no git)
 
 | Item | Completato | Sessione |
 |---|---|---|
+| **Wiki repos/ section: 8 schede repo + _index.md + tag taxonomy** | 2026-03-05 | S81 |
+| **ADR: Python per ADO batch API** | 2026-03-05 | S81 |
+| **ADO backlog cleanup: 12 PBI chiusi + 9 PBI creati sotto Feature vuote** | 2026-03-05 | S81 |
+| **pip install hale-bopp-db (PBI #35)** | 2026-03-05 | S78 |
+| **PR guardrails: duplicate/feat-to-main/safety (PBI #88)** | 2026-03-05 | S77 |
+| **halebopp.sh connector + CRLF fix (PBI #89)** | 2026-03-05 | S78 |
 | **Pipeline split per-repo (wiki, agents, infra) — 3 pipeline verdi** | 2026-03-04 | S71 |
 | **ADO branch protection su wiki, agents, infra** | 2026-03-04 | S71 |
 | **npm audit fix portal: 0 vulnerabilita (PR #312)** | 2026-03-04 | S70 |
