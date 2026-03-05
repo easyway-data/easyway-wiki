@@ -76,8 +76,9 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ewctl.ado-pr.psm1 refactoring | Media | Estrarre logica ArtifactLink+conflict da Create-ReleasePR.ps1 in modulo condiviso (GEDI Case #24) |
 | ~~easyway-ado: Phase 0-2 completate~~ | ~~Media~~ | ✓ Phase 0-2 (S75-S76). CLI 10 comandi, PAT routing, MCP stub 10 tool, notification formatter, Palumbo enforcement. Residuo: Phase 3-5 (MCP full, npm publish). Vedi [use cases](use-cases/easyway-ado.md) |
 | ~~easyway-ado: feat→main guard~~ | ~~Media~~ | ✓ S77: check strutturale in `prCreate` — blocca feature→main, eccezioni per develop→main e release/hotfix |
-| easyway-ado: MAX 2 retry nel client HTTP | Bassa | `ado-client.ts` dovrebbe avere retry limiter (max 2 tentativi per la stessa azione). Regola MEMORY.md: "MAX 2 tentativi API ADO" — va nel codice |
-| easyway-ado: MCP safety-by-design comments | Bassa | Documentare nel MCP (`mcp/index.ts`) che `pr vote` e `pr complete` NON sono esposti di proposito — regola "MAI approvare/votare/completare PR senza ok umano" |
+| ~~easyway-ado: MAX 2 retry nel client HTTP~~ | ~~Bassa~~ | ✓ S77: retry loop in `ado-client.ts` — max 2 tentativi, 500ms pausa, solo su errori di rete |
+| ~~easyway-ado: MCP safety-by-design comments~~ | ~~Bassa~~ | ✓ S77: commento strutturale in `mcp/index.ts` — pr vote/complete non esposti di proposito |
+| easyway-ado: Phase 4 — guardrails configurabili `.guardrails.yml` | Bassa | GEDI Case #33: Tier 1 (Palumbo, safety-by-design) resta hardcoded forever. Tier 2 (feat→main, duplicate PR, branch exceptions) configurabile via YAML quando ci saranno 5+ regole di flusso. Trigger: secondo progetto/team che usa easyway-ado |
 
 **Dipendenze**: i container dipendono dal fix dei Dockerfile path dopo polyrepo split.
 **S71**: ADO branch protection configurata su wiki, agents, infra (min reviewers + merge strategy + WI linking). GitHub branch protection pending.
@@ -88,6 +89,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 |---|---|---|
 | Scelta database (PostgreSQL vs SQL Edge vs altro) | Alta | sql-edge ha `profiles: [sql]` in docker-compose.yml, ignorato su ARM64 |
 | hale-bopp-db come candidato | Media | Schema governance PostgreSQL, CLI `halebopp`, 17 test, porta 8100 |
+| MongoDB per catalogo agenti | Media | Document store per agent registry (manifest JSON a struttura variabile). Valutare quando catalogo supera ~20 agenti. Alternativa leggera: JSON file o collection Qdrant |
 
 **Contesto**: il server e ARM64 (OCI), SQL Edge non supporta ARM nativamente. PostgreSQL e il candidato naturale, allineato con HALE-BOPP.
 
@@ -121,6 +123,8 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 |---|---|---|
 | ~~Connection Registry creato~~ | ~~Alta~~ | Done S73 — `agents/scripts/connections/` con github.sh, ado.sh, server.sh, qdrant.sh, connections.yaml |
 | ~~.env.local Unicode fix~~ | ~~Alta~~ | Done S73 — rimossi caratteri box-drawing, parser robusto KEY=VALUE |
+| halebopp.sh connettore aggiunto | Done S78 | healthcheck 3 servizi via SSH, diff/snapshot via API. Fix CRLF `_load_env` in github.sh e qdrant.sh |
+| Connection Registry: `_common.sh` + env overlays | Media | Estrarre `_load_env` in `_common.sh` (sourced da tutti). Supportare `connections.{env}.yaml` overlays (dev/prod). Obiettivo: un solo punto parametrizzabile |
 | Agent multi-platform (ADO + GitHub) | Media | Agenti esistenti (pr_gate, review) parlano solo ADO. Estendere via Electrical Socket Pattern: stessa interfaccia, connettore diverso. I connettori github.sh/ado.sh sono il layer di astrazione |
 | ADO-GitHub traceability convention | Bassa | Commit msg: `ADO: PBI #XX`. PR body: link GitHub. WI description: link PR GitHub. Automatizzabile in github.sh |
 | OpenRouter connector | Bassa | `connections/openrouter.sh` — completa il registry |
