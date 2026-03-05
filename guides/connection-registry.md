@@ -12,6 +12,7 @@ easyway-agents/scripts/connections/
   ado.sh                # Azure DevOps connector
   server.sh             # OCI server SSH connector
   qdrant.sh             # Qdrant vector store connector
+  halebopp.sh           # HALE-BOPP services connector (via SSH)
   healthcheck-all.sh    # verify all connections
   README.md             # usage documentation
 ```
@@ -24,6 +25,7 @@ easyway-agents/scripts/connections/
 | **ADO**       | REST API | `https://dev.azure.com/EasyWayData`   | PAT B64     | `ado.sh`      |
 | **Qdrant**    | REST API | `http://localhost:6333`               | API key     | `qdrant.sh`   |
 | **Server**    | SSH      | `80.225.86.168`                       | SSH key     | `server.sh`   |
+| **HALE-BOPP** | REST API | `http://127.0.0.1:{8100,3001,8200}`   | None (SSH)  | `halebopp.sh` |
 | **OpenRouter**| REST API | `https://openrouter.ai/api/v1`        | Bearer      | _(planned)_   |
 
 ## Secrets Management
@@ -42,6 +44,7 @@ bash connections/github.sh healthcheck    # -> OK (HTTP 200)
 bash connections/ado.sh healthcheck       # -> OK (HTTP 200)
 bash connections/server.sh healthcheck    # -> OK -- 03:20:45 up 38 days...
 bash connections/qdrant.sh healthcheck    # -> OK (HTTP 200)
+bash connections/halebopp.sh healthcheck # -> db (:8100) — OK ...
 
 # Check all at once
 bash connections/healthcheck-all.sh
@@ -78,6 +81,22 @@ bash connections/server.sh exec "df -h /"
 bash connections/server.sh disk
 bash connections/server.sh docker
 bash connections/server.sh services
+```
+
+## HALE-BOPP Connector Examples
+
+```bash
+# Check all 3 services (db, etl, argos) via SSH
+bash connections/halebopp.sh healthcheck
+
+# Check single service
+bash connections/halebopp.sh health db
+bash connections/halebopp.sh health etl
+bash connections/halebopp.sh health argos
+
+# Schema operations (via db :8100 API)
+bash connections/halebopp.sh diff "postgresql://user:pass@localhost/mydb" desired.json
+bash connections/halebopp.sh snapshot "postgresql://user:pass@localhost/mydb"
 ```
 
 ## ADO PAT Routing
