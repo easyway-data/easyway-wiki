@@ -255,13 +255,16 @@ Guardrail automatici:
 
 ### 4.3 Via curl ADO API
 
+> **IMPORTANTE**: usare il NOME del repo nell'URL, NON il GUID. I GUID troncati causano errore `TF401019`.
+
 ```bash
 B64=$(bash /c/old/easyway/agents/scripts/ado-auth.sh pr)
+REPO="easyway-agents"  # nomi: easyway-portal, easyway-wiki, easyway-agents, easyway-infra, easyway-ado
 curl -s -X POST \
   -H "Authorization: Basic $B64" \
   -H "Content-Type: application/json" \
-  "https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/git/repositories/<repo-id>/pullrequests?api-version=7.1" \
-  -d '{"sourceRefName":"refs/heads/feat/mia-feature","targetRefName":"refs/heads/main","title":"PBI-95: ..."}'
+  "https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/git/repositories/$REPO/pullrequests?api-version=7.1" \
+  -d '{"sourceRefName":"refs/heads/feat/mia-feature","targetRefName":"refs/heads/main","title":"PBI-95: ...","workItemRefs":[{"id":"95"}]}'
 ```
 
 ### 4.4 PR flusso per repo
@@ -539,14 +542,14 @@ curl -s -X POST \
 # Via MCP (preferito — ha tutti i guardrail)
 # Tool: ado_pr_create { repo: "easyway-agents", sourceBranch: "feat/...", workItemId: 95 }
 
-# Via curl
+# Via curl (usare NOME repo, NON GUID — i GUID troncati danno TF401019)
 B64=$(bash /c/old/easyway/agents/scripts/ado-auth.sh pr)
-REPO_ID="fa068c67"  # easyway-agents GUID
+REPO="easyway-agents"  # nomi validi: easyway-portal, easyway-wiki, easyway-agents, easyway-infra, easyway-ado
 curl -s -X POST \
   -H "Authorization: Basic $B64" \
   -H "Content-Type: application/json" \
-  "https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/git/repositories/$REPO_ID/pullrequests?api-version=7.1" \
-  -d '{"sourceRefName":"refs/heads/feat/mia-feature","targetRefName":"refs/heads/main","title":"PBI-95: ..."}'
+  "https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/git/repositories/$REPO/pullrequests?api-version=7.1" \
+  -d '{"sourceRefName":"refs/heads/feat/mia-feature","targetRefName":"refs/heads/main","title":"PBI-95: ...","workItemRefs":[{"id":"95"}]}'
 ```
 
 ### 10.9 Copiare un file sul server (senza scp — via cat+SSH)
@@ -558,16 +561,35 @@ cat /c/old/secrets-registry.json | \
   ubuntu@80.225.86.168 "cat > ~/secrets-registry.json"
 ```
 
-### 10.10 GUID dei repository ADO
+### 10.10 Nomi repository per API ADO
 
-| Repo | GUID |
+> **REGOLA**: usare SEMPRE il **nome** del repo nell'URL API, NON il GUID.
+> I GUID troncati (8 char) causano `TF401019: GitRepositoryNotFoundException`.
+> I GUID completi (36 char) sono in `factory.yml` — servono solo per ArtifactLink.
+
+**Nomi validi per API** (usare questi):
+```
+easyway-portal
+easyway-wiki
+easyway-agents
+easyway-infra
+easyway-ado
+```
+
+**Pattern URL**:
+```
+https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/git/repositories/<NOME>/...
+```
+
+**GUID completi** (solo per ArtifactLink `vstfs:///Git/PullRequestId/...`):
+| Repo | GUID completo |
 |---|---|
-| easyway-portal | `e29d5c59` |
-| easyway-infra | `fa453541` |
-| easyway-wiki | `d055dfa8` |
-| easyway-agents | `fa068c67` |
-| easyway-ado | `91b146f8` |
-| Project | `d8c907d2` |
+| Project | `d8c907d2-dae1-4db1-9dcf-40c2931b6dc7` |
+| easyway-portal | `e29d5c59-28d0-4815-8f62-6f5c1465855c` |
+| easyway-wiki | `d055dfa8-db64-4c9d-a6ad-55bff6e8d767` |
+| easyway-agents | `fa068c67-b5ee-4b41-aab3-38b0166ffb27` |
+| easyway-infra | `fa453541-4227-4837-bd55-8b92f656f87a` |
+| easyway-ado | `91b146f8-8037-4823-b673-b50147e1a22f` |
 
 ---
 
@@ -593,6 +615,10 @@ Rebase il feature branch: `git fetch origin main && git rebase origin/main && gi
 
 ### API ADO fallisce 2 volte
 STOP. Non riprovare. Verificare PAT, scope, URL. Chiedere aiuto umano.
+
+### TF401019: GitRepositoryNotFoundException
+Stai usando un GUID troncato (8 char) nell'URL API. **Usare il NOME del repo** (`easyway-wiki`, non `d055dfa8`).
+L'API accetta sia nomi che GUID completi (36 char), ma i GUID troncati falliscono sempre.
 
 ---
 
