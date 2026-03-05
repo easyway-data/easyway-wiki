@@ -23,7 +23,7 @@ La knowledge base del progetto. Fonte di verita per documentazione, planning, ch
 
 | Campo | Valore |
 |-------|--------|
-| **ADO repo** | `easyway-wiki` (GUID: `d055dfa8`) |
+| **ADO repo** | `easyway-wiki` (GUID: `d055dfa8-db64-4c9d-a6ad-55bff6e8d767`) |
 | **GitHub** | [easyway-data/easyway-wiki](https://github.com/easyway-data/easyway-wiki) (source-available) |
 | **Cerchio** | 2 (Source-available) |
 | **Linguaggio** | Markdown (frontmatter YAML) |

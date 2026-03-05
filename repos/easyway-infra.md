@@ -23,7 +23,7 @@ Infrastruttura: Docker Compose, deploy scripts, Caddyfile, configurazione server
 
 | Campo | Valore |
 |-------|--------|
-| **ADO repo** | `easyway-infra` (GUID: `fa453541`) |
+| **ADO repo** | `easyway-infra` (GUID: `fa453541-4227-4837-bd55-8b92f656f87a`) |
 | **GitHub** | [easyway-data/easyway-infra](https://github.com/easyway-data/easyway-infra) (private) |
 | **Cerchio** | 3 (Private) |
 | **Linguaggio** | Docker / bash / YAML |

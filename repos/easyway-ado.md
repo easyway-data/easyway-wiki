@@ -23,7 +23,7 @@ SDK TypeScript, CLI e MCP Server per Azure DevOps. PAT routing, work items, PR, 
 
 | Campo | Valore |
 |-------|--------|
-| **ADO repo** | `easyway-ado` (GUID: `91b146f8`) |
+| **ADO repo** | `easyway-ado` (GUID: `91b146f8-8037-4823-b673-b50147e1a22f`) |
 | **GitHub** | Futuro: `easyway-data/easyway-ado` (quando Circle 1) |
 | **Cerchio** | 2 (Source-available) |
 | **Linguaggio** | TypeScript |
