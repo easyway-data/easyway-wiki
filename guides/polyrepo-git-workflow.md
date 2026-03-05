@@ -140,14 +140,26 @@ type: guide
 
 **Flusso standard**:
 ```
-main (o develop per portal)
-  └─ feat/mia-feature
-       ├─ commit 1
-       ├─ commit 2
-       └─ PR → develop (portal) o main (wiki/agents/infra/ado)
+PORTAL (ha develop):
+  develop
+    └─ feat/mia-feature
+         ├─ commit 1
+         └─ PR → develop        ← SEMPRE prima qui
+  main
+    └─ PR develop→main [Release] ← solo quando si rilascia
+
+WIKI / AGENTS / INFRA / ADO (NO develop):
+  main
+    └─ feat/mia-feature
+         ├─ commit 1
+         └─ PR → main           ← direttamente
 ```
 
-**Nota**: fix CI/infra urgenti possono andare direttamente `feat→main` (coerente con PR #176-#184).
+> **ATTENZIONE**: su portal, MAI fare PR direttamente a `main` da un feature branch.
+> Il flusso e SEMPRE `feat→develop` poi `develop→main [Release]`.
+> Gli altri repo NON hanno `develop` — la PR va direttamente a `main`.
+
+**Eccezione rara**: fix CI/infra urgenti possono andare direttamente `feat→main` su portal (coerente con PR #176-#184), ma solo con approvazione esplicita.
 
 ### 2.3 Rebase policy (GEDI Case #22)
 
