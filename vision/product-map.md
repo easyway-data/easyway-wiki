@@ -124,7 +124,7 @@ The polyrepo architecture is not a cost — it's the factory floor where product
 | **Current location** | `easyway-agents/agents/agent_gedi/manifest.json` |
 | **Target repo** | `easyway-data/gedi` (new, GitHub) |
 | **License** | Apache 2.0 |
-| **Status** | 31 documented cases in GEDI Casebook, used in every session |
+| **Status** | 32 documented cases in GEDI Casebook, used in every session |
 | **Maturity** | L1: 2/4 — L2: 1/4 — L3: 3/3 — L4: 2/4 |
 
 **What to extract:**
@@ -255,15 +255,19 @@ The polyrepo architecture is not a cost — it's the factory floor where product
 | **Language** | TypeScript + bash + PowerShell |
 | **Repo** | ADO: `easyway-ado` → GitHub: `easyway-data/easyway-ado` (when mature) |
 | **License** | Source-available (TBD: Apache 2.0 when Circle 1) |
-| **Status** | Phase 0 complete (bootstrap), Phase 1-3 pending |
-| **Maturity** | L1: 1/4 — L2: 0/4 — L3: 0/3 — L4: 0/4 |
+| **Status** | Phase 2 complete (CLI + MCP stub), Phase 3-5 pending |
+| **Maturity** | L1: 2/4 — L2: 1/4 — L3: 1/3 — L4: 0/4 |
+| **Use cases** | [easyway-ado use cases](use-cases/easyway-ado.md) |
+
+**Completed:**
+- Phase 0: Bootstrap (config, PAT routing, typed client)
+- Phase 1: CLI read commands (briefing, wi get/list/query, pr list/get)
+- Phase 2: CLI write commands (wi create/update, pr create with Palumbo enforcement + ArtifactLink, pr policy), MCP server stub (10 tools + zod), notification formatter for chat channels
 
 **Roadmap to Circle 1:**
-- Phase 1: Copy scripts (no breaking changes)
-- Phase 2: TypeScript core (pat-router, ado-client, modules)
-- Phase 3: MCP server (20 tools, 3 resources)
+- Phase 3: MCP server full (resources, prompts, remaining tools)
 - Phase 4: Backward compatibility bridge
-- Phase 5: Cleanup + GitHub mirror
+- Phase 5: Cleanup + GitHub mirror + npm publish
 - When L1-L3 all pass → promote to Circle 1
 
 ---
@@ -307,7 +311,7 @@ Docker Compose, deploy scripts, server config. Org-specific. Stays private.
 | 6 | **ewctl** | Governance CLI | 1 | L2 | Some | SDLC governance CLI for AI agents |
 | 7 | **Maturity Checklist** | Methodology | 1 | L4 | Some | Radical simplicity (4 levels vs 36 practices) |
 | 8 | **Agentic Playbook** | Methodology guide | 1 | L1 | Some | Empirical — 75 real sessions, not theory |
-| 9 | **easyway-ado** | ADO SDK + MCP | 2 | L1 | Crowded | PAT routing + governance rules embedded |
+| 9 | **easyway-ado** | ADO SDK + MCP | 2 | L2 | Crowded | PAT routing + governance rules embedded |
 | 10 | **easyway-agents** | Agent platform | 2 | L2 | Some | Domain experts + identity governance + GEDI |
 
 > We started writing a data portal. We ended up with ten products,
@@ -331,7 +335,7 @@ None of the competitors above were built on a free server by one person and an A
 ## What's Next
 
 **Short term (Sprint 1-2):**
-- Complete easyway-ado Phase 1-3 (MCP server working)
+- Complete easyway-ado Phase 3 (MCP server full)
 - HALE-BOPP: pip packaging + CHANGELOG for all 3 engines
 - Extract GEDI into standalone repo
 
