@@ -79,3 +79,21 @@ stages:
               echo "##[section]GitHub mirror: OK — $(git rev-parse --short HEAD)"
             displayName: 'git push → GitHub'
             continueOnError: true
+
+  - stage: ReindexRAG
+    displayName: 'RAG Re-index (Qdrant)'
+    dependsOn: GitHubMirror
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - job: TriggerIngest
+        displayName: 'Trigger wiki-auto-ingest on server'
+        pool:
+          name: Default
+        steps:
+          - script: |
+              set -e
+              echo "Triggering wiki-auto-ingest.sh on server..."
+              bash /home/ubuntu/easyway-infra/scripts/linux/wiki-auto-ingest.sh
+              echo "##[section]RAG re-index: completed"
+            displayName: 'Run wiki-auto-ingest.sh'
+            continueOnError: true
