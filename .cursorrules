@@ -1,0 +1,43 @@
+# easyway-wiki — Knowledge Base & Documentation
+
+> Questo repo e la FONTE DI VERITA per tutta la documentazione della piattaforma EasyWay.
+
+## Identita
+- **Cosa**: Wiki, guide operative, chronicles, standard, planning, schede repo
+- **Linguaggio**: Markdown con frontmatter YAML
+- **Branch strategy**: `feat→main` o `docs/→main` (NO develop)
+- **Merge strategy**: Merge (no fast-forward)
+
+## Comandi rapidi
+```bash
+# Commit (con Iron Dome pre-commit scan)
+ewctl commit
+
+# Push
+git push origin <branch>
+```
+
+## Struttura directory
+```
+guides/          # Guide operative (polyrepo-git-workflow, connection-registry, ecc.)
+agents/          # Doc agenti + platform-operational-memory.md
+chronicles/      # Cronache narrative sessione per sessione
+standards/       # Standard architetturali (MVP maturity, infra, agent design)
+security/        # Secrets governance, secrets management
+repos/           # Schede operative per-repo (8 schede)
+planning/        # Initiatives backlog, epic taxonomy
+vision/          # Manifesto, product map
+Runbooks/        # Runbook operativi (RAG operations)
+```
+
+## Regole specifiche wiki
+- Ogni file .md DEVE avere frontmatter YAML (title, created, status, tags)
+- Tag `language/it` per contenuti in italiano
+- Aggiornare `_index.md` quando si creano nuovi file nelle sottocartelle
+- MAI committare `.obsidian/` o file canvas
+
+## Regole platform-wide
+> **Guida completa**: `guides/polyrepo-git-workflow.md`
+> **GEDI** (dubbi architetturali): `C:\old\easyway\agents\agents\agent_gedi\manifest.json`
+> **Storia e contesto**: `agents/platform-operational-memory.md`
+> **Governance Git**: vedi Sezione 6 della guida polyrepo (regole G1-G11)
