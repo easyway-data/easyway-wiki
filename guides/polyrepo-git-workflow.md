@@ -22,6 +22,91 @@ type: guide
 
 ---
 
+## 0. Mappa Logica — Orientamento Rapido
+
+```
+                          +---------------------------+
+                          |     ADO (Azure DevOps)    |
+                          |  Backlog, PR, CI Pipeline |
+                          |  dev.azure.com/EasyWayData|
+                          +---------------------------+
+                                     |
+                    PR create/merge, WI tracking
+                                     |
+  +----------------------------------------------------------------------+
+  |                    SVILUPPO LOCALE (Windows)                         |
+  |                    C:\old\easyway\                                   |
+  |                                                                      |
+  |  portal/    wiki/     agents/    infra/     ado/                     |
+  |  (Node.js)  (Markdown) (PS+bash)  (Docker)   (TypeScript)           |
+  |    |          |          |          |          |                      |
+  |    +----------+----------+----------+----------+                     |
+  |              5 REPO GIT INDIPENDENTI                                 |
+  |              Ognuno ha il suo .git/                                   |
+  |              Commit e PR SEPARATI                                     |
+  +----------------------------------------------------------------------+
+           |                                        |
+      git push                              easyway-ado MCP
+      (ADO remote)                          (10+1 tool, stdio)
+           |                                        |
+  +----------------------------------------------------------------------+
+  |                    SERVER OCI (Ubuntu ARM64)                         |
+  |                    80.225.86.168 via SSH                              |
+  |                                                                      |
+  |  ~/easyway-portal/   (git clone, docker compose)                     |
+  |  ~/easyway-wiki/     (git clone, RAG ingest source)                  |
+  |  ~/easyway-agents/   (git clone, n8n workflows, skills)              |
+  |  ~/easyway-infra/    (git clone, deploy.sh, compose overlays)        |
+  |                                                                      |
+  |  Docker containers:                                                  |
+  |    easyway-portal (Node.js app)                                      |
+  |    easyway-qdrant (Qdrant v1.16.2, porta 6333)                       |
+  |    easyway-memory (RAG search server, porta 8300)                    |
+  |    easyway-n8n (orchestrazione, porta 80 via Caddy)                  |
+  |    easyway-gitea (git mirror, porta 3100)                            |
+  |                                                                      |
+  |  Systemd services:                                                   |
+  |    hale-bopp-db (:8100)                                              |
+  |    hale-bopp-etl-webhook (:3001)                                     |
+  |    hale-bopp-argos (:8200)                                           |
+  |    rag-search (HTTP :8300)                                           |
+  |                                                                      |
+  |  Secrets:                                                            |
+  |    /opt/easyway/.env.secrets (API keys)                              |
+  |    ~/secrets-registry.json (PAT metadata per expiry check)           |
+  +----------------------------------------------------------------------+
+           |                                        |
+      GitHub mirror                          Qdrant RAG
+      (push automatico                       (167k+ chunks wiki)
+       da CI pipeline)                       (semantic search)
+           |
+  +----------------------------------------------------------------------+
+  |                    GITHUB (mirror pubblico)                          |
+  |                                                                      |
+  |  easyway-data/easyway-wiki     (Circle 2, source-available)         |
+  |  easyway-data/easyway-agents   (Circle 2, source-available)         |
+  |  easyway-data/easyway-portal   (Circle 3, private — futuro)         |
+  |  hale-bopp-data/hale-bopp-db   (Circle 1, Apache 2.0)              |
+  |  hale-bopp-data/hale-bopp-etl  (Circle 1, Apache 2.0)              |
+  |  hale-bopp-data/hale-bopp-argos(Circle 1, Apache 2.0)              |
+  +----------------------------------------------------------------------+
+```
+
+### Flusso tipo: modifica → produzione
+
+```
+1. LOCALE: modifica file in C:\old\easyway\<repo>\
+2. LOCALE: ewctl commit (Iron Dome scan)
+3. LOCALE: git push origin feat/<branch>
+4. ADO:    PR con Work Item linkato
+5. ADO:    Approvazione umana + merge
+6. CI:     Pipeline ADO → build/test → GitHub mirror
+7. SERVER: git fetch origin main && git reset --hard origin/main
+8. SERVER: docker compose restart (se necessario)
+```
+
+---
+
 ## 1. Mappa dei Repository
 
 | Repo | Path locale | Path server | ADO | GitHub | Cerchio |
@@ -348,7 +433,133 @@ B64=$(bash /c/old/easyway/agents/scripts/ado-auth.sh <action>)
 
 ---
 
-## 10. Troubleshooting
+## 10. Ricettario Comandi (copia-incolla)
+
+Tutte le operazioni quotidiane, con comandi esatti. Locale = Windows dev. Server = Ubuntu OCI.
+
+### 10.1 SSH al server
+
+```bash
+# Da Git Bash / terminal locale
+"/c/Windows/System32/OpenSSH/ssh.exe" -i "/c/old/Virtual-machine/ssh-key-2026-01-25.key" ubuntu@80.225.86.168
+
+# Oppure via connector
+bash /c/old/easyway/agents/scripts/connections/server.sh exec "uptime"
+```
+
+### 10.2 Aggiornare un repo sul server
+
+```bash
+# SSH al server, poi:
+cd ~/easyway-portal && git fetch origin main && git reset --hard origin/main
+cd ~/easyway-agents && git fetch origin main && git reset --hard origin/main
+cd ~/easyway-wiki && git fetch origin main && git reset --hard origin/main
+cd ~/easyway-infra && git fetch origin main && git reset --hard origin/main
+```
+
+### 10.3 Riavviare i container dopo deploy
+
+```bash
+# SSH al server, poi:
+cd ~/easyway-infra
+source /opt/easyway/.env.secrets
+OPENAI_API_KEY=placeholder ANTHROPIC_API_KEY=placeholder docker compose up -d
+
+# Riavviare solo un servizio
+docker compose restart <service-name>
+```
+
+### 10.4 Verificare stato servizi
+
+```bash
+# Da locale (via connector)
+bash /c/old/easyway/agents/scripts/connections/healthcheck-all.sh
+
+# Da server
+docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+systemctl status hale-bopp-db hale-bopp-etl-webhook hale-bopp-argos
+```
+
+### 10.5 Lanciare RAG re-index manuale
+
+```bash
+# SSH al server, poi:
+source /opt/easyway/.env.secrets
+cd ~/easyway-portal
+QDRANT_API_KEY=$QDRANT_API_KEY WIKI_PATH=../easyway-wiki node scripts/ingest_wiki.js > /tmp/ingest.log 2>&1
+
+# Verificare chunk count
+curl -s "http://localhost:6333/collections/easyway_wiki" \
+  -H "api-key: $QDRANT_API_KEY" | \
+  python3 -c "import sys,json; d=json.load(sys.stdin); print('chunks:', d['result']['points_count'])"
+```
+
+### 10.6 Secrets scan manuale
+
+```bash
+# Da locale
+pwsh -File C:\old\easyway\agents\agents\skills\security\Invoke-SecretsScan.ps1 \
+  -ScanPath C:\old\easyway\agents -RegistryPath C:\old\secrets-registry.json -OutputFormat markdown
+
+# Da server (verifica PAT expiry)
+pwsh -File ~/easyway-agents/agents/skills/security/Invoke-SecretsScan.ps1 \
+  -ScanPath ~/easyway-portal -RegistryPath ~/secrets-registry.json -Json
+```
+
+### 10.7 Creare un Work Item ADO
+
+```bash
+# Via MCP (se easyway-ado MCP server attivo)
+# Tool: ado_wi_create { type: "Product Backlog Item", title: "...", parentId: 4 }
+
+# Via curl
+B64=$(bash /c/old/easyway/agents/scripts/ado-auth.sh wi)
+curl -s -X POST \
+  -H "Authorization: Basic $B64" \
+  -H "Content-Type: application/json-patch+json" \
+  "https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/wit/workitems/\$Product%20Backlog%20Item?api-version=7.1" \
+  -d '[{"op":"add","path":"/fields/System.Title","value":"Titolo PBI"}]'
+```
+
+### 10.8 Creare una PR ADO
+
+```bash
+# Via MCP (preferito — ha tutti i guardrail)
+# Tool: ado_pr_create { repo: "easyway-agents", sourceBranch: "feat/...", workItemId: 95 }
+
+# Via curl
+B64=$(bash /c/old/easyway/agents/scripts/ado-auth.sh pr)
+REPO_ID="fa068c67"  # easyway-agents GUID
+curl -s -X POST \
+  -H "Authorization: Basic $B64" \
+  -H "Content-Type: application/json" \
+  "https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/git/repositories/$REPO_ID/pullrequests?api-version=7.1" \
+  -d '{"sourceRefName":"refs/heads/feat/mia-feature","targetRefName":"refs/heads/main","title":"PBI-95: ..."}'
+```
+
+### 10.9 Copiare un file sul server (senza scp — via cat+SSH)
+
+```bash
+# Da locale, iniettare file sul server
+cat /c/old/secrets-registry.json | \
+  "/c/Windows/System32/OpenSSH/ssh.exe" -i "/c/old/Virtual-machine/ssh-key-2026-01-25.key" \
+  ubuntu@80.225.86.168 "cat > ~/secrets-registry.json"
+```
+
+### 10.10 GUID dei repository ADO
+
+| Repo | GUID |
+|---|---|
+| easyway-portal | `e29d5c59` |
+| easyway-infra | `fa453541` |
+| easyway-wiki | `d055dfa8` |
+| easyway-agents | `fa068c67` |
+| easyway-ado | `91b146f8` |
+| Project | `d8c907d2` |
+
+---
+
+## 11. Troubleshooting
 
 ### PR rifiutata: "Palumbo mutu non po essere servuto"
 Manca il Work Item. Creare prima il WI, poi la PR.
