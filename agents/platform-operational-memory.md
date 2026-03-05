@@ -2482,3 +2482,38 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche rename app/ → hale_bopp_db/? A: Convenzione PyPI richiede package name = directory name. `app/` e' generico e non funziona con `pip install -e .`.
 - Q: Perche halebopp.sh e non 3 connettori separati? A: I 3 motori condividono server e pattern di accesso SSH. Un unico connettore con sub-commands (db/etl/argos) segue il pattern degli altri connettori (github.sh, ado.sh).
 - Q: CRLF fix perche solo su 2 file? A: Solo github.sh e qdrant.sh usano `_load_env` che fa `source`. Gli altri connettori usano grep+cut che e' immune al `\r`.
+
+---
+
+### Session 82 — COMPLETATA
+
+**Data**: 2026-03-05
+**Cosa**: PBI #98 ado_rag_resolve MCP tool + PBI #95 secrets expiry alerting + PBI #90 _common.sh env overlays + documentazione completa polyrepo workflow + .cursorrules v3.0 Index Edition
+
+**Perche**:
+- MCP server easyway-ado mancava di tool RAG per semantic search wiki — agenti non potevano cercare knowledge base
+- Nessun alerting automatico su scadenza PAT/secrets — rischio di interruzione servizi
+- `_load_env()` duplicata in ogni connettore bash — violazione DRY, manutenzione fragile
+- Nessuna guida operativa completa per il workflow polyrepo — un'IA nuova non sapeva come orientarsi
+- `.cursorrules` troppo lungo (2237 righe) e non aggiornato — serviva un indice snello che puntasse alla wiki
+
+**Come**:
+1. **PBI #98 — ado_rag_resolve**: nuovo `src/commands/rag.ts` (shell-out a `qdrant.sh search`), tool #11 in `mcp/index.ts` (v0.3.0), 5 unit test (23/23 totali verdi). Antifragile: timeout 30s, JSON validation, error propagation.
+2. **PBI #95 — secrets expiry alerting**: `secrets-registry.json` (metadata PAT/API key, no valori), n8n workflow v2.0 con branch parallelo PAT expiry → ADO Task, path polyrepo fixati (`~/easyway-agents/`), `Invoke-SecretsScan.ps1` aggiornato con path server.
+3. **PBI #90 — _common.sh env overlays**: `_load_env()` centralizzata in `_common.sh` con auto-detect (Windows → Linux → server), `CONN_ENV=server` overlay via `connections.server.env`, rimossa duplicazione da `qdrant.sh` e `github.sh`, `halebopp.sh` ora usa `_common.sh`.
+4. **Documentazione**: `wiki/guides/polyrepo-git-workflow.md` (~500 righe) — mappa ASCII architettura, 11 sezioni (branch, commit, PR, deploy, governance G1-G11, PAT routing, MCP tools, connettori), 10 ricette copia-incolla, 7 troubleshooting.
+5. **`.cursorrules` v3.0**: riscritto come indice (~230 righe) — regole non-negoziabili inline, catalogo MCP 11 tool con "quando usarlo", Connection Registry, n8n workflows, Knowledge Index con puntatori a tutte le guide wiki.
+6. **Backlog**: iniziativa `easyway-n8n` repo dedicato + `n8n→.cursorrules auto-gen`.
+
+| PR/Commit | Repo | Contenuto | Stato |
+|---|---|---|---|
+| commit f3db033 | easyway-ado | ado_rag_resolve MCP tool + 5 test | Da pushare |
+| commit (3) | easyway-agents | PBI-95 n8n v2.0 + PBI-90 _common.sh + halebopp.sh | Da pushare |
+| commit (4) | easyway-wiki | polyrepo guide + backlog + repo cards + architecture map | Da pushare |
+| commit 4d9bb33 | easyway-portal | .cursorrules v3.0 Index Edition | Da pushare |
+
+**Q&A**:
+- Q: Perche shell-out a qdrant.sh e non HTTP diretto? A: Riusa infrastruttura bash esistente (SSH tunnel, auth), evita duplicazione logica, single responsibility.
+- Q: Perche secrets-registry.json fuori dai repo? A: Contiene metadata sensibili (nomi PAT, date scadenza). Vive in `C:\old\` (locale) e `~/` (server), mai committato.
+- Q: Perche .cursorrules come indice? A: File troppo grande non viene letto bene dagli agenti. Indice snello + wiki dettagliata = meglio per manutenzione e aggiornamento.
+- Q: platform-operational-memory serve ancora? A: Si per storia (ricostruire il perche), no per operazioni quotidiane (ora coperte da wiki guides + .cursorrules indice).
