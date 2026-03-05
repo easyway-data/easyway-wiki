@@ -74,7 +74,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ~~Dependabot: 3 vulnerabilita high su easyway-infra~~ | ~~Alta~~ | ✓ Completato PR #298 (S66) — minimatch 0 vulns |
 | ~~CI deploy gates: disabilitare in pipeline~~ | ~~Alta~~ | ✓ PR #300 merged (S66, GEDI Case #26) |
 | ewctl.ado-pr.psm1 refactoring | Media | Estrarre logica ArtifactLink+conflict da Create-ReleasePR.ps1 in modulo condiviso (GEDI Case #24) |
-| **easyway-ado: ADO tooling configurabile** | Media | Migrare Get-ADOBriefing, Create-ReleasePR, Publish-WikiPages, ado-auth.sh nel repo `easyway-ado`. Renderli configurabili (org/project/repo come config JSON, non hardcoded). Oggi vivono in easyway-agents con valori EasyWay hardcoded |
+| ~~easyway-ado: Phase 0-2 completate~~ | ~~Media~~ | ✓ Phase 0-2 (S75-S76). CLI 10 comandi, PAT routing, MCP stub 10 tool, notification formatter, Palumbo enforcement. Residuo: Phase 3-5 (MCP full, npm publish). Vedi [use cases](use-cases/easyway-ado.md) |
 
 **Dipendenze**: i container dipendono dal fix dei Dockerfile path dopo polyrepo split.
 **S71**: ADO branch protection configurata su wiki, agents, infra (min reviewers + merge strategy + WI linking). GitHub branch protection pending.
