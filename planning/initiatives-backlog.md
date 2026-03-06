@@ -5,7 +5,7 @@ summary: Iniziative e task pending che diventeranno Epic/PBI su ADO quando pront
 status: active
 owner: team-platform
 created: '2026-03-04'
-updated: '2026-03-05'  # Session 81 - ADO cleanup
+updated: '2026-03-06'  # Session 86 - n8n repo, Docker cleanup
 tags: [planning, backlog, roadmap, initiatives, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -78,10 +78,12 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ~~easyway-ado: feat→main guard~~ | ~~Media~~ | ✓ S77: check strutturale in `prCreate` — blocca feature→main, eccezioni per develop→main e release/hotfix |
 | ~~easyway-ado: MAX 2 retry nel client HTTP~~ | ~~Bassa~~ | ✓ S77: retry loop in `ado-client.ts` — max 2 tentativi, 500ms pausa, solo su errori di rete |
 | ~~easyway-ado: MCP safety-by-design comments~~ | ~~Bassa~~ | ✓ S77: commento strutturale in `mcp/index.ts` — pr vote/complete non esposti di proposito |
-| **n8n workflow repo dedicato** (`easyway-n8n`) | Media | S82: ~30 workflow previsti. Repo dedicato quando superano 10 (oggi 2-3). Versionamento indipendente, test/lint JSON, import/export script. Candidato Circle 3 (private ADO). Trigger: 10+ workflow o primo test automatico |
-| **Docker compose: .env server mancante** | Alta | S84: il `docker-compose.yml` richiede variabili non presenti in `.env.secrets` (SQL_SA_PASSWORD, MINIO_ROOT_USER/PASSWORD, OPENAI_API_KEY, ANTHROPIC_API_KEY). Ogni `docker compose build/up` richiede export manuale di placeholder. Soluzione: creare `/opt/easyway/.env.compose` o `.env` in `~/easyway-infra/` con tutti i valori (reali o placeholder per servizi non attivi). Aggiornare `.cursorrules` Step 3 di conseguenza |
-| **Docker compose: container name conflict** | Alta | S84: `docker compose up -d frontend` fallisce con "container name /easyway-storage already in use" — i container (qdrant, etc.) sono stati creati manualmente fuori compose. Compose vuole ricrearli ma i nomi collidono. Soluzione: (1) migrare TUTTI i container sotto compose (`docker rm` dei vecchi + `docker compose up`), oppure (2) rinominare i container nel compose. Correlato: network warning "easyway-net exists but was not created for project" |
-| **Nginx reverse proxy: Internal Server Error** | Alta | S84: il browser su `http://80.225.86.168/` (porta 80) mostra "Internal Server Error". Il container portal (porta 8080) e healthy e risponde 200 su curl locale. Il problema e nel reverse proxy nginx dell'host che fa 80->8080. Da investigare: config nginx host (`/etc/nginx/`), log errori nginx host (`/var/log/nginx/error.log`). Possibile causa: proxy_pass punta a porta/host sbagliato dopo recreate container |
+| ~~n8n workflow repo dedicato (`easyway-n8n`)~~ | ~~Media~~ | ✓ S86: repo creato, PR #357 merged, PBI #105. 10 workflow (2 common, 2 business, 2 infra, 4 template). Circle 3 private ADO. Wiki repos/ scheda + factory.yml (9 repo) |
+| ~~Docker compose: .env server mancante~~ | ~~Alta~~ | Risolto S85: `~/easyway-infra/.env` gia creato in S84 con tutte le variabili (verificato). Nessuna azione necessaria |
+| ~~Docker compose: container name conflict~~ | ~~Alta~~ | Risolto S85: tutti i container sono sotto compose (progetto `easyway-prod`). 5 container `easyway-cert-*` zombie da rimuovere + `easyway-seq` orfano. Wiki: `infrastructure/container-inventory.md` |
+| **n8n job: container census (watchdog)** | Media | S85-S86: template creato in `easyway-n8n/workflows/infra/container-census-watchdog.json`. Da importare in n8n e attivare. Prerequisito: Docker socket montato nel container n8n o SSH |
+| **n8n job: Docker Health Daily Report** | **Alta** | S86: template creato in `easyway-n8n/workflows/infra/docker-health-report.json`. Da importare in n8n e attivare. Prerequisito: Docker socket montato nel container n8n o SSH. Soglie: disco>70%, cache>5GB, container unhealthy, volumi orfani |
+| ~~Caddy reverse proxy: Internal Server Error~~ | ~~Alta~~ | Risolto S85: verificato — HTTP 200 dall'esterno e internamente. Container `easyway-portal` ha alias DNS `frontend` su `easyway-net`. Caddy reverse_proxy funziona correttamente |
 | **Deploy workflow: compose vs docker run** | Media | S84: il container portal era stato creato con `docker run` (immagine `easyway/frontend:latest`), non con compose (che genera `easyway-infra-frontend:latest`). Il deploy ha richiesto `docker tag` + `docker rm` + `docker run` manuale. Standardizzare: o tutto compose o tutto docker run con script. Documentare in `.cursorrules` Step 3 il metodo effettivo |
 | easyway-ado: Phase 4 — guardrails configurabili `.guardrails.yml` | Bassa | GEDI Case #33: Tier 1 (Palumbo, safety-by-design) resta hardcoded forever. Tier 2 (feat→main, duplicate PR, branch exceptions) configurabile via YAML quando ci saranno 5+ regole di flusso. Trigger: secondo progetto/team che usa easyway-ado |
 
@@ -109,6 +111,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | GEDI spin-off open-source | Media | **PBI #93** — GEDI come advisory ethical framework standalone. Blue ocean, zero competitor. Packaging: manifest + casebook + integration guide. Circle 1 |
 | **Levi prodotto Obsidian** | Media | Levi come plugin/CLI standalone per studenti su Obsidian vault: frontmatter enforcement, link integrity, tag taxonomy, RAG-ready chunking. Target: vault accademici, tesi, appunti. Prodotto estraibile Circle 1 (open-source) |
 | Agent message queuing pattern | Media | Pattern per agenti che processano messaggi utente in coda mentre eseguono tool. 3 livelli: (1) coda semplice — iniettare al turno successivo (~50 righe SDK), (2) reazione immediata — loop check tra tool call, (3) vero parallelismo — multi-thread/multi-agent. Candidato Agentic Playbook |
+| **Valentino: browser capability (Playwright MCP)** | Media | S85: dare a Valentino la capacita di navigare e analizzare siti web come un browser subagent. Due opzioni: (1) **MCP Playwright** (`@playwright/mcp` — navigate, screenshot, click, get_dom) — piu semplice, self-hosted, sovereign. (2) **browser-use** (Python, `pip install browser-use`) — piu potente, controllo browser completo. Preferire opzione 1 (MCP) per coerenza con architettura MCP gia in uso (easyway-ado). Repo: `microsoft/playwright-mcp`. Gira su server Oracle ARM = sovereign, nessun dato esce. Prerequisito: Valentino manifest update + config MCP |
 
 ## 6. HALE-BOPP
 
@@ -151,6 +154,7 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ADO Variable Groups PAT scope | Bassa | Nessuno dei 4 PAT ha scope `Variable Groups: Read & Manage` — aggiornare ADO Library richiede portale web manuale |
 | ADO Build Queue PAT scope | Bassa | Nessuno dei 4 PAT ha scope `Build: Read & Execute` — non possiamo lanciare pipeline via API, solo dal portale |
 | GitHub PAT rotation calendar | Media | Token `ADO-GitHub-Mirror` scade **Jun 2 2026** — impostare reminder 2 settimane prima |
+| **Server hardening: RBAC + blocco SCP/SFTP + deploy user** | **Alta** | **PBI #104** (Epic #62 Security) — S85: collega ha bypassato deploy workflow via SCP. Implementare RBAC 4-tier, blocco SCP/SFTP, utente deploy con ForceCommand, sudoers limitato. Wiki aggiornata: `security/threat-analysis-hardening.md` (Scenario 2b) + `infra/security-framework.md` (sezione 3). GEDI: victory_before_battle + testudo_formation |
 
 **Contesto**: GEDI Case #19 (S62) — `.env.local` ha 4 PAT separati per scope (bene), ma serviti da un unico file leggibile da tutti i processi. Il modello RBAC multi-file in `infra/config/environments/` e documentato ma non implementato.
 
