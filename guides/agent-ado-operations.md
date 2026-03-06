@@ -8,12 +8,57 @@
 | Cosa | Dove | A cosa serve |
 |------|------|-------------|
 | **easyway-ado** | `C:\old\easyway\ado\` (Windows) / `~/easyway-ado/` (server) | CLI + MCP Server per Azure DevOps |
-| **PAT (Personal Access Token)** | `C:\old\.env.local` | Autenticazione verso ADO. Variabile: `ADO_PAT` |
+| **PAT (Personal Access Tokens)** | Server: `/opt/easyway/.env.secrets` / Dev: `C:\old\.env.local` | 4 PAT con scope diversi (vedi tabella sotto) |
 | **MCP config Claude Code** | `C:\old\.mcp.json` | Registra easyway-ado come MCP server |
 | **MCP config Cursor** | `C:\old\.cursor\mcp.json` | Registra easyway-ado come MCP server |
 | **ADO Organization** | `https://dev.azure.com/EasyWayData` | L'organizzazione Azure DevOps |
 | **ADO Project** | `EasyWay-DataPortal` | Il progetto dentro l'org |
-| **ado-auth.sh** | `easyway/agents/scripts/ado-auth.sh` | Script bash per generare header Base64 (fallback) |
+| **ado-auth.sh** | `easyway-ado/scripts/ado-auth.sh` | PAT routing + B64 + BOM-safe curl wrapper. Auto-detect env (server/local) |
+
+## PAT Routing — Chi fa cosa (OBBLIGATORIO)
+
+**MAI** usare un PAT generico (`ADO_PAT`) per tutto. Ogni azione ha il suo PAT con scope minimo (principio least privilege). Lo script `ado-auth.sh` gestisce il routing automaticamente.
+
+| Azione | PAT Variable | Service Account | Scope ADO |
+|--------|-------------|-----------------|-----------|
+| PR create/read/complete | `ADO_PR_CREATOR_PAT` | svc-agent-pr-creator | Code R/W, PR Contribute |
+| Work Item read/write/link | `ADO_WORKITEMS_PAT` | svc-agent-scrum-master | Work Items R/W, Iterations R |
+| Team settings/iterations | `ADO_WORKITEMS_PAT` | svc-agent-scrum-master | Team Admin role required |
+| Pipeline/Build | `AZURE_DEVOPS_EXT_PAT` | ew-svc-azuredevops-agent | Code R/W, Build R/Execute |
+| General read (briefing) | `AZURE_DEVOPS_EXT_PAT` | ew-svc-azuredevops-agent | General read |
+| GitHub mirror/push | `GITHUB_PAT` | ADO-GitHub-Mirror | GitHub org push |
+
+**Dove vivono i PAT**:
+- **Server**: `/opt/easyway/.env.secrets` (tutte le variabili sopra)
+- **Dev locale**: `C:\old\.env.local` (se presenti, altrimenti servono sul server)
+- **Auto-detect**: `ado-auth.sh` cerca automaticamente: env var `ADO_AUTH_ENV_FILE` > server > locale
+
+### Come usare ado-auth.sh (3 modi)
+
+```bash
+# 1. Auth only — genera il Base64 header per curl
+B64=$(bash ado-auth.sh wi) && curl -H "Authorization: Basic $B64" ...
+B64=$(bash ado-auth.sh pr) && curl -H "Authorization: Basic $B64" ...
+
+# 2. ado-curl (raccomandato) — auth + BOM stripping + Content-Type auto
+source ado-auth.sh
+ado-curl wi POST "https://dev.azure.com/EasyWayData/..." -d '[...]'
+ado-curl pr GET  "https://dev.azure.com/EasyWayData/..."
+
+# 3. Sul server con env gia caricato
+source /opt/easyway/.env.secrets
+source ~/easyway-ado/scripts/ado-auth.sh  # skip file load, usa env
+ado-curl wi POST "..." -d '[...]'
+```
+
+### Troubleshooting PAT
+
+| Errore | Causa | Soluzione |
+|--------|-------|-----------|
+| HTTP 401 / content-length: 0 | PAT sbagliato per l'azione | Verifica la tabella routing sopra |
+| `unbound variable` | PAT non presente nel file env | Aggiungere la variabile al file env corretto |
+| HTTP 203 (redirect HTML) | PAT scaduto | Rinnovare su ADO > User Settings > PAT |
+| JSON parse error | BOM in risposta | Usare `ado-curl` invece di `curl` diretto |
 
 ## Metodo di approccio: MCP > CLI > Connettori > curl
 

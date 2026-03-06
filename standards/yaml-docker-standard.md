@@ -5,8 +5,8 @@ summary: Linee guida per scrivere file YAML e Docker Compose puliti, sicuri e co
 status: active
 owner: team-platform
 tags: [standard, yaml, docker, best-practices, domain/docs, layer/spec, audience/dev, privacy/internal, language/it]
-updated: 2026-01-27
-version: 1.0.0
+updated: 2026-03-06
+version: 1.1.0
 llm:
   include: true
   pii: none
@@ -47,10 +47,21 @@ Questo documento definisce le regole d'oro per scrivere configurazioni YAML e Do
 *   Ogni strumento (`n8n`, `chromadb`) deve poter essere riavviato senza toccare gli altri.
 
 ### 2.2 Naming Convention (TESS Compliant)
-*   **Container Name**: `easyway-{servizio}`
-    *   ✅ `easyway-n8n`
-    *   ❌ `n8n_production`
+
+Docker Compose ha **due livelli di nomi** — entrambi intenzionali (GEDI Case #37):
+
+| Livello | Convenzione | Scopo | Esempio |
+|---------|-------------|-------|---------|
+| **Service name** (compose) | Nome software/generico | DNS interno Docker, `depends_on`, env vars (`QDRANT_HOST=qdrant`) | `qdrant`, `frontend`, `postgres` |
+| **container_name** | `easyway-{ruolo}` | Identita operativa per umani (`docker logs`, monitoring) | `easyway-memory`, `easyway-portal`, `easyway-meta-db` |
+
+**Regole**:
+*   Il service name e la "presa elettrica" (G16) — cambiarlo impatta Caddyfile, env vars, depends_on
+*   Il container_name e il "cartellino" — puo cambiare senza rompere il routing
+*   **MAI avere due container_name diversi** per lo stesso servizio tra base e overlay compose (es. `easyway-cortex` in base vs `easyway-memory` in prod — causa confusione operativa)
 *   **Network**: `easyway-net` (Bridge condiviso)
+
+Riferimento completo: [Container Inventory](../infrastructure/container-inventory.md)
 
 ### 2.3 Storage (Bind Mounts vs Volumes)
 *   Standard TESS v1.1 preferisce **BIND MOUNTS**.
@@ -107,7 +118,7 @@ services:
 
 networks:
   easyway-net:
-    external: true # Usa la rete esistente
+    name: easyway-net  # MAI external: true con -p (Lesson S65)
 ```
 
 
