@@ -38,7 +38,10 @@ Runbooks/        # Runbook operativi (RAG operations)
 
 ## Connessioni & PAT
 > **Guida completa**: `guides/connection-registry.md` — PAT status, scadenze, rinnovo, routing
-> **PAT file**: `C:\old\.env.local` (4 PAT segregati, mai committare)
+> **Gateway architecture (S88)**: tutte le API call passano via SSH gateway sul server
+> **PAT**: vivono SOLO su server `/opt/easyway/.env.secrets` — NON in locale
+> **Config**: `connections.yaml` sezione `gateway: mode: server`
+> **`.env.local` locale**: solo OPENROUTER_API_KEY e QDRANT (niente PAT)
 
 ## Regole platform-wide
 > **Guida completa**: `guides/polyrepo-git-workflow.md`

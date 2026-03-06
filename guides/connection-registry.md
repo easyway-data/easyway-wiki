@@ -7,9 +7,11 @@ Inspired by `odbc.ini` — a single place to know what connects where, with what
 
 ```
 easyway-agents/scripts/connections/
-  connections.yaml      # declarative registry (machine-readable)
+  connections.yaml      # declarative registry + gateway config
+  _common.sh            # shared helpers (gateway, env, logging)
+  _gateway.py           # SSH API gateway (Python, routes curl through server)
   github.sh             # GitHub API connector
-  ado.sh                # Azure DevOps connector
+  ado.sh                # Azure DevOps connector (uses gateway)
   server.sh             # OCI server SSH connector
   qdrant.sh             # Qdrant vector store connector
   halebopp.sh           # HALE-BOPP services connector (via SSH)
@@ -28,10 +30,29 @@ easyway-agents/scripts/connections/
 | **HALE-BOPP** | REST API | `http://127.0.0.1:{8100,3001,8200}`   | None (SSH)  | `halebopp.sh` |
 | **OpenRouter**| REST API | `https://openrouter.ai/api/v1`        | Bearer      | _(planned)_   |
 
+## Gateway Architecture (S88)
+
+Tutte le chiamate API passano dal **server OCI** via SSH gateway.
+I PAT (ADO + GitHub) vivono **solo** su `/opt/easyway/.env.secrets` sul server.
+Il file locale `.env.local` contiene solo secret locali (OPENROUTER, QDRANT).
+
+```
+[Windows locale] --SSH--> [Server OCI] --curl--> [ADO / GitHub API]
+                            .env.secrets
+                            (unica fonte PAT)
+```
+
+**Config**: `connections.yaml` sezione `gateway`:
+- `mode: server` (default) — tutte le API via SSH
+- `mode: local` — curl diretto (solo per dev/debug, richiede PAT locali)
+
+**Implementazione**: `_common.sh` (`_use_gateway`, `_gw_api`) + `_gateway.py` (SSH proxy Python).
+
 ## Secrets Management
 
-All secrets live in `/c/old/.env.local` (never committed to any repository).
-Connectors use a robust KEY=VALUE parser that handles Unicode comments safely.
+I PAT vivono **solo** sul server in `/opt/easyway/.env.secrets` (mai committato).
+Il locale `.env.local` ha solo OPENROUTER_API_KEY e QDRANT (dev locale).
+Connectors usano il gateway SSH: non serve avere PAT in locale.
 
 ## Standard Interface
 
@@ -113,8 +134,8 @@ to the correct PAT based on the action scope (principle of least privilege):
 
 ## PAT Status & Credentials
 
-All PATs live in `C:\old\.env.local` (Windows dev) or `/opt/easyway/.env.secrets` (server).
-**Mai committare. Mai hardcodare.**
+Tutti i PAT vivono **solo** su `/opt/easyway/.env.secrets` (server).
+Il locale `.env.local` non ha piu PAT (S88). **Mai committare. Mai hardcodare.**
 
 | Variable | Scopo | Stato (S88) | Note |
 |----------|-------|-------------|------|
@@ -129,21 +150,21 @@ All PATs live in `C:\old\.env.local` (Windows dev) or `/opt/easyway/.env.secrets
 **Come rinnovare un PAT ADO**:
 1. `dev.azure.com/EasyWayData` > User Settings > Personal Access Tokens
 2. Trovare il token, rigenerare con stessi scope
-3. Aggiornare `C:\old\.env.local` con il nuovo valore
-4. Se usato su server: aggiornare anche `/opt/easyway/.env.secrets`
-5. Se usato in pipeline: aggiornare Variable Group `EasyWay-Secrets` in ADO
+3. Aggiornare `/opt/easyway/.env.secrets` sul server (unica fonte)
+4. Se usato in pipeline: aggiornare Variable Group `EasyWay-Secrets` in ADO
+5. Verificare: `CONN_GATEWAY=server bash ado.sh healthcheck`
 
 **Dettaglio scope per PAT**: vedi `memory/ado-governance.md` nel repo memory.
 
-## Environment Overlays (S82)
+## Environment Overlays (S82, updated S88)
 
-All connectors use `_common.sh` for shared helpers (`_load_env`, `_log_error`, `_classify_error`).
+All connectors use `_common.sh` for shared helpers (`_use_gateway`, `_gw_api`, `_load_env`, `_log_error`).
 
 **Auto-detect env file** (order of precedence):
 1. `CONN_ENV_FILE` explicit override
-2. `/c/old/.env.local` (Windows dev)
-3. `$HOME/.env.local` (Linux user)
-4. `/opt/easyway/.env.secrets` (server system)
+2. `/opt/easyway/.env.secrets` (server — preferred)
+3. `/c/old/.env.local` (Windows dev — solo OPENROUTER/QDRANT)
+4. `$HOME/.env.local` (Linux user)
 
 **Overlay mechanism**: set `CONN_ENV=<env>` to load `connections.<env>.env` that overrides base values.
 
