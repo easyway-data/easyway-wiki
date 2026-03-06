@@ -2545,3 +2545,52 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche il deploy non funziona dal browser? A: Il container portal (porta 8080) e healthy e risponde 200. Il problema e nel reverse proxy nginx dell'host (porta 80) che non forwarda correttamente. Da investigare config nginx host.
 - Q: Perche non usare docker compose per il deploy? A: I container esistenti sono stati creati manualmente (`docker run`), non con compose. Compose tenta di ricreare anche qdrant/azurite e fallisce per name conflict. Serve migrazione completa a compose.
 - Q: Perche _detect_root() e non un path fisso? A: Agenti diversi girano in shell diverse (Git Bash /c/, WSL /mnt/c/, PowerShell C:/). Il fallback multi-mount funziona ovunque senza configurazione.
+
+### Session 85 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: SCP bypass threat analysis + Docker cleanup parte 1 + container inventory wiki
+
+**Perche**:
+- Collega ha bypassato il deploy workflow usando SCP per caricare file compilati sul server — gap nel threat model
+- Server aveva 16 container (6 orfani), 42 volumi (33 orfani) — mai puliti dopo mesi di rinominazioni compose
+
+**Come**:
+1. **PBI #104 — Server hardening**: documentato Scenario 2b (Deploy Bypass via SCP) in `security/threat-analysis-hardening.md`. Contromisure: blocco SFTP subsystem, utente `deploy` con ForceCommand, deploy-shell.sh whitelist. Wiki `infra/security-framework.md` sezione 3 aggiunta.
+2. **Container inventory**: `infrastructure/container-inventory.md` — mappa completa di tutti i container, volumi, reti, profili, risorse server.
+3. **Docker cleanup parte 1**: rimossi 5 container `easyway-cert-*` zombie, 33 volumi orfani, 3 reti inutilizzate.
+4. **Caddy**: verificato funzionante — HTTP 200, alias DNS `frontend` su `easyway-net`.
+
+**Q&A**:
+- Q: Perche tanti volumi orfani? A: Ogni cambio di `-p` (project name) compose crea nuovi volumi senza rimuovere i vecchi. 6 cambi nome = 33 volumi accumulati.
+- Q: Perche non implementare subito RBAC/blocco SCP? A: Documentato e messo a backlog (PBI #104). Richiede piano di implementazione con test — non si fa in fretta su un server di produzione.
+
+### Session 86 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: Docker cleanup completa + easyway-n8n repo + workflow monitoring infra + factory.yml in wiki
+
+**Perche**:
+- Server aveva ancora 6 immagini orfane, 10.78 GB build cache, easyway-seq inutilizzato — da completare la pulizia
+- 10 workflow n8n sparsi in easyway-agents senza version control dedicato — serviva un repo
+- Nessun monitoring automatico su salute Docker — serve prevenzione post-pulizia
+- factory.yml era un file locale non versionato — rischio di perderlo
+
+**Come**:
+1. **Docker cleanup**: rimossi 6 immagini orfane (1.39 GB), 10.78 GB build cache, container easyway-seq (1.12 GB). Totale S85+S86: ~16 GB recuperati. Server: 64 GB usati (33%), 130 GB liberi, 10 container, 9 volumi.
+2. **easyway-n8n repo**: 9o repository, Circle 3 private ADO. 10 workflow migrati (2 common, 2 business, 2 infra NEW, 4 template). PR #357 merged. PBI #105 (Epic #22).
+3. **Workflow infra**: `docker-health-report.json` (report giornaliero: disco, RAM, container status, volumi orfani, build cache — alert se soglie superate) + `container-census-watchdog.json` (confronto container attivi vs whitelist censita).
+4. **Compose update**: PR #358 easyway-infra — volume mount n8n da easyway-agents a easyway-n8n, Docker socket (ro) + group_add per monitoring.
+5. **factory.yml**: spostato in `wiki/infrastructure/factory.yml` (source of truth) + guida `factory.md`.
+6. **Wiki**: repos/easyway-n8n.md (9a scheda), repos/_index.md, container-inventory.md aggiornata, backlog aggiornato, chronicle.
+
+| PR | Repo | Contenuto | Stato |
+|---|---|---|---|
+| #357 | easyway-n8n | Initial commit 10 workflow | Merged |
+| #358 | easyway-infra | n8n compose update (volume + Docker socket) | Da approvare |
+| #359 | easyway-wiki | Inventory, security, n8n card, factory, chronicle | Da approvare |
+
+**Q&A**:
+- Q: Perche Docker socket nel container n8n? A: I workflow infra (health report, census) devono interrogare Docker. Socket montato read-only. n8n puo usare `curl --unix-socket` per l'API Docker.
+- Q: Perche easyway-n8n e Circle 3? A: Contiene riferimenti infrastrutturali interni (IP server, whitelist container, soglie alert). Non ha senso renderlo public.
+- Q: Perche factory.yml nella wiki e non in infra? A: E una mappa dell'ecosistema, knowledge — la wiki e la casa naturale per la documentazione.
