@@ -2764,3 +2764,32 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 **Q&A**:
 - Q: Perche rimuovere cwd/.env dalla discovery chain? A: Directory di lavoro spesso coincide col repo — rischio di committare secrets. Solo /opt/easyway/.env.secrets (server) o $HOME/.env.local (locale).
 - Q: WI associato? A: #114
+
+### Session 95 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: S94 closeout, Gemini API integration, docker-health-report.sh, pat-health-check.sh cron, GEDI Case #39
+
+**Perche**:
+- Gemini (Free tier) nel backlog da S94 — aggiungere LLM provider alternativo
+- Nessun monitoring Docker automatico — container unhealthy passavano inosservati
+- pat-health-check.sh creato in S94 ma mai deployato ne schedulato
+
+**Come**:
+1. **Closeout S94**: chronicle, platform memory, sessions-history. WI #114 Done, WI #115 creato
+2. **Gemini API**: key in .env.secrets, entry in connections.yaml, wiki connection-registry aggiornata. Healthcheck OK (44 modelli), chat test OK
+3. **docker-health-report.sh**: script bash in easyway-infra/scripts/ops/. Cron daily 07:00 (05:00 UTC). Output JSON in /opt/easyway/reports/. Primo run: WARNING (easyway-runner Created, MinIO unhealthy)
+4. **pat-health-check.sh**: deployato su server (easyway-ado clonato). Cron ogni 6h. Primo run: tutti 4 PAT healthy
+5. **GEDI Case #39**: Cron host > n8n SSH > Docker socket. Principi: Start Small, Known Bug Over Chaos, Least Privilege
+
+| PR | Repo | Target | Contenuto | Stato |
+|---|---|---|---|---|
+| #407 | easyway-wiki | main | S94 closeout + Gemini connection registry | Merged |
+| #408 | easyway-agents | main | Gemini in connections.yaml | Merged |
+| #409 | easyway-ado | main | pat-health-check.sh | Merged |
+| #410 | easyway-infra | main | docker-health-report.sh | Merged |
+
+**Q&A**:
+- Q: Perche cron e non n8n per Docker health? A: GEDI Case #39 — n8n in container senza Docker socket. Cron host = zero dipendenze, riproducibile, sicuro. JSON output pronto per n8n webhook futuro.
+- Q: easyway-ado clonato sul server? A: Si, necessario per pat-health-check.sh che source ado-auth.sh. Path: ~/easyway-ado/
+- Q: WI associato? A: #115
