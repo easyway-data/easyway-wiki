@@ -47,3 +47,4 @@ tags: [chronicle, index]
 | 2026-03-06 | [Il Fortino e le Regole](2026-03-06-hardening-governance-session-87.md) | infrastructure | S87 |
 | 2026-03-06 | [Il Gateway e il Punto Unico](2026-03-06-gateway-punto-unico-session-88-89.md) | infrastructure | S88-89 |
 | 2026-03-06 | [La Formazione Testudo e il Connettore](2026-03-06-deploy-quest-openrouter-session-91.md) | infrastructure | S91 |
+| 2026-03-06 | [La Source of Truth e la Presa con Due Etichette](2026-03-06-source-of-truth-session-92.md) | governance | S92 |

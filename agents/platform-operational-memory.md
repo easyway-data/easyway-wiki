@@ -2660,3 +2660,47 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche un gateway SSH? A: Centralizza l'accesso API in un unico punto (server OCI), elimina PAT dal locale, semplifica rotazione e audit.
 - Q: Perche G12 a 3 livelli? A: Defense in depth — pipeline blocca in CI, ewctl avvisa in locale, ado.sh auto-corregge il target. Nessun singolo punto di failure.
 - Q: Come si risolve un merge conflict con feature complementari? A: Si tengono entrambe le modifiche — mai scartare lavoro funzionante.
+
+### Session 91 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: Deploy Quest Testudo live, ado-curl BOM fix, OpenRouter connector + `or` CLI
+
+**Come**:
+1. Testudo hooks installati e testati live sul server (post-checkout block + revert)
+2. `ado-curl` wrapper con BOM strip automatico
+3. OpenRouter connector (`openrouter.sh`) + CLI `~/bin/or` sul server
+4. PR #384-#388, WI #108/#110/#111
+
+### Session 92 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: ADO Source of Truth rule, Testudo product page, Docker naming GEDI analysis
+
+**Perche**:
+- Un agente esterno ha tentato PR su GitHub invece di ADO — mancava dichiarazione esplicita del remote primario
+- Testudo aveva guida operativa ma non pagina prodotto (architettura, perche, storia)
+- Docker naming disallineato tra servizi compose e container_name — errore operativo `docker compose restart easyway-portal`
+
+**Come**:
+1. **Source of Truth**: aggiunta regola "ADO primario, GitHub mirror read-only" in tutti i 5 `.cursorrules`
+2. **Testudo product page**: `wiki/security/testudo-formation.md` — architettura 4 badge, scenari attacco/difesa, GEDI principles, limiti e roadmap
+3. **Security index**: aggiornato con link Testudo, use case deploy, maturity 5 stelle
+4. **Chronicle S91**: aggiornata con test live server (hook block + deploy senza seal)
+5. **Docker naming analysis**: GEDI Case #37 — 6/10 servizi con naming disallineato, Qdrant con 2 nomi diversi tra base/prod. Raccomandazione B+: documenta + fix Qdrant + rename nel backlog
+6. **Deploy server**: Release PR #397, 4 repo aggiornati, portal rebuilt e live
+7. **6 PR + 1 Release PR** mergiate (#392-#397), WI #112
+
+| PR | Repo | Target | Contenuto | Stato |
+|---|---|---|---|---|
+| #392 | easyway-wiki | main | Testudo product page + source-of-truth | Merged |
+| #393 | easyway-portal | develop | Source-of-truth + Hextech UI fixes | Merged |
+| #394 | easyway-agents | main | Source-of-truth in .cursorrules | Merged |
+| #395 | easyway-infra | main | Source-of-truth in .cursorrules | Merged |
+| #396 | easyway-ado | main | Source-of-truth in .cursorrules | Merged |
+| #397 | easyway-portal | main | Release develop->main | Merged |
+
+**Q&A**:
+- Q: Perche la regola Source of Truth? A: Senza dichiarazione esplicita, gli agenti seguono il primo remote che trovano. GitHub e un mirror — ma se nessuno lo dice, l'agente ci va.
+- Q: Perche GEDI raccomanda B+ per il Docker naming? A: Rinominare i servizi compose rompe il DNS Docker (Caddyfile, depends_on, env vars). Meglio documentare la dualita e fixare solo l'incoerenza Qdrant.
+- Q: Qdrant cortex o memory? A: Da decidere in S93. Scegliere UNO e allineare base+prod.
