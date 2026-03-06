@@ -5,7 +5,7 @@ summary: Scheda operativa per ogni repository del progetto. Ogni repo name e un 
 status: active
 owner: team-platform
 created: '2026-03-05'
-updated: '2026-03-05'
+updated: '2026-03-06'
 tags: [repos, registry, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -39,6 +39,7 @@ Questo crea un legame navigabile tra la pagina e i repo coinvolti.
 | easyway-infra | 3 (Private) | Docker / bash | Production | [scheda](easyway-infra.md) |
 | easyway-wiki | 2 (Source-available) | Markdown | Production | [scheda](easyway-wiki.md) |
 | easyway-ado | 2 (Source-available) | TypeScript | Phase 2 | [scheda](easyway-ado.md) |
+| easyway-n8n | 3 (Private) | JSON (n8n) | Production | [scheda](easyway-n8n.md) |
 | hale-bopp-db | 1 (Open source) | Python | Running | [scheda](hale-bopp-db.md) |
 | hale-bopp-etl | 1 (Open source) | Python | Running | [scheda](hale-bopp-etl.md) |
 | hale-bopp-argos | 1 (Open source) | Python | Running | [scheda](hale-bopp-argos.md) |

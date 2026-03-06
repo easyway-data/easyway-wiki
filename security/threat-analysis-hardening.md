@@ -11,7 +11,7 @@ llm:
   chunk_hint: 400-600
   redaction: []
 entities: []
-updated: 2026-02-07
+updated: 2026-03-06
 next: Validare configurazioni e testare in staging
 type: guide
 ---
@@ -140,6 +140,7 @@ In data **7 febbraio 2026** sono state implementate **4 contromisure di sicurezz
 | Unauthorized DB Access (Qdrant) | MEDIA | ALTO | 🟠 MEDIO | 🟢 BASSO | ✅ RISOLTO |
 | N8N Secret Leak | MEDIA | ALTO | 🟠 MEDIO | 🟢 BASSO | ✅ RISOLTO |
 | SSH Brute Force | MEDIA | ALTO | 🟠 MEDIO | 🟠 MEDIO | ⏳ Pianificato |
+| **Deploy Bypass (SCP/SFTP)** | **ALTA** | **ALTO** | **🔴 ALTO** | **🔴 ALTO** | **❌ Scoperto S85 — RBAC + SCP block da implementare** |
 | SQL Injection | BASSA | CRITICO | 🟡 BASSO | 🟡 BASSO | ⚠️ RLS da attivare |
 | Container Escape | BASSA | ALTO | 🟡 BASSO | 🟡 BASSO | ⏳ Pianificato |
 | Prompt Injection | ALTA | MEDIO | 🟠 MEDIO | 🟠 MEDIO | ⚠️ Guardrails da attivare |
@@ -796,6 +797,71 @@ Riferimento: `docs/agentic/AI_SECURITY_STATUS.md`
 
 ---
 
+## 🚚 SCENARIO 2b: Deploy Workflow Bypass (SCP/SFTP)
+
+### A. Upload diretto di file compilati via SCP
+
+**Vettore di Attacco**:
+```bash
+# Utente bypassa il deploy workflow caricando dist/ compilato via SCP
+scp -r dist/ ubuntu@server:/home/ubuntu/easyway-portal/dist/
+docker cp dist/. easyway-portal:/usr/share/nginx/html/
+```
+
+**Difese Attuali**: **NESSUNA**
+- Chiunque abbia la chiave SSH puo fare SCP di qualsiasi file sul server
+- Nessuna segregazione utenti (tutti usano `ubuntu`)
+- Nessun controllo su COSA viene trasferito
+- Il deploy workflow (git fetch + build) e una policy, non un controllo tecnico
+
+**Incidente Reale (Session 85)**:
+Un collega ha caricato `dist/` compilato via SCP e poi usato `docker cp` per aggiornare il container in produzione, bypassando completamente il workflow standard (git fetch + reset + build). Il codice deployato non e passato per git, non e tracciabile, non e riproducibile.
+
+**Gap Identificati**:
+- Nessun blocco SCP/SFTP a livello sshd
+- Unico utente SSH (`ubuntu`) con privilegi admin completi
+- Nessun `ForceCommand` o restricted shell per utenti deploy
+- Nessun file integrity check post-deploy
+- I 4 gruppi RBAC (easyway-read/ops/dev/admin) sono documentati ma MAI implementati
+
+**Contromisure**:
+
+```bash
+# 1. Disabilitare SFTP subsystem in sshd_config
+# /etc/ssh/sshd_config
+# Subsystem sftp /usr/lib/openssh/sftp-server  # COMMENTATO
+
+# 2. Creare utente deploy con ForceCommand
+Match User deploy
+    ForceCommand /opt/easyway/bin/deploy-shell.sh
+    AllowTcpForwarding no
+    X11Forwarding no
+    PermitTunnel no
+
+# 3. deploy-shell.sh — whitelist comandi permessi
+#!/bin/bash
+case "$SSH_ORIGINAL_COMMAND" in
+    "git fetch"*|"git reset"*|"docker compose"*|"docker restart"*)
+        eval "$SSH_ORIGINAL_COMMAND"
+        ;;
+    *)
+        echo "BLOCKED: Solo git fetch/reset e docker compose sono permessi."
+        echo "Usa il deploy workflow standard: git fetch + build"
+        exit 1
+        ;;
+esac
+
+# 4. Sudoers limitato per deploy user
+# /etc/sudoers.d/easyway-deploy
+%easyway-ops ALL=(ALL) NOPASSWD: /usr/bin/docker restart easyway-*
+%easyway-ops ALL=(ALL) NOPASSWD: /usr/bin/docker compose -f /home/ubuntu/easyway-infra/docker-compose.yml up -d *
+```
+
+**Script**: `scripts/infra/harden-deploy.sh` (da creare)
+**Prerequisito**: Implementare RBAC 4-tier (gruppi + utenti + ACL)
+
+---
+
 ## 🔥 SCENARIO 3: Insider Threat
 
 **Vettore di Attacco**: Developer malintenzionato con accesso `easyway-dev`
@@ -838,6 +904,7 @@ sudo aide --init
 | Minaccia | Probabilità | Impatto | Rischio Complessivo | Difesa Attuale | Gap Critici |
 |----------|-------------|---------|---------------------|----------------|-------------|
 | SSH Brute Force | MEDIA | ALTO | 🟠 MEDIO | Firewall | ❌ Fail2ban, chiave solo |
+| **Deploy Bypass (SCP)** | **ALTA** | **ALTO** | **🔴 ALTO** | **Nessuna** | **❌ No blocco SCP, no user segregation, RBAC non implementato** |
 | SQL Injection | BASSA | CRITICO | 🟡 BASSO | Stored Proc | ⚠️ RLS OFF |
 | Secrets Exposure | MEDIA | CRITICO | 🔴 ALTO | KeyVault + 600 | ⚠️ .env non encrypted |
 | Container Escape | BASSA | ALTO | 🟡 BASSO | Docker | ⚠️ No hardening |
@@ -887,11 +954,34 @@ sudo apt install fail2ban
 
 ---
 
+#### 5. Deploy Workflow Hardening (SCP/SFTP Block)
+
+**Scoperto S85**: collega ha bypassato il deploy caricando `dist/` via SCP.
+
+```bash
+# 1. Implementare RBAC 4-tier (gruppi + utenti)
+sudo ./scripts/infra/setup-easyway-server.sh
+
+# 2. Creare utente deploy con ForceCommand
+sudo useradd -s /bin/bash -m deploy
+sudo usermod -aG easyway-ops deploy
+
+# 3. Disabilitare SFTP subsystem
+# In /etc/ssh/sshd_config: commentare Subsystem sftp
+
+# 4. Match User deploy con ForceCommand
+# Vedi Scenario 2b per configurazione completa
+```
+
+**Script**: `scripts/infra/harden-deploy.sh`
+
+---
+
 ### 🟠 **IMPORTANTI** (Prossime 2 settimane)
 
-5. **Immutable logs**: `sudo chattr +a /var/log/easyway/*.log`
-6. **Egress firewall**: Whitelist solo API approvate
-7. **Docker hardening**: security_opt + user remapping
+6. **Immutable logs**: `sudo chattr +a /var/log/easyway/*.log`
+7. **Egress firewall**: Whitelist solo API approvate
+8. **Docker hardening**: security_opt + user remapping
 
 ---
 

@@ -7,7 +7,7 @@ related:
   - deployment/server-bootstrap
   - governance/access-control
 status: active
-date: 2026-01-25
+date: 2026-03-06
 id: ew-infra-security-framework
 summary: TODO - aggiungere un sommario breve.
 owner: team-platform
@@ -190,7 +190,50 @@ sudo usermod -aG easyway-dev alice
 sudo usermod -aG easyway-read prometheus-agent
 ```
 
-### 3. Configurare Sudo Rules (opzionale)
+### 3. Blocco SCP/SFTP e Deploy User
+
+**Incidente S85**: un collega ha caricato `dist/` compilato via SCP, bypassando il deploy workflow (git fetch + build). Il codice non e passato per git, non e tracciabile, non e riproducibile.
+
+**Soluzione**: utente `deploy` con `ForceCommand` — puo solo git e docker, zero SCP.
+
+```bash
+# Creare utente deploy
+sudo useradd -s /bin/bash -m deploy
+sudo usermod -aG easyway-ops deploy
+
+# Generare chiave SSH dedicata
+sudo -u deploy ssh-keygen -t ed25519 -f /home/deploy/.ssh/id_ed25519 -N ""
+
+# Disabilitare SFTP subsystem (blocca SCP per TUTTI)
+# /etc/ssh/sshd_config:
+# Subsystem sftp /usr/lib/openssh/sftp-server  # COMMENTATO
+
+# ForceCommand per utente deploy (alternativa se SFTP serve per admin)
+# /etc/ssh/sshd_config:
+Match User deploy
+    ForceCommand /opt/easyway/bin/deploy-shell.sh
+    AllowTcpForwarding no
+    X11Forwarding no
+    PermitTunnel no
+```
+
+**deploy-shell.sh** (whitelist comandi permessi):
+```bash
+#!/bin/bash
+case "$SSH_ORIGINAL_COMMAND" in
+    "git fetch"*|"git reset"*|"docker compose"*|"docker restart"*)
+        eval "$SSH_ORIGINAL_COMMAND"
+        ;;
+    *)
+        echo "BLOCKED: Solo git fetch/reset e docker compose sono permessi."
+        exit 1
+        ;;
+esac
+```
+
+**Principio**: il deploy workflow non e piu una policy che si puo ignorare — e un controllo tecnico che non si puo bypassare.
+
+### 4. Configurare Sudo Rules (opzionale)
 
 Per permettere a `easyway-ops` di riavviare container senza full sudo:
 
