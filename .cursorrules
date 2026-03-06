@@ -44,4 +44,5 @@ Runbooks/        # Runbook operativi (RAG operations)
 > **Guida completa**: `guides/polyrepo-git-workflow.md`
 > **GEDI** (dubbi architetturali): `C:\old\easyway\agents\agents\agent_gedi\manifest.json`
 > **Storia e contesto**: `agents/platform-operational-memory.md`
-> **Governance Git**: vedi Sezione 6 della guida polyrepo (regole G1-G11)
+> **Governance Git**: vedi Sezione 6 della guida polyrepo (regole G1-G12)
+> **G12 — PR Target Branch**: se il repo ha branch `develop`, le PR devono passare da li — mai diretto a `main`. Auto-detect dinamico (pipeline + ewctl).

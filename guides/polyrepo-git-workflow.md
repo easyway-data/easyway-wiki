@@ -351,6 +351,16 @@ Queste regole NON sono negoziabili. Nessun agente o sviluppatore puo aggirarle.
 | G9 | MAI `git pull` in deploy — sempre fetch+reset | Consistenza |
 | G10 | MAI `--no-verify` per skippare hooks | Iron Dome e un guardrail |
 | G11 | MAI `--force` — usare `--force-with-lease` | Safety net |
+| G12 | Se `develop` esiste nel repo, PR verso `main` bloccate — passare da `develop` | Auto-detect dinamico |
+
+> **G12 — PR Target Branch Policy (Session 88)**
+> Se un repo ha il branch `develop`, le PR verso `main` sono bloccate — devono passare prima da `develop`.
+> - **Logica dinamica**: il guard controlla se `develop` esiste nel repo. Se si, solo `develop` e `release/*` possono puntare a `main`.
+> - **Enforcement a 3 livelli**:
+>   1. Pipeline `BranchPolicyGuard` (`azure-pipelines.yml`) — check `git ls-remote` a runtime
+>   2. Modulo `ewctl.vcs.psm1` (`New-AdoPullRequest`) — check API ADO refs prima di creare la PR
+>   3. `factory-vcs.json` (`default_target_branch`) — fallback config per script
+> - **Best practice**: se vuoi il flusso `feat→develop→main`, crea il branch `develop`. Il sistema lo rileva e attiva l'enforcement automaticamente.
 
 ---
 

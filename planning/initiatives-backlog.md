@@ -5,7 +5,7 @@ summary: Iniziative e task pending che diventeranno Epic/PBI su ADO quando pront
 status: active
 owner: team-platform
 created: '2026-03-04'
-updated: '2026-03-06'  # Session 86 - n8n repo, Docker cleanup
+updated: '2026-03-06'  # Session 88 - Branch Guard Framework
 tags: [planning, backlog, roadmap, initiatives, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -172,7 +172,10 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | **Portable Sovereign Platform (La Valigetta)** | **Alta** | S87: poter decidere dove gira (locale, cloud, ibrido) senza lock-in. Pezzi: (1) `EASYWAY_MODE=local\|cloud\|hybrid` nel `.env` — compose/n8n/agenti leggono quello (1h), (2) secrets criptati con age/sops — portabili e sicuri (2h), (3) Tailscale/WireGuard — server raggiungibile ovunque (1h), (4) `ewctl backup` — dump volumi+secrets+config in tar.gz (2h), (5) `ewctl bootstrap` — da macchina vuota a tutto funzionante (4h). Principio: zero vendor lock-in a ogni livello. Oracle oggi, Hetzner domani, Raspberry Pi in cantina dopodomani |
 | **Multi-agent conflict prevention on main** | **Alta** | S87: PR #359 aveva 3 merge conflict perche altro agente/sessione ha pushato su main wiki mentre feature branch era aperto. Serve strategia: (1) branch protection ADO con min 1 reviewer su TUTTI i repo (non solo portal), (2) agent pre-merge gate che detecta conflitti e li risolve automaticamente per file append-only (chronicle, backlog, session history), (3) lock mechanism o queue per evitare merge paralleli sullo stesso repo. Pattern classificazione: append-only=auto-merge, item-level=merge-by-item, semantic=human-required. Candidato: Levi 2.0 o agent_merge_resolver dedicato |
 
-**Dipendenze**: ~~CI/CD testing dipende da pipeline split (§3)~~. Pipeline split completato S71. Secrets evolution dipende da RBAC segregation (§7).
+| **Branch Guard Framework (il framework della nonna)** | **Alta** | S88: il BranchPolicyGuard dinamico diventa un framework riutilizzabile. Logica: se `develop` esiste, PR verso `main` bloccate — auto-detect, zero config. Oggi funziona su portal (pipeline + ewctl). Obiettivo: (1) template YAML plug-and-play per qualsiasi repo ADO/GitHub, (2) `factory-vcs.json` come standard de facto per repo config, (3) guida "per la nonna" — crea `develop` → il sistema si adatta, (4) candidato La Valigetta e GitHub Onboarding Kit. Principio: convention over configuration — la struttura dei branch definisce il comportamento, non un file di regole |
+| **GitHub Developer Onboarding Kit** | **Alta** | S87: chi sviluppa da esterno su GitHub (HALE-BOPP o EasyWay Circle 2) non ha accesso ad ADO ne all'infra. Ma deve seguire le stesse regole: GEDI, Iron Dome, connettori, standard. Serve: (1) `CONTRIBUTING.md` standard nei repo GitHub con link a wiki/guides (minimo: git workflow, code standards, GEDI), (2) `.cursorrules` template per repo GitHub (versione leggera senza path ADO), (3) easyway-agents come submodule o pacchetto scaricabile — connettori, GEDI manifest, skill essenziali, (4) wiki esportata come static site o mdbook per consultazione senza clone, (5) GitHub Actions che enforcea le stesse regole di Iron Dome (secrets scan, lint). Principio: stesso livello di governance dentro e fuori ADO. Chi contribuisce da GitHub non e un cittadino di serie B |
+
+**Dipendenze**: ~~CI/CD testing dipende da pipeline split (§3)~~. Pipeline split completato S71. Secrets evolution dipende da RBAC segregation (§7). GitHub onboarding dipende da wiki static site export + agents packaging.
 
 ## 9. Knowledge Lifecycle — Level 2 (Automazione)
 
