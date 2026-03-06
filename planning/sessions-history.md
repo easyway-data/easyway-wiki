@@ -47,6 +47,7 @@ type: planning
 | S90 | 2026-03-06 | Deploy Quest Testudo II + CLI server + OpenRouter test | — | #108 |
 | S91 | 2026-03-06 | Testudo deploy + ado-curl BOM fix + OpenRouter connector | #384-#388 | #108, #110, #111 |
 | S92 | 2026-03-06 | Source of Truth + Testudo product page + Docker naming GEDI | #392-#397 | #112 |
+| S93 | 2026-03-06 | Qdrant resurrection + ado-auth.sh auto-detect + PAT routing + n8n .cursorrules | #400-#403 | #113 |
 
 ---
 

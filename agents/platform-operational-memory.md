@@ -2704,3 +2704,35 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche la regola Source of Truth? A: Senza dichiarazione esplicita, gli agenti seguono il primo remote che trovano. GitHub e un mirror — ma se nessuno lo dice, l'agente ci va.
 - Q: Perche GEDI raccomanda B+ per il Docker naming? A: Rinominare i servizi compose rompe il DNS Docker (Caddyfile, depends_on, env vars). Meglio documentare la dualita e fixare solo l'incoerenza Qdrant.
 - Q: Qdrant cortex o memory? A: Da decidere in S93. Scegliere UNO e allineare base+prod.
+
+### Session 93 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: Qdrant crash fix, Docker naming alignment, ado-auth.sh auto-detect, PAT routing guide, n8n .cursorrules
+
+**Perche**:
+- Qdrant (RAG brain) era crashato — servizio di ricerca semantica offline
+- ado-auth.sh funzionava solo sul server — nessun auto-detect per ambiente locale
+- Mancava un inventario centralizzato dei container Docker
+- easyway-n8n (9th repo, S86) non aveva ancora .cursorrules con Source of Truth
+
+**Come**:
+1. **Qdrant v1.16.2**: container riportato online, naming allineato a `easyway-memory` (container_name)
+2. **Testudo step 0**: primo deploy che usa il flusso "crea PR prima di tentare deploy"
+3. **ado-auth.sh auto-detect**: se server OCI legge `/opt/easyway/.env.secrets`, se locale `$HOME/.env.local`
+4. **container-inventory.md**: censimento completo container Docker
+5. **yaml-docker-standard v1.1.0**: naming guide aggiornata
+6. **PAT routing guide**: documentazione 4 PAT ADO + routing via ado-auth.sh
+7. **easyway-n8n .cursorrules**: Source of Truth ADO primario
+
+| PR | Repo | Target | Contenuto | Stato |
+|---|---|---|---|---|
+| #400 | easyway-infra | main | Qdrant v1.16.2 + naming easyway-memory + Testudo step 0 | Merged |
+| #401 | easyway-wiki | main | container-inventory + yaml-docker-standard v1.1.0 + PAT routing | Merged |
+| #402 | easyway-ado | main | ado-auth.sh auto-detect env | Merged |
+| #403 | easyway-n8n | main | .cursorrules Source of Truth | Da approvare |
+
+**Q&A**:
+- Q: Perche `easyway-memory` e non `easyway-cortex`? A: Memory e piu intuitivo per un servizio RAG; cortex suona troppo "compute". Convention: il nome riflette la funzione, non la metafora.
+- Q: Perche ado-auth.sh auto-detect? A: Un unico script che funziona ovunque — niente PAT hardcoded, niente "quale env file devo sourciare?". G16 Presa Elettrica.
+- Q: WI associato? A: #113
