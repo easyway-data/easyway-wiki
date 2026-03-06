@@ -2736,3 +2736,31 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche `easyway-memory` e non `easyway-cortex`? A: Memory e piu intuitivo per un servizio RAG; cortex suona troppo "compute". Convention: il nome riflette la funzione, non la metafora.
 - Q: Perche ado-auth.sh auto-detect? A: Un unico script che funziona ovunque — niente PAT hardcoded, niente "quale env file devo sourciare?". G16 Presa Elettrica.
 - Q: WI associato? A: #113
+
+### Session 94 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: S93 closeout, PAT router alignment (GEDI Case #38), pat-health-check.sh, LLM Integration Pattern guide
+
+**Perche**:
+- pat-router.ts e ado-auth.sh avevano discovery chain diverse — comportamento imprevedibile
+- Nessun watchdog per scadenza PAT — rischio silenzioso di auth failure
+- Mancava documentazione standard per integrare LLM nella piattaforma
+
+**Come**:
+1. **Closeout S93**: chronicle, platform memory, sessions-history completati. WI #113 chiuso a Done
+2. **PAT router alignment**: pat-router.ts allineato a ado-auth.sh, rimosso cwd/.env dalla discovery chain
+3. **pat-health-check.sh**: watchdog antifragile per 4 PAT ADO, output JSON per n8n
+4. **LLM Integration Pattern**: guida wiki con ordine di preferenza OpenRouter > DeepSeek > Anthropic
+5. **GEDI Case #38**: documentato nel Casebook
+
+| PR | Repo | Target | Contenuto | Stato |
+|---|---|---|---|---|
+| #403 | easyway-n8n | main | .cursorrules Source of Truth | Da approvare |
+| #404 | easyway-wiki | main | S93 closeout + LLM integration guide | Da approvare |
+| #405 | easyway-ado | main | pat-router.ts alignment + pat-health-check.sh | Da approvare |
+| #406 | easyway-agents | main | GEDI Case #38 | Da approvare |
+
+**Q&A**:
+- Q: Perche rimuovere cwd/.env dalla discovery chain? A: Directory di lavoro spesso coincide col repo — rischio di committare secrets. Solo /opt/easyway/.env.secrets (server) o $HOME/.env.local (locale).
+- Q: WI associato? A: #114
