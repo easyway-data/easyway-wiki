@@ -2627,3 +2627,36 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche 6 regole di Compose Governance? A: Nel polyrepo con 9 repo, gli overlay compose possono generare conflitti se non c'e una convenzione. Le 6 regole coprono: naming rete, volume mount, profiles, build context, env files, override precedence.
 - Q: Perche ForceCommand per il deploy user? A: Limita il deploy user a eseguire SOLO lo script deploy-shell.sh — nessun accesso shell interattivo, nessun SCP/SFTP. Mitiga il bypass scoperto in S85.
 - Q: La Valigetta cos'e? A: Iniziativa futura per rendere l'intera piattaforma portabile su qualsiasi server — un tar.gz con compose + secrets + bootstrap che ricostruisce tutto.
+
+### Session 88-89 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: G12 Branch Guard, SSH Gateway proxy, 5 PR create+merge, WI #106, merge conflict resolution
+
+**Perche**:
+- PR create ripetute verso branch sbagliato (main invece di develop) — serviva enforcement automatico
+- PAT ADO sparsi in `.env.local` locale — rischio sicurezza, rotazione complessa
+- 5 repo con modifiche S88 non committate — serviva chiudere il ciclo commit/push/PR
+- PR #371 (portal) in conflitto con develop su `pages-renderer.ts`
+
+**Come**:
+1. **G12 Branch Guard**: enforcement dinamico develop-first a 3 livelli (pipeline, ewctl, ado.sh). `factory-vcs.json` come source of truth per target branch.
+2. **SSH Gateway**: `_gateway.py` come proxy API sul server OCI. `_common.sh` con `_use_gateway()` + `_gw_api()`. `ado.sh` dual-path (SSH vs curl locale).
+3. **PAT migration**: 4 PAT ADO migrati a `/opt/easyway/.env.secrets`, rimossi da `.env.local`.
+4. **5 commit + push**: agents (gateway), wiki (docs), portal (Hale-Bopp comet + cursorrules), infra (cursorrules), ado (cursorrules).
+5. **WI #106 creato** e linkato a tutte e 5 le PR (Regola del Palumbo).
+6. **Merge conflict risolto**: PR #371 portal — tenute sia particle nodes (develop) che cometa Hale-Bopp (feature).
+7. **5 PR mergiate**: #368 wiki, #369 infra, #370 ado, #371 portal, #372 agents.
+
+| PR | Repo | Target | Contenuto | Stato |
+|---|---|---|---|---|
+| #368 | easyway-wiki | main | Connection registry gateway docs | Merged |
+| #369 | easyway-infra | main | Cursorrules gateway refs | Merged |
+| #370 | easyway-ado | main | Cursorrules gateway refs | Merged |
+| #371 | easyway-portal | develop | Hale-Bopp comet + cursorrules | Merged |
+| #372 | easyway-agents | main | Gateway proxy + dual-path | Merged |
+
+**Q&A**:
+- Q: Perche un gateway SSH? A: Centralizza l'accesso API in un unico punto (server OCI), elimina PAT dal locale, semplifica rotazione e audit.
+- Q: Perche G12 a 3 livelli? A: Defense in depth — pipeline blocca in CI, ewctl avvisa in locale, ado.sh auto-corregge il target. Nessun singolo punto di failure.
+- Q: Come si risolve un merge conflict con feature complementari? A: Si tengono entrambe le modifiche — mai scartare lavoro funzionante.

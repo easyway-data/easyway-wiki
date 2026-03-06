@@ -36,6 +36,14 @@ type: planning
 | S70 | 2026-03-04 | PR Readiness Check + npm audit fix + 5 PR | #309, #310, #312-#314 | #53-#57 |
 | S71 | 2026-03-04 | Pipeline fix + branch protection + pipeline split per-repo | #315-#319 | #58, #59 |
 | S72 | 2026-03-04 | HALE-BOPP GitHub Launch — 3 repo open-source | — | #37 |
+| S73 | 2026-03-05 | HALE-BOPP Online — pip install + docs | — | — |
+| S75 | 2026-03-05 | The Uncomfortable Truth — vision + maturity checklist | — | — |
+| S78 | 2026-03-05 | The Installable Engine — pip packaging | — | — |
+| S82 | 2026-03-05 | The Cartographer — wiki repos/ cards | — | — |
+| S84 | 2026-03-05 | Il Traduttore e l'Hextech — deploy flow | — | — |
+| S86 | 2026-03-06 | Docker cleanup + easyway-n8n 9th repo | #358, #359 | — |
+| S87 | 2026-03-06 | Il Fortino e le Regole — hardening + governance | #360 | #104 |
+| S88-89 | 2026-03-06 | Il Gateway e il Punto Unico — SSH proxy + G12 Branch Guard | #368-#372 | #106 |
 
 ---
 
