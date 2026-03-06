@@ -1,5 +1,5 @@
 ---
-tags: [domain/frontend, layer/spec, audience/dev, best-practice]
+tags: [domain/frontend, layer/spec, audience/dev, process/best-practices]
 updated: 2026-01-16
 owner: team-platform
 summary: Sistema di traduzione errori tecnici in messaggi user-friendly italiani con azioni suggerite per migliorare UX

@@ -3,7 +3,7 @@ title: "Session 86 — La Grande Pulizia e il Nono Repo"
 date: 2026-03-06
 category: infrastructure
 session: S86
-tags: [docker, cleanup, n8n, easyway-n8n, infrastructure, monitoring]
+tags: [domain/docker, process/cleanup, domain/n8n, easyway-n8n, domain/infrastructure, domain/monitoring]
 ---
 
 # Session 86 — La Grande Pulizia e il Nono Repo

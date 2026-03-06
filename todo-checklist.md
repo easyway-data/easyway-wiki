@@ -1,7 +1,7 @@
 ---
 id: ew-todo_checklist
 title: TODO CHECKLIST
-tags: [domain/docs, layer/reference, audience/dev, audience/non-expert, privacy/internal, language/it, checklist]
+tags: [domain/docs, layer/reference, audience/dev, audience/non-expert, privacy/internal, language/it, artifact/checklist]
 owner: team-platform
 summary: 'Documento su TODO CHECKLIST.'
 status: active

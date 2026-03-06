@@ -1,6 +1,6 @@
 ---
 title: Tag Scopes & Retrieval Bundles (Gerarchia)
-tags: [domain/docs, layer/reference, audience/dev, audience/architect, privacy/internal, language/it, taxonomy, rag, n8n, agents]
+tags: [domain/docs, layer/reference, audience/dev, audience/architect, privacy/internal, language/it, process/taxonomy, domain/rag, domain/n8n, domain/agents]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

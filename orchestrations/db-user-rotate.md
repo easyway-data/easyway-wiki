@@ -4,7 +4,7 @@ title: DB User Rotate (WHAT)
 summary: Ruota le credenziali di un utente DB (password) in modo governato, sincronizzando opzionalmente il nuovo segreto su Key Vault.
 status: active
 owner: team-data
-tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, security, iam]
+tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, domain/security, domain/iam]
 llm:
   include: true
   pii: none

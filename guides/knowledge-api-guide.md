@@ -5,7 +5,7 @@ updated: 2026-02-26T00:00:00Z
 status: active
 category: guide
 domain: api
-tags: [knowledge, qdrant, rag, api, machine-to-machine, full-text-search]
+tags: [knowledge, domain/qdrant, domain/rag, domain/api, machine-to-machine, full-text-search]
 priority: high
 audience:
   - developers

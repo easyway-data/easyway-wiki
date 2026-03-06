@@ -1,7 +1,7 @@
 ---
 owner: team-platform
 id: ew-activity-log
-tags: [activity, audit, privacy/internal, language/it]
+tags: [activity, domain/audit, privacy/internal, language/it]
 status: active
 title: Activity Log
 summary: Diario di bordo automatico (pipeline/agents)

@@ -1,6 +1,6 @@
 ---
 title: PRD - Agentic Release Multi-VCS (MVP)
-tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, agents, release, devops, forgejo, github]
+tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, domain/agents, process/release, devops, domain/forgejo, domain/github]
 status: draft
 updated: 2026-02-12
 redaction: [email, phone, token]

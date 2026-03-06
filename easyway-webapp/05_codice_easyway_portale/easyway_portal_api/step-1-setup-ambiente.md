@@ -1,7 +1,7 @@
 ---
 id: ew-step-1-setup-ambiente
 title: Step 1 - Setup ambiente (Onboarding rapido)
-tags: [domain/portal, layer/howto, audience/dev, privacy/internal, language/it, onboarding]
+tags: [domain/portal, layer/howto, audience/dev, privacy/internal, language/it, domain/onboarding]
 owner: team-platform
 summary: Cosa fare appena clonato EasyWayDataPortal: setup env, avvio API, checklist predeploy e (opz.) Terraform plan.
 status: active

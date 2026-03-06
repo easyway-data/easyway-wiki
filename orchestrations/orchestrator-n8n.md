@@ -1,6 +1,6 @@
 ---
 title: Orchestratore n8n (WHAT)
-tags: [domain/control-plane, layer/orchestration, audience/dev, privacy/internal, language/it, orchestration, n8n, agents]
+tags: [domain/control-plane, layer/orchestration, audience/dev, privacy/internal, language/it, domain/orchestration, domain/n8n, domain/agents]
 status: active
 updated: 2026-01-16
 redaction: []

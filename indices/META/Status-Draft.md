@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, META/Status-Draft]
+tags: [layer/index, meta/status-draft]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with META/Status-Draft

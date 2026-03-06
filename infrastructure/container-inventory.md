@@ -6,7 +6,7 @@ status: active
 owner: team-platform
 created: '2026-03-06'
 updated: '2026-03-06'  # Session 96 - MinIO healthy + Runner v2.0 task server
-tags: [domain/infrastructure, layer/reference, audience/ops, audience/dev, privacy/internal, language/it, docker, containers, server]
+tags: [domain/infrastructure, layer/reference, audience/ops, audience/dev, privacy/internal, language/it, domain/docker, containers, server]
 entities: []
 llm:
   include: true

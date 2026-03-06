@@ -4,7 +4,7 @@ title: Docs DQ Audit + Kanban (WHAT)
 summary: Scorecard di Data Quality per la documentazione (doc-as-data) + backlog Kanban per la revisitazione; update Wiki opzionale (HITL) e reversibile.
 status: draft
 owner: team-platform
-tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, governance, dq, kanban]
+tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, process/governance, domain/dq, process/kanban]
 llm:
   redaction: [email, phone]
   include: true

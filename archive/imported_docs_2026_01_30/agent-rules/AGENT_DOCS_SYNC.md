@@ -7,7 +7,7 @@ features:
   - sync
   - maintenance
 entities: []
-tags: [agent, docs, sync, validation, metadata]
+tags: [domain/agents, artifact/documentation, sync, validation, metadata]
 id: ew-archive-imported-docs-2026-01-30-agent-rules-agent-docs-sync
 summary: TODO - aggiungere un sommario breve.
 status: draft

@@ -1,7 +1,7 @@
 ---
 id: ew-setup-playground-zero-trust
 title: Setup ambiente di test/Sandbox e Zero Trust
-tags: [onboarding, devx, security, sandbox, agent, zero-trust, audience/dev, language/it]
+tags: [domain/onboarding, domain/devx, domain/security, sandbox, domain/agents, zero-trust, audience/dev, language/it]
 summary: Guida passo‑passo all’onboarding sicuro di EasyWay DataPortal — tutto in sandbox locale, senza esporre segreti o toccare risorse reali per principio Zero Trust.
 status: draft
 owner: team-platform

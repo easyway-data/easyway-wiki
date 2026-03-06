@@ -4,7 +4,7 @@ title: n8n-db-table-create
 summary: Orchestrazione n8n per creare una tabella (WHAT-first): generare migrazione SQL + pagina Wiki tabella via agent_dba, con gates e approvazioni per apply.
 status: draft
 owner: team-platform
-tags: [domain/control-plane, layer/orchestration, audience/dev, audience/dba, privacy/internal, language/it, n8n, db]
+tags: [domain/control-plane, layer/orchestration, audience/dev, audience/dba, privacy/internal, language/it, domain/n8n, domain/db]
 llm:
   include: true
   pii: none

@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, TECH/Obsidian]
+tags: [layer/index, tech/obsidian]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with TECH/Obsidian

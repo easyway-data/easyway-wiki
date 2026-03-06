@@ -1,6 +1,6 @@
 ---
 title: Best practice - intent agentici via n8n.dispatch (RAG-ready)
-tags: [best-practice, governance, orchestration, n8n, agents, rag, privacy/internal, language/it]
+tags: [process/best-practices, process/governance, domain/orchestration, domain/n8n, domain/agents, domain/rag, privacy/internal, language/it]
 status: active
 updated: 2026-01-16
 redaction: [email, phone, token]

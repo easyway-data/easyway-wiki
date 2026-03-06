@@ -3,7 +3,7 @@ title: "Session 88-89 — Il Gateway e il Punto Unico"
 date: 2026-03-06
 category: infrastructure
 session: S88-S89
-tags: [gateway, ssh, pat, security, ado-api, branch-guard, hale-bopp]
+tags: [gateway, ssh, domain/pat, domain/security, ado-api, branch-guard, domain/hale-bopp]
 ---
 
 # Session 88-89 — Il Gateway e il Punto Unico

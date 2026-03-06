@@ -6,7 +6,7 @@ status: draft
 type: prd
 category: agents
 domain: security
-tags: [agents, prd, level3, security, evaluator-optimizer, parallel-agents, working-memory]
+tags: [domain/agents, artifact/prd, level3, domain/security, process/evaluator-optimizer, parallel-agents, working-memory]
 priority: high
 audience:
   - agent-developers

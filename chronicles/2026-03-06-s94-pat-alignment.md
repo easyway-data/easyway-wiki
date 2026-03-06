@@ -3,7 +3,7 @@ title: "Session 94 — L'Allineamento dei Chiavi e il Pattern LLM"
 date: 2026-03-06
 category: governance
 session: S94
-tags: [pat-router, ado-auth, gedi, llm-integration, closeout, antifragile]
+tags: [pat-router, ado-auth, domain/gedi, llm-integration, process/closeout, domain/antifragile]
 ---
 
 # Session 94 — L'Allineamento dei Chiavi e il Pattern LLM

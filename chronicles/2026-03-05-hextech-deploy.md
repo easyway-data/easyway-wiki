@@ -3,7 +3,7 @@ title: "Il Traduttore e l'Hextech"
 date: 2026-03-05
 category: deploy
 session: S84
-tags: [hextech, deploy, multi-agent, gemini, docker, nginx, golden-path]
+tags: [hextech, domain/deploy, multi-agent, gemini, domain/docker, nginx, golden-path]
 ---
 
 # Il Traduttore e l'Hextech

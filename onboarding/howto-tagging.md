@@ -1,7 +1,7 @@
 ---
 id: ew-howto-tagging
 title: HOWTO — Tagging e metadati in EasyWay DataPortal
-tags: [howto, tagging, onboarding, devx, discoverability, agentic, audience/dev, language/it]
+tags: [howto, tagging, domain/onboarding, domain/devx, discoverability, domain/agentic, audience/dev, language/it]
 summary: Guida pratica al tagging e ai metadati strutturati per doc, ricette, agent, manifest, script e knowledge base del progetto EasyWay.
 status: draft
 owner: team-platform

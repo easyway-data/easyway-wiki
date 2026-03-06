@@ -1,7 +1,7 @@
 ---
 id: ew-developer-agent-experience-upgrades
 title: Developer & Agent Experience Upgrades
-tags: [onboarding, devx, agentic, scalability, repo-structure, audience/dev, language/it]
+tags: [domain/onboarding, domain/devx, domain/agentic, scalability, repo-structure, audience/dev, language/it]
 summary: Suggerimenti e redesign operativi per rendere la struttura EasyWay DataPortal ancora più developer-friendly e agent-ready.
 status: draft
 owner: team-platform

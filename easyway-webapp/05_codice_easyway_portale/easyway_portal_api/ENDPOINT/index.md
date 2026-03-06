@@ -4,7 +4,7 @@ title: easyway-portal-api-endpoint-index
 summary: Indice degli endpoint API (config/branding/users) e del template per nuovi endpoint.
 status: active
 owner: team-platform
-tags: [docs, domain/frontend, layer/index, audience/dev, privacy/internal, language/it]
+tags: [artifact/documentation, domain/frontend, layer/index, audience/dev, privacy/internal, language/it]
 llm:
   include: true
   pii: none

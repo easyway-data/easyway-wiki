@@ -4,7 +4,7 @@ title: db-table-portal-stats-execution-log
 summary: Log esecuzione stored procedure (auditing tecnico e performance).
 status: draft
 owner: team-data
-tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, observability]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, domain/observability]
 llm:
   include: true
   pii: none

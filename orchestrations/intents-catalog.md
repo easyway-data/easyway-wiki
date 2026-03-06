@@ -1,6 +1,6 @@
 ---
 title: Orchestrations – Intents Catalog (Use Case Excel/CSV)
-tags: [orchestration, intents, argos, agents, domain/control-plane, layer/intent, audience/dev, privacy/internal, language/it]
+tags: [domain/orchestration, intents, domain/argos, domain/agents, domain/control-plane, layer/intent, audience/dev, privacy/internal, language/it]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

@@ -3,7 +3,7 @@ title: "Session 82 — The Cartographer"
 date: 2026-03-05
 category: infrastructure
 session: S82
-tags: [mcp, rag, secrets, documentation, cursorrules, polyrepo, governance]
+tags: [domain/mcp, domain/rag, domain/secrets, artifact/documentation, cursorrules, domain/polyrepo, process/governance]
 ---
 
 # Session 82 — The Cartographer

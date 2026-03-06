@@ -6,7 +6,7 @@ status: active
 owner: team-api
 created: '2025-10-18'
 updated: '2025-10-18'
-tags: [artifact-agentic, domain/frontend, layer/spec, audience/dev, privacy/internal, language/it]
+tags: [artifact/artifact-agentic, domain/frontend, layer/spec, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
   include: true

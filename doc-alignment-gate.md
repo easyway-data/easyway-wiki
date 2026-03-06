@@ -1,7 +1,7 @@
 ---
 title: Doc Alignment Gate
 summary: Gate leggero che verifica coerenza agenti ↔ intent template ↔ KB ↔ Wiki.
-tags: [docs, gates, agents, domain/control-plane, layer/gate, audience/dev, privacy/internal, language/it]
+tags: [artifact/documentation, process/gates, domain/agents, domain/control-plane, layer/gate, audience/dev, privacy/internal, language/it]
 id: ew-doc-alignment-gate
 status: active
 owner: team-platform

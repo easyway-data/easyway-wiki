@@ -1,7 +1,7 @@
 ---
 id: ew-knowledge-vettoriale-easyway
 title: Knowledge base vettoriale in EasyWay DataPortal (AI/RAG/LLM)
-tags: [ai, vector-db, llm, rag, semantic-search, automation, n8n, onboarding, obsidian, language/it]
+tags: [domain/ai, domain/vector-db, domain/llm, domain/rag, semantic-search, domain/automation, domain/n8n, domain/onboarding, domain/obsidian, language/it]
 summary: Panoramica, valore, architettura e casi d’uso della knowledge base vettoriale per EasyWay DataPortal. Per developer e agent.
 status: draft
 owner: team-platform

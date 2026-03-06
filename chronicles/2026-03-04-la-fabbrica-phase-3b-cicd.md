@@ -3,7 +3,7 @@ title: "La Fabbrica Phase 3b — CI/CD Migration + Deploy Multi-Repo"
 date: 2026-03-04
 session: 58
 category: infrastructure
-tags: [la-fabbrica, phase-3b, ci-cd, deploy, gedi]
+tags: [la-fabbrica, phase-3b, domain/ci-cd, domain/deploy, domain/gedi]
 ---
 
 # La Fabbrica Phase 3b — CI/CD Migration + Deploy Multi-Repo

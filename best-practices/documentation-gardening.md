@@ -1,5 +1,5 @@
 ---
-tags: [domain/docs, layer/process, best-practice, governance, gardening]
+tags: [domain/docs, layer/process, process/best-practices, process/governance, gardening]
 updated: 2026-01-16
 owner: team-platform
 summary: Metodologia "Gardener Cycle" per la gestione evolutiva della tassonomia documentale. Invece di definire strutture rigide a priori, si usa un approccio bottom-up: scansione della realtà, clustering emergente e raffinamento iterativo a livelli.

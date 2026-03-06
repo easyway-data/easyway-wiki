@@ -4,7 +4,7 @@ created: 2026-03-02
 status: active
 category: security
 domain: governance
-tags: [secrets, rbac, pat, governance, rotation, lifecycle]
+tags: [domain/secrets, domain/rbac, domain/pat, process/governance, rotation, lifecycle]
 priority: critical
 audience: [platform-engineers, agent-developers, security-team]
 ---

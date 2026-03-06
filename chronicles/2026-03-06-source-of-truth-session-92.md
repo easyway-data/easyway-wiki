@@ -3,7 +3,7 @@ title: "Session 92 — La Source of Truth e la Presa con Due Etichette"
 date: 2026-03-06
 category: governance
 session: S92
-tags: [ado, source-of-truth, testudo, docker-naming, gedi, cursorrules]
+tags: [domain/ado, source-of-truth, testudo, docker-naming, domain/gedi, cursorrules]
 ---
 
 # Session 92 — La Source of Truth e la Presa con Due Etichette

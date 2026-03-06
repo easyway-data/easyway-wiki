@@ -6,7 +6,7 @@ status: active
 owner: team-platform
 created: '2026-03-04'
 updated: '2026-03-06'  # Session 88 - Branch Guard Framework
-tags: [planning, backlog, roadmap, initiatives, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
+tags: [process/planning, process/backlog, process/roadmap, initiatives, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
   include: true

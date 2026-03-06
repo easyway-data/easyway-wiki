@@ -5,7 +5,7 @@ updated: 2026-02-19
 status: active
 category: security
 domain: platform
-tags: [secrets, environment, bootstrap, security, best-practice, antifragile]
+tags: [domain/secrets, environment, bootstrap, domain/security, process/best-practices, domain/antifragile]
 priority: high
 audience: [platform-engineers, agent-developers]
 ---

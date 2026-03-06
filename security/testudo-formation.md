@@ -4,7 +4,7 @@ title: "Testudo Formation — Deploy Defense System"
 summary: Sistema di difesa deploy a 4 badge indipendenti. Impedisce deploy non autorizzati richiedendo sigillo umano, PR mergiata, pipeline verde e branch corretto.
 status: active
 owner: team-platform
-tags: [domain/security, layer/infrastructure, audience/ops, privacy/internal, language/it, testudo, deploy, badge-collection]
+tags: [domain/security, layer/infrastructure, audience/ops, privacy/internal, language/it, testudo, domain/deploy, badge-collection]
 llm:
   redaction: []
   include: true

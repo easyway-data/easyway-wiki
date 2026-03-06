@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, META/Language-EN]
+tags: [layer/index, meta/language-en]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with META/Language-EN

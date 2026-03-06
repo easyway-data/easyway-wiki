@@ -4,7 +4,7 @@ title: Docs Related Links Apply (WHAT)
 summary: Genera suggerimenti di pagine correlate e (opz.) applica cross-link 'Vedi anche' con conferma umana e rollback via backup.
 status: draft
 owner: team-platform
-tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, obsidian, governance]
+tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, domain/obsidian, process/governance]
 llm:
   redaction: [email, phone]
   include: true

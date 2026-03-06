@@ -1,6 +1,6 @@
 ---
 title: Quest Board – Excel/CSV Upload (L1→L5)
-tags: [domain/ux, layer/spec, audience/non-expert, audience/dev, privacy/internal, language/it, quest, roadmap, use-case, argos, agents]
+tags: [domain/ux, layer/spec, audience/non-expert, audience/dev, privacy/internal, language/it, quest, process/roadmap, artifact/use-case, domain/argos, domain/agents]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/control-plane, layer/reference, audience/dev, privacy/internal, language/it, api, rest, naming]
+tags: [domain/control-plane, layer/reference, audience/dev, privacy/internal, language/it, domain/api, rest, process/naming]
 title: convenzioni rest e naming
 llm:
   include: true

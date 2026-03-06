@@ -5,7 +5,7 @@ summary: Matrice operativa clic-by-clic per gruppi, service identities e permess
 status: active
 owner: team-platform
 updated: 2026-02-15
-tags: [runbook, rbac, iam, ado, github, forgejo, governance, language/it, audience/dev, audience/ops]
+tags: [artifact/runbook, domain/rbac, domain/iam, domain/ado, domain/github, domain/forgejo, process/governance, language/it, audience/dev, audience/ops]
 entities: []
 llm:
   include: true

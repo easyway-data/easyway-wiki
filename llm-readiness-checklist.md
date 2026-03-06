@@ -1,7 +1,7 @@
 ---
 id: ew-llm_readiness_checklist
 title: LLM READINESS CHECKLIST
-tags: [domain/docs, layer/howto, audience/non-expert, audience/dev, privacy/internal, language/it, llm, checklist]
+tags: [domain/docs, layer/howto, audience/non-expert, audience/dev, privacy/internal, language/it, domain/llm, artifact/checklist]
 owner: team-platform
 summary: 'Documento su LLM READINESS CHECKLIST.'
 status: active

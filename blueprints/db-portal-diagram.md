@@ -4,7 +4,7 @@ title: Blueprint - DB PORTAL Diagram (internal viewer)
 summary: Modello di diagramma (JSON) derivato da Flyway + viewer statico interno per visualizzare tabelle/relazioni senza tool esterni.
 status: draft
 owner: team-platform
-tags: [domain/db, layer/blueprint, audience/non-expert, audience/dev, audience/dba, privacy/internal, language/it, diagram, viewer, agentic]
+tags: [domain/db, layer/blueprint, audience/non-expert, audience/dev, audience/dba, privacy/internal, language/it, artifact/diagram, viewer, domain/agentic]
 llm:
   include: true
   pii: none

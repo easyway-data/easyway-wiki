@@ -4,7 +4,7 @@ title: Generate AppSettings From Env (WHAT)
 summary: Genera appsettings.* a partire da .env.local per flusso agentico e CI/CD.
 status: draft
 owner: team-platform
-tags: [domain/control-plane, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it, deploy, appsettings]
+tags: [domain/control-plane, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it, domain/deploy, appsettings]
 llm:
   include: true
   pii: none

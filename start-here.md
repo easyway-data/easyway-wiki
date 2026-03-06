@@ -1,6 +1,6 @@
 ---
 title: Start Here - Link Essenziali
-tags: [start-here, onboarding, agents, argos, language/it, domain/docs, layer/index, audience/non-expert, audience/dev, privacy/internal]
+tags: [start-here, domain/onboarding, domain/agents, domain/argos, language/it, domain/docs, layer/index, audience/non-expert, audience/dev, privacy/internal]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

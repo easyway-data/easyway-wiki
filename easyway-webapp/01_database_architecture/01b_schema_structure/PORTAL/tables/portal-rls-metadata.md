@@ -4,7 +4,7 @@ title: db-table-portal-rls-metadata
 summary: Metadati per Row-Level Security (RLS) e tenanting.
 status: draft
 owner: team-data
-tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, security]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, domain/security]
 llm:
   include: true
   pii: none

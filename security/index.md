@@ -4,7 +4,7 @@ title: Security - Index & Overview
 summary: Indice centrale della documentazione di sicurezza EasyWayDataPortal - la bibbia della security
 status: active
 owner: team-platform
-tags: [domain/security, layer/reference, audience/all, privacy/internal, language/it, security, index]
+tags: [domain/security, layer/reference, audience/all, privacy/internal, language/it, index]
 llm:
   redaction: [email, phone]
   include: true

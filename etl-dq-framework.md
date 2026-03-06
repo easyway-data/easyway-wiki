@@ -4,7 +4,7 @@ title: ETL – Data Quality Framework
 summary: Struttura di regole DQ (classi, severità, applicazione) e integrazione con pipeline e audit.
 status: active
 owner: team-data
-tags: [etl, dq, quality, domain/datalake, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, data-quality]
+tags: [domain/etl, domain/dq, process/quality, domain/datalake, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, domain/data-quality]
 llm:
   include: true
   pii: none

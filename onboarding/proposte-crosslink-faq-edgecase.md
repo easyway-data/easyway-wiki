@@ -1,7 +1,7 @@
 ---
 id: ew-proposte-crosslink-faq-edgecase
 title: Proposte Cross-link, FAQ mancanti, Ricette edge-case e automazioni
-tags: [onboarding, devx, faq, edgecase, crosslink, test, automation, audience/dev, language/it]
+tags: [domain/onboarding, domain/devx, artifact/faq, edgecase, crosslink, test, domain/automation, audience/dev, language/it]
 summary: Suggerimenti concreti per migliorare la navigabilità, la praticità e la robustezza della knowledge base EasyWay DataPortal.
 status: draft
 owner: team-platform

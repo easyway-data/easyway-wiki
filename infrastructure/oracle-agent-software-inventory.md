@@ -4,7 +4,7 @@ title: Oracle Cloud Agent - Software Bill of Materials (SBOM)
 summary: Inventario completo di tutti i software installati sul server Oracle Cloud dedicato all'AI Agent EasyWay.
 status: active
 owner: team-platform
-tags: [infrastructure, oracle-cloud, inventory, compliance, audit]
+tags: [domain/infrastructure, domain/oracle-cloud, artifact/inventory, domain/compliance, domain/audit]
 updated: 2026-01-26
 llm:
   include: true

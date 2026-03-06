@@ -5,7 +5,7 @@ updated: 2026-02-17
 status: active
 category: standards
 domain: agents
-tags: [agents, prd, acceptance-criteria, template, governance, agent-creator, machine-readable]
+tags: [domain/agents, artifact/prd, acceptance-criteria, artifact/template, process/governance, agent-creator, machine-readable]
 priority: high
 audience:
   - agent-developers

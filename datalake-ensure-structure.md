@@ -1,7 +1,7 @@
 ---
 title: Datalake - Ensure Structure (Stub)
 summary: Verifica e applica (in WhatIf di default) la struttura del Datalake per tenant/ambienti, con anteprima cambi.
-tags: [datalake, governance, whatif, domain/datalake, layer/howto, audience/ops, audience/dev, privacy/internal, language/it]
+tags: [domain/datalake, process/governance, whatif, layer/howto, audience/ops, audience/dev, privacy/internal, language/it]
 id: ew-datalake-ensure-structure
 status: active
 owner: team-platform

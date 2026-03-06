@@ -4,7 +4,7 @@ title: Suggerimenti Link Correlati (Affinità)
 summary: Come generare suggerimenti di pagine correlate (affinità) per collegare la Wiki e ridurre nodi isolati nel grafo Obsidian.
 status: draft
 owner: team-platform
-tags: [domain/docs, layer/howto, audience/dev, privacy/internal, language/it, obsidian, docs]
+tags: [domain/docs, layer/howto, audience/dev, privacy/internal, language/it, domain/obsidian, artifact/documentation]
 llm:
   redaction: [email, phone]
   include: true

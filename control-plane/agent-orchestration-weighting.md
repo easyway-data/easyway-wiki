@@ -1,6 +1,6 @@
 ---
 title: Multi-Agent Orchestration con Ponderazione e Round Table
-tags: [domain/control-plane, layer/spec, audience/architect, audience/dev, privacy/internal, language/it, agents, orchestration, n8n, governance, decision-framework]
+tags: [domain/control-plane, layer/spec, audience/architect, audience/dev, privacy/internal, language/it, domain/agents, domain/orchestration, domain/n8n, process/governance, decision-framework]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

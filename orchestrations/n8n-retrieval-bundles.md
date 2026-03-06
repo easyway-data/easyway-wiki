@@ -4,7 +4,7 @@ title: n8n Retrieval Bundles (riduzione token)
 summary: Mappa machine-readable bundle→scope per far caricare a n8n solo la doc necessaria a un intent, riducendo token e ambiguità.
 status: active
 owner: team-platform
-tags: [domain/control-plane, layer/orchestration, audience/dev, privacy/internal, language/it, n8n, retrieval, retrieval-bundles]
+tags: [domain/control-plane, layer/orchestration, audience/dev, privacy/internal, language/it, domain/n8n, retrieval, retrieval-bundles]
 llm:
   include: true
   pii: none

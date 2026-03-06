@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-10-18'
 updated: '2025-10-18'
-tags: [domain/docs, layer/reference, audience/dev, privacy/internal, language/it, best-practices, roadmap, token-tuning, ai-readiness, quality, documentation, universal, governance]
+tags: [domain/docs, layer/reference, audience/dev, privacy/internal, language/it, process/best-practices, process/roadmap, token-tuning, domain/ai-readiness, process/quality, artifact/documentation, universal, process/governance]
 entities: []---
 
 # Best Practices & Roadmap – Token Tuning, AI-Readiness e Governance Universale

@@ -4,7 +4,7 @@ title: db-table-portal-users
 summary: Anagrafica utenti (identità, profilo, stato) in contesto multi-tenant.
 status: draft
 owner: team-data
-tags: [domain/db, layer/reference, audience/dev, audience/dba, audience/non-expert, privacy/internal, language/it, multi-tenant]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, audience/non-expert, privacy/internal, language/it, domain/multi-tenant]
 llm:
   include: true
   pii: none

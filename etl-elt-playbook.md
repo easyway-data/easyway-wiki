@@ -4,7 +4,7 @@ title: ETL/ELT Playbook
 summary: Schema guida per pipeline dati (sorgenti, mapping, DQ, naming file, schedule, monitoraggio, audit) in EasyWayDataPortal.
 status: active
 owner: team-data
-tags: [artifact-pipeline, etl, datalake, domain/datalake, layer/howto, audience/dev, audience/ops, privacy/internal, language/it]
+tags: [artifact/artifact-pipeline, domain/etl, domain/datalake, layer/howto, audience/dev, audience/ops, privacy/internal, language/it]
 entities: []
 llm:
   include: true

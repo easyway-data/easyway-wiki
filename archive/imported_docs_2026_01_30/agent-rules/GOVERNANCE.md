@@ -7,7 +7,7 @@ features:
   - manifests
   - execution-policy
 entities: []
-tags: [governance, orchestrator, recipes, manifests, execution-policy]
+tags: [process/governance, orchestrator, recipes, manifests, execution-policy]
 id: ew-archive-imported-docs-2026-01-30-agent-rules-governance
 summary: TODO - aggiungere un sommario breve.
 status: draft

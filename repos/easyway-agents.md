@@ -6,7 +6,7 @@ status: active
 owner: team-platform
 created: '2026-03-05'
 updated: '2026-03-06'
-tags: [easyway-agents, repos, circle-2, domain/agents, layer/platform, audience/dev, privacy/internal, language/it]
+tags: [easyway-agents, process/repos, circle-2, domain/agents, layer/platform, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
   include: true

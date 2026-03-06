@@ -1,5 +1,5 @@
 ---
-tags: [domain/docs, layer/reference, governance, best-practice, documentation]
+tags: [domain/docs, layer/reference, process/governance, process/best-practices, artifact/documentation]
 updated: 2026-01-16
 owner: team-platform
 summary: Workflow completo del Documentation Gardener Cycle - processo iterativo di governance documentale con Knowledge Graph, Master Hierarchy e Agent-driven analysis.

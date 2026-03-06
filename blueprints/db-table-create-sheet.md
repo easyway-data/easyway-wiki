@@ -4,7 +4,7 @@ title: Blueprint - DB Table Create (Excel/CSV -> Intent)
 summary: Specifica dei campi/flag del template Excel/CSV per creare tabelle (mappatura deterministica verso l'intent db.table.create usato da agent_dba).
 status: draft
 owner: team-platform
-tags: [domain/db, layer/blueprint, audience/non-expert, audience/dev, audience/dba, privacy/internal, language/it, excel, csv, agentic]
+tags: [domain/db, layer/blueprint, audience/non-expert, audience/dev, audience/dba, privacy/internal, language/it, excel, csv, domain/agentic]
 llm:
   include: true
   pii: none

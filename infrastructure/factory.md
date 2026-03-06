@@ -6,7 +6,7 @@ status: active
 owner: team-platform
 created: '2026-03-03'
 updated: '2026-03-06'
-tags: [domain/infrastructure, layer/reference, audience/dev, privacy/internal, language/it, easyway-infra, repos]
+tags: [domain/infrastructure, layer/reference, audience/dev, privacy/internal, language/it, easyway-infra, process/repos]
 entities: []
 llm:
   include: true

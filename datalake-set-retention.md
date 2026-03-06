@@ -1,7 +1,7 @@
 ---
 title: Datalake - Set Retention (Stub)
 summary: Imposta/verifica policy di retention per filesystem/path. WhatIf di default con anteprima.
-tags: [datalake, retention, whatif, domain/datalake, layer/howto, audience/ops, audience/dev, privacy/internal, language/it]
+tags: [domain/datalake, retention, whatif, layer/howto, audience/ops, audience/dev, privacy/internal, language/it]
 id: ew-datalake-set-retention
 status: active
 owner: team-platform

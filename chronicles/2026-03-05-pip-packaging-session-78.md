@@ -3,7 +3,7 @@ title: "Session 78 — The Installable Engine"
 date: 2026-03-05
 category: milestone
 session: S78
-tags: [hale-bopp, packaging, pypi, connector, crlf]
+tags: [domain/hale-bopp, packaging, pypi, domain/connector, crlf]
 ---
 
 # Session 78 — The Installable Engine

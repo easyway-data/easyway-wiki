@@ -4,7 +4,7 @@ title: Agent Chat Interface (Teams-style)
 summary: Interfaccia chat conversazionale per interrogare agent 1:1, con sidebar agent list, history conversazioni, e integrazione con Expert+Reviewer orchestration.
 owner: team-platform, team-ux
 status: draft
-tags: [domain/ux, layer/spec, audience/dev, audience/non-expert, privacy/internal, language/it, ux, chat, agents, conversational-ui]
+tags: [domain/ux, layer/spec, audience/dev, audience/non-expert, privacy/internal, language/it, chat, domain/agents, conversational-ui]
 llm:
   include: true
   pii: none

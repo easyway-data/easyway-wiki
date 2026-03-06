@@ -3,7 +3,7 @@ title: "Phase 1 — Agents Extraction"
 date: 2026-03-03
 category: milestone
 session: "S56"
-tags: [chronicle, milestone]
+tags: [artifact/chronicle, process/milestone]
 ---
 
 ## Cronaca

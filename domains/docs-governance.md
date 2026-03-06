@@ -4,7 +4,7 @@ title: Dominio Docs & Governance
 summary: Definizione del dominio Docs & Governance: standard di documentazione, linter WHAT-first, quality gates e integrazione CI/CD.
 status: active
 owner: team-platform
-tags: [domain/docs, layer/reference, audience/dev, audience/non-expert, privacy/internal, language/it, governance, agents]
+tags: [domain/docs, layer/reference, audience/dev, audience/non-expert, privacy/internal, language/it, process/governance, domain/agents]
 llm:
   include: true
   pii: none

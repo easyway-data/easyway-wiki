@@ -4,7 +4,7 @@ title: Scelta Dominio e Registrar (Privacy First)
 summary: Decision log sulla scelta del dominio e registrar con approccio privacy-first.
 status: stable
 owner: team-infra
-tags: [domain/infrastructure, privacy, dns, compliance, decision-log]
+tags: [domain/infrastructure, privacy, domain/dns, domain/compliance, decision-log]
 llm:
   include: true
   pii: none

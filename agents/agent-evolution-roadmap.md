@@ -5,7 +5,7 @@ updated: 2026-02-18
 status: active
 category: standards
 domain: agents
-tags: [agents, roadmap, evolution, level2, level3, evaluator-optimizer, working-memory, parallelization]
+tags: [domain/agents, process/roadmap, evolution, level2, level3, process/evaluator-optimizer, working-memory, parallelization]
 priority: high
 audience:
   - agent-developers

@@ -4,7 +4,7 @@ title: n8n-db-ddl-inventory
 summary: Orchestrazione n8n per rigenerare l'inventario DB da migrazioni SQL (`db/migrations/`) e aggiornare la pagina Wiki ddl-inventory (agent_dba).
 status: draft
 owner: team-platform
-tags: [domain/control-plane, layer/orchestration, audience/dev, audience/dba, privacy/internal, language/it, n8n, db]
+tags: [domain/control-plane, layer/orchestration, audience/dev, audience/dba, privacy/internal, language/it, domain/n8n, domain/db]
 llm:
   include: true
   pii: none

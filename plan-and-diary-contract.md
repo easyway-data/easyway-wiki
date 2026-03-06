@@ -4,7 +4,7 @@ title: Contratto Plan + Diario di Bordo (Machine-readable)
 summary: Standard JSON per plan (task list) e diario di bordo (timeline) usati da orchestrator/n8n e indicizzati nel RAG.
 status: active
 owner: team-platform
-tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, orchestration, n8n, agentic]
+tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, domain/orchestration, domain/n8n, domain/agentic]
 llm:
   include: true
   pii: none

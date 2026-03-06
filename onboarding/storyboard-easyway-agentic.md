@@ -1,7 +1,7 @@
 ---
 id: ew-storyboard-agentic-evolution
 title: Storyboard evolutivo - Da knowledge base classica a continuous improvement agentico (EasyWay)
-tags: [onboarding, devx, agentic, vector-db, kb, riflessione, retrospective, strategy, language/it]
+tags: [domain/onboarding, domain/devx, domain/agentic, domain/vector-db, kb, riflessione, process/retrospective, process/strategy, language/it]
 summary: Racconto della crescita agentica di EasyWay, logica evolutiva e tappe per ispirare altri progetti ad abbracciare continuous improvement agentico e semantico.
 status: draft
 owner: team-platform

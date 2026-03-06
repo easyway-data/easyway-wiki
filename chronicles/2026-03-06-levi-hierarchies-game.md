@@ -3,7 +3,7 @@ title: "Levi 2.1 e il Hierarchies Game — Quando il Doc Guardian impara a gioca
 date: 2026-03-06
 category: milestone
 session: 96
-tags: [levi, hierarchies, doc-guardian, runner, minio, antifragile, gedi]
+tags: [domain/levi, hierarchies, doc-guardian, runner, minio, domain/antifragile, domain/gedi]
 ---
 
 # Levi 2.1 e il Hierarchies Game

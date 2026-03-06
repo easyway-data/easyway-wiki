@@ -3,7 +3,7 @@ title: "La Fabbrica Chiude — Phase 3c Complete"
 date: 2026-03-04
 category: milestone
 session: S62
-tags: [polyrepo, la-fabbrica, phase-3c, branch-cleanup, gedi]
+tags: [domain/polyrepo, la-fabbrica, phase-3c, branch-cleanup, domain/gedi]
 ---
 
 # La Fabbrica Chiude — Phase 3c Complete

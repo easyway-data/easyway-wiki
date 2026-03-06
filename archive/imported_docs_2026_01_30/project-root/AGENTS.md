@@ -4,7 +4,7 @@ title: Agent Operating Guide (Root)
 summary: Regole e obiettivi per agenti e umani. Tenere sempre allineato il portale all'obiettivo di essere totalmente agentico e usabile da non esperti.
 owner: team-platform
 status: active
-tags: [agents, governance, language/it]
+tags: [domain/agents, process/governance, language/it]
 llm:
   include: true
   pii: none

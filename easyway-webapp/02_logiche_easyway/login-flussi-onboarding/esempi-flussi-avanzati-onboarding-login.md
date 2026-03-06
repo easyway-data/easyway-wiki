@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/frontend, layer/reference, audience/dev, privacy/internal, language/it, login, onboarding, sso]
+tags: [domain/frontend, layer/reference, audience/dev, privacy/internal, language/it, domain/login, domain/onboarding, sso]
 llm:
   include: true
   pii: none

@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-10-18'
 updated: '2025-10-18'
-tags: [domain/docs, layer/index, audience/non-expert, audience/dev, privacy/internal, language/it, vision, presentazione, overview, multi-tenant, ai, ams, conversational]
+tags: [domain/docs, layer/index, audience/non-expert, audience/dev, privacy/internal, language/it, process/vision, presentazione, overview, domain/multi-tenant, domain/ai, ams, conversational]
 entities: []---
 
 # 🎯 EasyWay Data Portal – Start With Why

@@ -4,7 +4,7 @@ title: db-table-portal-masking-metadata
 summary: Metadati di masking per campi sensibili (policy applicabili per colonna).
 status: draft
 owner: team-data
-tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, security]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, domain/security]
 llm:
   include: true
   pii: none

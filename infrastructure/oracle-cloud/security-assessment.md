@@ -4,7 +4,7 @@ title: Oracle Cloud Agent - Security & Enterprise Readiness Assessment
 summary: Valutazione onesta e critica della sicurezza ed enterprise-readiness del deployment Oracle Cloud completato il 2026-01-26.
 status: active
 owner: team-platform
-tags: [security, compliance, risk-assessment, audit, oracle-cloud]
+tags: [domain/security, domain/compliance, risk-assessment, domain/audit, domain/oracle-cloud]
 updated: 2026-01-26
 severity: HIGH
 llm:

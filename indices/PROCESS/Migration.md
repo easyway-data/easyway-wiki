@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, PROCESS/Migration]
+tags: [layer/index, process/migration]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with PROCESS/Migration

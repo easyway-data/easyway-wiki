@@ -2,7 +2,7 @@
 title: Visione Portale Agentico
 - Agenti: `scripts/agent-docs-review.ps1`, `scripts/agent-governance.ps1`
 - Wrapper: `scripts/ewctl.ps1` (engine `ps|ts`)
-tags: [domain/docs, layer/spec, audience/non-expert, audience/dev, privacy/internal, language/it, agents, vision]
+tags: [domain/docs, layer/spec, audience/non-expert, audience/dev, privacy/internal, language/it, domain/agents, process/vision]
 - Orchestratore: `agents/core/orchestrator.js` (carica manifest, KB, `agents/goals.json`)
 updated: 2026-01-16
 status: active

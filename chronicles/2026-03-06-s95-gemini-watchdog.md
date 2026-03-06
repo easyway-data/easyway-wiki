@@ -3,7 +3,7 @@ title: "Session 95 — Il Sesto Senso e le Sentinelle"
 date: 2026-03-06
 category: infrastructure
 session: S95
-tags: [gemini, connections, docker-health, pat-health, cron, watchdog, gedi]
+tags: [gemini, connections, docker-health, pat-health, tech/cron, watchdog, domain/gedi]
 ---
 
 # Session 95 — Il Sesto Senso e le Sentinelle

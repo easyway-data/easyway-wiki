@@ -4,7 +4,7 @@ title: Dominio Datalake
 summary: Definizione del dominio Datalake: struttura dei tenant, applicazione ACL, policy di retention e agenti correlati.
 status: active
 owner: team-data
-tags: [domain/datalake, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, agents]
+tags: [domain/datalake, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, domain/agents]
 llm:
   include: true
   pii: none

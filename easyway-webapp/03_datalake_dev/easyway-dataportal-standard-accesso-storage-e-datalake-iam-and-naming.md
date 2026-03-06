@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/datalake, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, policy-security, iam, naming, rbac]
+tags: [domain/datalake, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, policy-security, domain/iam, process/naming, domain/rbac]
 llm:
   include: true
   pii: none

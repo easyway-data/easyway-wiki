@@ -1,7 +1,7 @@
 ---
 id: step-2-struttura-src-e-primi-file
 title: STEP 2 — Struttura src e primi file
-tags: [domain/control-plane, layer/howto, audience/dev, privacy/internal, language/it, api, structure]
+tags: [domain/control-plane, layer/howto, audience/dev, privacy/internal, language/it, domain/api, structure]
 owner: team-platform
 summary: 'Definisce la struttura della cartella src per easyway-portal-api e i primi file minimi (app, server, logger, middleware multi-tenant, healthcheck, tipi di configurazione).'
 status: draft

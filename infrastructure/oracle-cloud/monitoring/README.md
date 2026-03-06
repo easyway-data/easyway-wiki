@@ -4,7 +4,7 @@ title: Server Monitoring Tools - Visual Dashboard Guide
 summary: Guida ai tool di monitoring visuale installati su Oracle Cloud (btop, glances, neofetch) per troubleshooting e status check rapidi.
 status: active
 owner: team-platform
-tags: [infrastructure, monitoring, tools, oracle-cloud, ops]
+tags: [domain/infrastructure, domain/monitoring, tools, domain/oracle-cloud, domain/ops]
 updated: 2026-01-26
 llm:
   include: true

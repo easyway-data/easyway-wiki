@@ -3,7 +3,7 @@ title: "Session 93 — La Resurrezione di Qdrant e il Mazzo di Chiavi v2"
 date: 2026-03-06
 category: infrastructure
 session: S93
-tags: [qdrant, docker, naming, pat-routing, ado-auth, cursorrules, n8n]
+tags: [domain/qdrant, domain/docker, process/naming, pat-routing, ado-auth, cursorrules, domain/n8n]
 ---
 
 # Session 93 — La Resurrezione di Qdrant e il Mazzo di Chiavi v2

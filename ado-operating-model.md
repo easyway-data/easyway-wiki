@@ -4,7 +4,7 @@ title: Azure DevOps Operating Model (Hybrid)
 summary: Modello operativo ibrido (Kanban per AMS/Infra, Sprint per Business) + regole minime per backlog, board e automazione agentica.
 status: draft
 owner: team-platform
-tags: [domain/ado, layer/policy, audience/dev, audience/ops, privacy/internal, language/it, governance, kanban, sprint]
+tags: [domain/ado, layer/policy, audience/dev, audience/ops, privacy/internal, language/it, process/governance, process/kanban, process/sprint]
 llm:
   include: true
   pii: none

@@ -1,6 +1,6 @@
 ---
 title: Segregation Model (Dev vs Knowledge vs Runtime)
-tags: [domain/control-plane, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, rag, n8n, security, keyvault]
+tags: [domain/control-plane, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, domain/rag, domain/n8n, domain/security, keyvault]
 status: active
 updated: 2026-01-16
 redaction: [email, phone, token]

@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/control-plane, layer/reference, audience/dev, privacy/internal, language/it, api, integration, shopify]
+tags: [domain/control-plane, layer/reference, audience/dev, privacy/internal, language/it, domain/api, domain/integration, shopify]
 llm:
   include: true
   pii: none

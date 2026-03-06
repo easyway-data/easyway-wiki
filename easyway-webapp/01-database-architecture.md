@@ -1,7 +1,7 @@
 ---
 title: Database Architecture Master
 chapter: 01
-tags: [database, architettura, multi-tenant, ams, chatbot, conversational, portal, gold, bronze, rls, masking, stored-procedure, sequence, domain/db, layer/spec, audience/dev, audience/dba, privacy/internal, language/it]
+tags: [domain/database, architettura, domain/multi-tenant, ams, chatbot, conversational, domain/portal, gold, bronze, rls, masking, stored-procedure, sequence, domain/db, layer/spec, audience/dev, audience/dba, privacy/internal, language/it]
 source: easyway-webapp/01-database-architecture.md
 id: ew-01-database-architecture
 llm:

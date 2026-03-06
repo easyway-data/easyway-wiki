@@ -6,7 +6,7 @@ status: active
 owner: team-api
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [artifact-endpoint, domain/frontend, layer/reference, audience/dev, privacy/internal, language/it]
+tags: [artifact/artifact-endpoint, domain/frontend, layer/reference, audience/dev, privacy/internal, language/it]
 title: endp 001a get api config da db
 llm:
   include: true

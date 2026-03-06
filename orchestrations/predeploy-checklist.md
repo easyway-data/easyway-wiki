@@ -4,7 +4,7 @@ title: Predeploy Checklist (WHAT)
 summary: Esegue la checklist operativa pre-deploy (controlli manuali e automatici) e produce un report di gating per la pipeline CI/CD.
 status: active
 owner: team-platform
-tags: [domain/control-plane, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it, governance]
+tags: [domain/control-plane, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it, process/governance]
 llm:
   include: true
   pii: none

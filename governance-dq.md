@@ -1,6 +1,6 @@
 ---
 title: Governance DQ - RACI, Processi e Checklist
-tags: [dq, governance, argos, agents, domain/control-plane, layer/spec, audience/ops, audience/dev, privacy/internal, language/it, data-quality]
+tags: [domain/dq, process/governance, domain/argos, domain/agents, domain/control-plane, layer/spec, audience/ops, audience/dev, privacy/internal, language/it, domain/data-quality]
 status: active
 updated: 2026-02-20
 id: ew-governance-dq

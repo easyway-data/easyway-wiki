@@ -4,7 +4,7 @@ title: Inbox Analisi & Documenti Futuri
 summary: Coda di documenti, appunti e file grezzi da analizzare, strutturare e integrare nella Wiki.
 status: active
 owner: team-docs
-tags: [docs, inbox, backlog, analysis, todo]
+tags: [artifact/documentation, inbox, process/backlog, analysis, todo]
 llm:
   include: true
   pii: none

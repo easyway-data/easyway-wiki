@@ -3,7 +3,7 @@ title: "Session 91 — La Formazione Testudo e il Connettore"
 date: 2026-03-06
 category: infrastructure
 session: S91
-tags: [deploy-gate, openrouter, antifragile, connector, BOM-fix]
+tags: [deploy-gate, openrouter, domain/antifragile, domain/connector, BOM-fix]
 ---
 
 # Session 91 — La Formazione Testudo e il Connettore

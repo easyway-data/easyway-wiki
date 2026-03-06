@@ -4,7 +4,7 @@ title: datalake-dev-index
 summary: Indice Datalake (IAM/naming, standard di accesso, regole operative).
 status: active
 owner: team-platform
-tags: [domain/datalake, layer/index, audience/dev, audience/ops, privacy/internal, language/it, docs]
+tags: [domain/datalake, layer/index, audience/dev, audience/ops, privacy/internal, language/it, artifact/documentation]
 llm:
   include: true
   pii: none

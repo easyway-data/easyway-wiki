@@ -4,7 +4,7 @@ title: Security War Game - Roadmap
 summary: Piano futuro per penetration testing Red Team vs Blue Team quando EasyWayDataPortal sarà maturo
 status: roadmap
 owner: team-platform
-tags: [domain/security, layer/reference, audience/ops, privacy/internal, language/it, security, pentesting, roadmap]
+tags: [domain/security, layer/reference, audience/ops, privacy/internal, language/it, pentesting, process/roadmap]
 llm:
   redaction: [email, phone]
   include: true

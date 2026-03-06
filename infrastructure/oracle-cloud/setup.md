@@ -4,7 +4,7 @@ title: AI Agent Implementation Guide - Oracle Cloud + Ollama
 summary: Guida pratica step-by-step per deployare stack completo AI agent (Ollama LLM + ChromaDB Vector DB + RAG pipeline) su Oracle Cloud Free Tier
 owner: team-platform
 status: active
-tags: [domain/control-plane, layer/howto, audience/dev, audience/ops, privacy/internal, language/it, agents, llm, vector-db, rag, oracle-cloud, ollama, chromadb]
+tags: [domain/control-plane, layer/howto, audience/dev, audience/ops, privacy/internal, language/it, domain/agents, domain/llm, domain/vector-db, domain/rag, domain/oracle-cloud, ollama, chromadb]
 llm:
   include: true
   pii: none

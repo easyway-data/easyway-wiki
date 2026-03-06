@@ -4,7 +4,7 @@ title: Apply AppSettings Starter (WHAT)
 summary: Applica uno starter di App Settings su Azure App Service in modo governato (WhatIf-by-default) con audit.
 status: draft
 owner: team-platform
-tags: [domain/control-plane, layer/orchestration, audience/ops, privacy/internal, language/it, deploy, appsettings, governance]
+tags: [domain/control-plane, layer/orchestration, audience/ops, privacy/internal, language/it, domain/deploy, appsettings, process/governance]
 llm:
   include: true
   pii: none

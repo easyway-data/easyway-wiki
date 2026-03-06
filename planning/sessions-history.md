@@ -6,7 +6,7 @@ status: active
 owner: team-platform
 created: '2026-03-04'
 updated: '2026-03-04'
-tags: [planning, sessions, history, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
+tags: [process/planning, sessions, history, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 type: planning
 ---
 

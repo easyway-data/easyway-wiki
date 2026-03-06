@@ -1,6 +1,6 @@
 ---
 title: Agents Manifest Audit (gap list)
-tags: [domain/control-plane, layer/howto, audience/dev, audience/ops, privacy/internal, language/it, agents, docs-governance, rag]
+tags: [domain/control-plane, layer/howto, audience/dev, audience/ops, privacy/internal, language/it, domain/agents, docs-governance, domain/rag]
 status: active
 updated: 2026-01-16
 redaction: [email, phone, token]

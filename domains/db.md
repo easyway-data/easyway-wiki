@@ -4,7 +4,7 @@ title: Dominio DB
 summary: Definizione del dominio DB: gestione migrazioni Flyway, template stored procedure, generazione artefatti e monitoraggio drift.
 status: active
 owner: team-data
-tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, agents, flyway]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, domain/agents, domain/flyway]
 llm:
   include: true
   pii: none

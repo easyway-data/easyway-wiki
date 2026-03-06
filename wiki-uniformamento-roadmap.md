@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-10-18'
 updated: '2025-10-18'
-tags: [domain/docs, layer/reference, audience/dev, audience/non-expert, privacy/internal, language/it, roadmap, quality, documentation, governance, ai-readiness]
+tags: [domain/docs, layer/reference, audience/dev, audience/non-expert, privacy/internal, language/it, process/roadmap, process/quality, artifact/documentation, process/governance, domain/ai-readiness]
 entities: []
 llm:
   include: true

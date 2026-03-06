@@ -4,7 +4,7 @@ title: ADO User Story Create (WHAT)
 summary: Creazione User Story su Azure DevOps con prefetch best practices (Wiki + esterne).
 status: draft
 owner: team-platform
-tags: [domain/control-plane, layer/orchestration, audience/dev, privacy/internal, language/it, ado]
+tags: [domain/control-plane, layer/orchestration, audience/dev, privacy/internal, language/it, domain/ado]
 llm:
   include: true
   pii: none

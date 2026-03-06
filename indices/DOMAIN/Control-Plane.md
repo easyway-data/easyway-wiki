@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, DOMAIN/Control-Plane]
+tags: [layer/index, domain/control-plane]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with DOMAIN/Control-Plane

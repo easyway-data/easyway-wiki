@@ -8,7 +8,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, artifact-stored-procedure, configuration]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, artifact/artifact-stored-procedure, domain/configuration]
 title: configuration
 llm:
   include: true

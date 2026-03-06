@@ -3,7 +3,7 @@ title: "Pietra Miliare Zero - La Fabbrica"
 date: 2026-03-03
 category: milestone
 session: "S53"
-tags: [chronicle, milestone]
+tags: [artifact/chronicle, process/milestone]
 ---
 
 ## Cronaca

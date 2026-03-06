@@ -4,7 +4,7 @@ title: ETL/ELT Inspirations (ADA Framework)
 summary: Sintesi fonti esterne (PDF) e mapping verso Playbook, DQ e Logging di EasyWayDataPortal.
 status: active
 owner: team-data
-tags: [domain/datalake, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, etl, dq, logging, inspirations]
+tags: [domain/datalake, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, domain/etl, domain/dq, domain/logging, inspirations]
 llm:
   include: true
   pii: none

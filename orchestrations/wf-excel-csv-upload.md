@@ -1,6 +1,6 @@
 ---
 title: Orchestrazione – wf.excel-csv-upload (WHAT)
-tags: [orchestration, use-case, argos, agents, domain/control-plane, layer/orchestration, audience/non-expert, audience/dev, privacy/internal, language/it]
+tags: [domain/orchestration, artifact/use-case, domain/argos, domain/agents, domain/control-plane, layer/orchestration, audience/non-expert, audience/dev, privacy/internal, language/it]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

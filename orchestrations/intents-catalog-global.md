@@ -4,7 +4,7 @@ title: Orchestrations - Intents Catalog (Globale)
 summary: Catalogo globale degli intent WHAT-first disponibili o pianificati (cross-domain), con link agli schemi.
 status: active
 owner: team-platform
-tags: [orchestration, intents, agents, domain/control-plane, layer/intent, audience/dev, privacy/internal, language/it]
+tags: [domain/orchestration, intents, domain/agents, domain/control-plane, layer/intent, audience/dev, privacy/internal, language/it]
 llm:
   include: true
   pii: none

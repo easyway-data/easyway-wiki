@@ -3,7 +3,7 @@ title: Agent Issue Tracking System
 created: 2026-01-18
 updated: 2026-01-18
 status: active
-tags: [agents, governance, issue-tracking, kanban, continuous-improvement]
+tags: [domain/agents, process/governance, issue-tracking, process/kanban, continuous-improvement]
 scope: architecture
 summary: Sistema completo di tracciamento issue per agenti con Kanban board e governance automatica per continuous improvement
 related:

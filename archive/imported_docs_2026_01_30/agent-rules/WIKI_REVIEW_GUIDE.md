@@ -7,7 +7,7 @@ features:
   - glossary-check
   - normalize
 entities: []
-tags: [wiki, review, glossary, normalize]
+tags: [domain/wiki, process/review, glossary, normalize]
 id: ew-archive-imported-docs-2026-01-30-agent-rules-wiki-review-guide
 summary: TODO - aggiungere un sommario breve.
 status: draft

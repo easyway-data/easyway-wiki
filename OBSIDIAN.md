@@ -1,6 +1,6 @@
 ---
 title: Obsidian Vault Setup (Wiki)
-tags: [domain/docs, layer/howto, audience/non-expert, audience/dev, privacy/internal, language/it, obsidian]
+tags: [domain/docs, layer/howto, audience/non-expert, audience/dev, privacy/internal, language/it, domain/obsidian]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]
