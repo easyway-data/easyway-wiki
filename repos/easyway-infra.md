@@ -5,7 +5,7 @@ summary: Scheda operativa del repository easyway-infra — Docker Compose, deplo
 status: active
 owner: team-platform
 created: '2026-03-05'
-updated: '2026-03-05'
+updated: '2026-03-06'
 tags: [easyway-infra, repos, circle-3, domain/infra, layer/infrastructure, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -38,9 +38,12 @@ C:\old\easyway\infra\
 
 ## Componenti chiave
 
-- **docker-compose.yml**: stack principale (portal, caddy, qdrant, gitea, n8n)
+- **docker-compose.infra.yml**: infrastruttura (Qdrant, MinIO, Azurite, SQL Edge, ChromaDB)
+- **docker-compose.apps.yml**: applicazioni (portal, api, runner, n8n)
+- **docker-compose.prod.yml**: overlay produzione (Caddy, TLS)
 - **deploy.sh**: `~/easyway-infra/scripts/deploy.sh [env]` — Compose Coherence Gate (GEDI Case #25)
 - **Caddyfile**: reverse proxy HTTPS
+- **MinIO init** (S96): `minio-init` sidecar — crea bucket `documents`, `reports`, `backups` al boot (idempotente)
 - **RBAC config**: `config/environments/` — modello env segregation (documentato, non implementato)
 
 ## Dipendenze

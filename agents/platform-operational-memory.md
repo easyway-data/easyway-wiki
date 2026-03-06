@@ -2792,4 +2792,35 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 **Q&A**:
 - Q: Perche cron e non n8n per Docker health? A: GEDI Case #39 — n8n in container senza Docker socket. Cron host = zero dipendenze, riproducibile, sicuro. JSON output pronto per n8n webhook futuro.
 - Q: easyway-ado clonato sul server? A: Si, necessario per pat-health-check.sh che source ado-auth.sh. Path: ~/easyway-ado/
+
+### Session 96 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: MinIO sovereign storage fix, Runner v2.0 Task Server, Levi 2.1 Hierarchies Game, PR #413/#414 Antigravity WI auto-link, G13 governance rule, GEDI Case #40
+
+**Perche**:
+- MinIO: sovereign object storage per documenti, report, backup (no cloud dependency)
+- Runner v2.0: n8n (QUANDO) → runner (COME) → MinIO (DOVE) — server-side agent execution
+- Levi 2.1: deterministic doc quality scanning + wiki topology mapping for Obsidian graph
+- G13: antifragile guardrail — Antigravity violated Palumbo twice, GEMINI.md was empty
+
+**Come**:
+1. **MinIO sovereign storage**: fixed unhealthy container (bitnami→official image, mc-based healthcheck, minio-init sidecar for auto bucket creation)
+2. **Runner v2.0**: evolved from sleep loop to Task Server HTTP dispatcher (port 8400, 5 task types, 40 agents loaded)
+3. **task-server.py**: lightweight Python HTTP server (GET /health, POST /task, GET /tasks) in agents/scripts/
+4. **Levi 2.1 — Hierarchies Game**: doc guardian polyrepo scanner with 4 rounds of hierarchy analysis (file index, tag taxonomy, link topology, cross-repo clusters)
+5. **PR #413 and #414 (Antigravity)**: WI auto-linked via new ado-auth.sh pr-autolink-wi tool
+6. **G13 governance rule**: PR Auto-Link WI — added to all 6 .cursorrules + GEMINI.md
+7. **GEDI Case #40**: Antigravity Regola del Palumbo x2
+
+| PR | Repo | Target | Contenuto | Stato |
+|---|---|---|---|---|
+| #413 | - | main | Antigravity — WI auto-linked | Da approvare |
+| #414 | - | main | Antigravity — WI auto-linked | Da approvare |
+
+**Q&A**:
+- Q: Windows cp1252 encoding breaks JSON pipe? A: Fix: sys.stdout.reconfigure(encoding="utf-8")
+- Q: MinIO password with `!` breaks multi-layer SSH escaping? A: Fix: avoid special chars in passwords
+- Q: GEMINI.md empty = Antigravity without rules? A: "Un estintore chiuso a chiave" — filled with governance G1-G13 + polyrepo architecture
+- Q: Hierarchies game results? A: 501 tags (388 flat!), 2034 links, 149 orphans, hub=index.md, auth=start-here.md
 - Q: WI associato? A: #115

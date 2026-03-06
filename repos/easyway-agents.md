@@ -5,7 +5,7 @@ summary: Scheda operativa del repository easyway-agents — piattaforma agenti L
 status: active
 owner: team-platform
 created: '2026-03-05'
-updated: '2026-03-05'
+updated: '2026-03-06'
 tags: [easyway-agents, repos, circle-2, domain/agents, layer/platform, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -45,6 +45,42 @@ C:\old\easyway\agents\
 - **GEDI**: `agents/agent_gedi/manifest.json` (16 principi) + Casebook
 - **Iron Dome**: `scripts/pwsh/modules/ewctl/ewctl.secrets-scan.psm1`
 - **Connection Registry**: `scripts/connections/` — github.sh, ado.sh, server.sh, qdrant.sh, halebopp.sh
+- **Task Server**: `scripts/task-server.py` — HTTP server per esecuzione task server-side (S96)
+
+## Runner v2.0 (S96)
+
+Il container `easyway-runner` e il braccio esecutivo server-side degli agenti.
+
+| Aspetto | Dettaglio |
+|---------|-----------|
+| **Container** | `easyway-runner` (porta 8400, rete `easyway-net`) |
+| **Entrypoint** | `agents/entrypoint.ps1` -> boot checks -> `scripts/task-server.py` |
+| **Health** | `GET http://easyway-runner:8400/health` |
+| **Agenti caricati** | 40 (11 Level 2 LLM) |
+
+### Architettura
+
+```
+n8n (QUANDO) --> POST http://easyway-runner:8400/task --> Runner (COME) --> MinIO (DOVE salvare)
+```
+
+### Task types registrati
+
+| Task | Script | Descrizione |
+|------|--------|-------------|
+| `levi-scan` | `scripts/levi-scan.py` | Levi doc guardian scan wiki |
+| `gedi-validate` | `scripts/pwsh/agent-gedi.ps1` | GEDI principle validation |
+| `wiki-ingest` | `scripts/ingest_wiki.js` | Re-index wiki in Qdrant |
+| `health-report` | `scripts/health-report.sh` | Infra health report |
+| `exec` | qualsiasi in `/app/scripts/` | Script arbitrario (sandboxed) |
+
+### Esempio
+
+```bash
+curl -X POST http://easyway-runner:8400/task \
+  -H "Content-Type: application/json" \
+  -d '{"type": "levi-scan", "params": {"scope": "wiki"}}'
+```
 
 ## Dipendenze
 

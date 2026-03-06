@@ -51,3 +51,4 @@ tags: [chronicle, index]
 | 2026-03-06 | [La Resurrezione di Qdrant e il Mazzo di Chiavi v2](2026-03-06-s93-qdrant-resurrection.md) | infrastructure | S93 |
 | 2026-03-06 | [L'Allineamento dei Chiavi e il Pattern LLM](2026-03-06-s94-pat-alignment.md) | governance | S94 |
 | 2026-03-06 | [Il Sesto Senso e le Sentinelle](2026-03-06-s95-gemini-watchdog.md) | infrastructure | S95 |
+| 2026-03-06 | [Levi 2.1 e il Hierarchies Game](2026-03-06-levi-hierarchies-game.md) | milestone | S96 |
