@@ -51,5 +51,7 @@ Runbooks/        # Runbook operativi (RAG operations)
 > **Guida completa**: `guides/polyrepo-git-workflow.md`
 > **GEDI** (dubbi architetturali): `C:\old\easyway\agents\agents\agent_gedi\manifest.json`
 > **Storia e contesto**: `agents/platform-operational-memory.md`
-> **Governance Git**: vedi Sezione 6 della guida polyrepo (regole G1-G12)
+> **Governance Git**: vedi Sezione 6 della guida polyrepo (regole G1-G13)
+> **G13 — PR Auto-Link WI**: dopo PR create, SEMPRE `ado-auth.sh pr-autolink-wi <pr_id>`. Parsa `#NNN` dalla description e linka WI. MAI citare `#NNN` senza linkare.
+> **G14 — No Script Personali**: MAI creare script wrapper/scratch fuori dai repo ufficiali. Tool canonico ADO = `ado-auth.sh`. Nuove automazioni → skill in `agents/skills/`. MAI PAT da file locali. MAI fallback "continua senza WI".
 > **G12 — PR Target Branch**: se il repo ha branch `develop`, le PR devono passare da li — mai diretto a `main`. Auto-detect dinamico (pipeline + ewctl).
