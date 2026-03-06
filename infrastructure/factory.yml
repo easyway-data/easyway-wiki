@@ -1,0 +1,295 @@
+# ============================================================================
+# factory.yml — La Fabbrica EasyWay
+# ============================================================================
+# Questo file descrive l'ecosistema di repository che compongono EasyWay.
+# Ogni repo e' un organo; l'insieme e' l'organismo.
+#
+# Struttura identica locale (C:\old\easyway\) e server (/opt/easyway/).
+#
+# "Ogni minuto che passa e' un'occasione per rivoluzionare tutto completamente"
+#   — Vanilla Sky (2001)
+# ============================================================================
+
+version: "1.0"
+created: "2026-03-03"
+updated: "2026-03-06"
+
+# --------------------------------------------------------------------------
+# La Fabbrica
+# --------------------------------------------------------------------------
+factory:
+  name: "EasyWay"
+  description: "Piattaforma agentica per data governance e quality"
+  philosophy: "Brain vs Muscles — AI orchestra, codice esegue"
+  origin_repo: "EasyWayDataPortal"  # Il monorepo originale (archiviato a Phase 3)
+  ado_project: "EasyWay-DataPortal"
+  ado_project_guid: "d8c907d2-dae1-4db1-9dcf-40c2931b6dc7"
+  ado_org_url: "https://dev.azure.com/EasyWayData"
+
+# --------------------------------------------------------------------------
+# Repository
+# --------------------------------------------------------------------------
+repos:
+
+  # === L'APPLICAZIONE ===
+  portal:
+    path: ./portal
+    remote: https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-portal
+    ado_guid: "e29d5c59-28d0-4815-8f62-6f5c1465855c"
+    github_mirror: https://github.com/easyway-data/easyway-portal
+    description: "Backend API (Node.js/Express) + Frontend + Agent Console"
+    contains:
+      - portal-api/
+      - apps/portal-backend
+      - apps/portal-frontend
+      - apps/agent-console
+      - packages/
+      - tests/
+    deploy: true
+    deploy_target: "container:easyway-portal"
+    phase: 3  # Ultimo a migrare (cio' che resta)
+
+  # === LA CONOSCENZA ===
+  wiki:
+    path: ./wiki
+    remote: https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-wiki
+    ado_guid: "d055dfa8-db64-4c9d-a6ad-55bff6e8d767"
+    github_mirror: https://github.com/easyway-data/easyway-wiki
+    description: "Obsidian vault — documentazione, guide, chronicles, RAG knowledge base"
+    contains:
+      - Wiki/EasyWayData.wiki/
+    deploy: true
+    deploy_target: "qdrant:easyway_wiki"  # Indicizzazione RAG
+    phase: 0  # Primo a migrare
+
+  # === GLI AGENTI ===
+  agents:
+    path: ./agents
+    remote: https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-agents
+    ado_guid: "fa068c67-b5ee-4b41-aab3-38b0166ffb27"
+    github_mirror: https://github.com/easyway-data/easyway-agents
+    description: "40+ agenti AI, skills, n8n workflows, control plane, GEDI"
+    contains:
+      - agents/
+      - control-plane/
+      - scripts/pwsh/        # Skills PowerShell
+      - scripts/agents/
+      - scripts/ai-agent/
+      - scripts/gates/
+    deploy: true
+    deploy_target: "n8n + scripts"
+    phase: 1
+
+  # === L'INFRASTRUTTURA ===
+  infra:
+    path: ./infra
+    remote: https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-infra
+    ado_guid: "fa453541-4227-4837-bd55-8b92f656f87a"
+    github_mirror: https://github.com/easyway-data/easyway-infra
+    description: "Docker Compose, Caddy, CI/CD pipelines, deploy scripts, config"
+    contains:
+      - docker-compose*.yml
+      - Caddyfile
+      - azure-pipelines.yml
+      - .github/workflows/
+      - scripts/infra/
+      - scripts/ops/
+      - scripts/linux/
+      - scripts/ci/
+      - config/
+      - release/
+      - infra/
+    deploy: true
+    deploy_target: "server:root"
+    phase: 2
+
+  # === ADO TOOLKIT ===
+  ado:
+    path: ./ado
+    remote: https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-ado
+    ado_guid: "91b146f8-8037-4823-b673-b50147e1a22f"
+    description: "ADO SDK, CLI, and MCP Server — Work Items, PRs, Briefing, Governance"
+    github: https://github.com/easyway-data/easyway-ado
+    contains:
+      - config/       # Platform config, connections.yaml, JSON Schema
+      - src/          # TypeScript core: auth, REST client, modules
+      - mcp/          # MCP Server (20+ tools for AI agents)
+      - scripts/      # Battle-tested bash + PowerShell scripts
+      - bin/          # CLI entry point
+      - docs/         # Examples: WIQL, curl, MCP tool calls
+      - tests/
+    deploy: false     # Tool di sviluppo, non servizio
+    phase: 0          # Bootstrap Session 75
+
+  # === ORCHESTRAZIONE ===
+  n8n:
+    path: ./n8n
+    remote: https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_git/easyway-n8n
+    ado_guid: "ceed9f24-5a10-44d8-8147-8b7ed07a22bd"
+    description: "Workflow n8n — orchestrazione, monitoring infra, automazione business"
+    contains:
+      - workflows/common/
+      - workflows/business/
+      - workflows/infra/
+      - workflows/templates/
+      - scripts/
+    deploy: true
+    deploy_target: "volume:easyway-orchestrator"
+    phase: 0          # Session 86
+
+  # === HALE-BOPP: I TRE MOTORI DETERMINISTICI (GitHub-primary) ===
+  hale-bopp-db:
+    path: ../hale-bopp/db          # C:\old\hale-bopp\db (parallel to easyway)
+    remote: https://github.com/hale-bopp-data/hale-bopp-db
+    description: "Schema governance engine for PostgreSQL — diff, deploy, drift detection"
+    deploy: true
+    deploy_target: "container:halebopp-db"
+    phase: existing
+    ci: github-actions             # CI on GitHub, not ADO
+    tests: 17
+
+  hale-bopp-etl:
+    path: ../hale-bopp/etl         # C:\old\hale-bopp\etl
+    remote: https://github.com/hale-bopp-data/hale-bopp-etl
+    description: "Config-driven data orchestration — YAML pipelines, Dagster, webhook"
+    deploy: true
+    deploy_target: "container:halebopp-etl"
+    phase: existing
+    ci: github-actions
+    tests: 16
+
+  hale-bopp-argos:
+    path: ../hale-bopp/argos       # C:\old\hale-bopp\argos
+    remote: https://github.com/hale-bopp-data/hale-bopp-argos
+    description: "Policy gating and data quality engine — rule-based governance"
+    deploy: false                  # Libreria, non servizio
+    phase: existing
+    ci: github-actions
+    tests: 14
+
+# --------------------------------------------------------------------------
+# Server Layout (target: /opt/easyway/)
+# --------------------------------------------------------------------------
+server:
+  base_path: /opt/easyway
+  secrets: /opt/easyway/.env.secrets
+  ssh_key: "C:\\old\\Virtual-machine\\ssh-key-2026-01-25.key"
+  host: ubuntu@80.225.86.168
+  layout:
+    - portal/
+    - wiki/
+    - agents/
+    - infra/          # docker-compose.yml, Caddyfile qui
+  hale_bopp_path: ~/hale-bopp
+  hale_bopp_layout:
+    - db/             # git: hale-bopp-db
+    - etl/            # git: hale-bopp-etl
+    - argos/          # git: hale-bopp-argos
+
+# --------------------------------------------------------------------------
+# Migration Plan
+# --------------------------------------------------------------------------
+migration:
+  strategy: "incremental-with-submodule-bridge"
+  phases:
+    - id: 0
+      name: "Extract Wiki"
+      status: completed          # Session 54 — 522+ files
+      completed_session: 54
+      sprint: "Sprint 1"
+      steps:
+        - "Create ADO repo easyway-wiki ✓"
+        - "git subtree split Wiki/EasyWayData.wiki ✓"
+        - "Push to new repo ✓"
+        - "GitHub mirror easyway-data/easyway-wiki (public) ✓"
+        - "Update Publish-WikiPages.ps1 ✓"
+
+    - id: 1
+      name: "Extract Agents"
+      status: completed          # Session 54-56 — 672 files, PR #250, PR #276
+      completed_session: 61
+      sprint: "Sprint 1"
+      steps:
+        - "Create ADO repo easyway-agents ✓"
+        - "git subtree split agents/ + scripts/pwsh/ ✓"
+        - "Push to new repo ✓"
+        - "PR #276 initial-import -> main merged ✓"
+        - "GitHub mirror easyway-data/easyway-agents (public) ✓"
+
+    - id: 2
+      name: "Extract Infra"
+      status: completed          # Session 57-58 — 1434 files
+      completed_session: 58
+      sprint: "Sprint 2"
+      steps:
+        - "Create ADO repo easyway-infra ✓"
+        - "Move docker-compose, Caddy, CI, deploy scripts ✓"
+        - "Push to new repo ✓"
+        - "GitHub mirror easyway-data/easyway-infra (private) ✓"
+        - "Update server deploy workflow ✓"
+
+    - id: 3
+      name: "Portal becomes standalone"
+      status: completed          # Session 57-62 — sub-phases 3a/3b/3c
+      completed_session: 62
+      sprint: "Sprint 2"
+      sub_phases:
+        - id: 3a
+          name: "Monorepo cleanup"
+          status: completed      # PR #262 merged — removed 1420 files
+          steps:
+            - "Remove extracted wiki/agents/infra files from monorepo ✓"
+            - "PR #262 merged ✓"
+
+        - id: 3b
+          name: "CI/CD + deploy multi-repo"
+          status: completed      # PR #265, #266, #268 merged
+          steps:
+            - "Pipeline simplified 779 -> 230 lines ✓"
+            - "deploy.sh multi-repo bridge (Electrical Socket Pattern) ✓"
+            - "PR #265, #266, #268 merged ✓"
+
+        - id: 3c
+          name: "Repo rename + refs update"
+          status: completed      # PR #269, #272, #273, #274, #275, #278 merged
+          steps:
+            - "ADO repo rename EasyWayDataPortal -> easyway-portal ✓"
+            - "Server paths updated ✓"
+            - "CI/CD refs updated ✓"
+            - "GitHub mirror target updated to easyway-data/easyway-portal ✓"
+            - "PR #269, #272, #273, #274, #275, #278 all merged ✓"
+
+# --------------------------------------------------------------------------
+# GitHub Mirror Status (as of 2026-03-04)
+# --------------------------------------------------------------------------
+github_mirrors:
+  portal:
+    url: https://github.com/easyway-data/easyway-portal
+    visibility: private
+    sync: in_sync           # ADO main = GitHub main
+  wiki:
+    url: https://github.com/easyway-data/easyway-wiki
+    visibility: public
+    sync: behind            # GitHub behind ADO by 2 commits (PR #275, #277)
+  agents:
+    url: https://github.com/easyway-data/easyway-agents
+    visibility: public
+    sync: in_sync
+  infra:
+    url: https://github.com/easyway-data/easyway-infra
+    visibility: private
+    sync: behind            # GitHub behind ADO by 2 commits (PR #272, #278)
+
+  # HALE-BOPP (GitHub-primary, no ADO mirror)
+  hale-bopp-db:
+    url: https://github.com/hale-bopp-data/hale-bopp-db
+    visibility: public
+    sync: primary           # GitHub is source of truth
+  hale-bopp-etl:
+    url: https://github.com/hale-bopp-data/hale-bopp-etl
+    visibility: public
+    sync: primary
+  hale-bopp-argos:
+    url: https://github.com/hale-bopp-data/hale-bopp-argos
+    visibility: public
+    sync: primary
