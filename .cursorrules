@@ -2,6 +2,10 @@
 
 > Questo repo e la FONTE DI VERITA per tutta la documentazione della piattaforma EasyWay.
 
+## Source of Truth
+- **Il remote primario e Azure DevOps** (`dev.azure.com/EasyWayData`). PR, branch, CI/CD: TUTTO su ADO.
+- **GitHub e SOLO un mirror read-only** — alimentato dalla pipeline GitHubMirror. MAI creare PR, push o branch su GitHub.
+
 ## Identita
 - **Cosa**: Wiki, guide operative, chronicles, standard, planning, schede repo
 - **Linguaggio**: Markdown con frontmatter YAML

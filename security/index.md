@@ -40,6 +40,7 @@ Documentazione completa di sicurezza EasyWayDataPortal.
 
 | Documento | Quando usare | Tempo lettura |
 |-----------|--------------|---------------|
+| **[Testudo Formation](./testudo-formation.md)** | Deploy defense system — 4 badge indipendenti | 10 min |
 | **[Security Framework (RBAC)](./security/threat-analysis-hardening.md)** | Setup server, gestione utenti | 15 min |
 | **[Threat Analysis & Hardening](./threat-analysis-hardening.md)** | Implementare difese server | 15 min |
 | **[Segreti e Accessi](./segreti-e-accessi.md)** | Gestione credenziali, KeyVault | 5 min |
@@ -85,6 +86,12 @@ Documentazione completa di sicurezza EasyWayDataPortal.
 3. ✅ Testa: Prompt injection resistance
 4. ✅ Verifica: [Agent Security (IAM)](../../../scripts/Wiki/EasyWayData.wiki/security/agent-security-iam.md) per KeyVault
 
+### "Devo fare deploy in produzione"
+1. Leggi: [Testudo Formation](./testudo-formation.md) — architettura 4 badge
+2. Segui: [Deploy Quest Guide](../guides/deploy-quest-testudo-ii.md) — ricette operative
+3. Crea seal via SSH, verifica badge con `deploy-gate.sh --status`
+4. Deploy con `deploy-gate.sh`
+
 ### "Voglio fare penetration test"
 1. ✅ Leggi: [War Game Roadmap](./wargame-roadmap.md)
 2. ⏸️ Aspetta: Prima implementa tutte le difese
@@ -125,6 +132,7 @@ Defense in depth, graceful degradation, nessun single point of failure.
 |------|---------|--------|
 | **Documentation** | ⭐⭐⭐⭐⭐ | Completa e strutturata |
 | **Development Process** | ⭐⭐⭐⭐ | Checklist + hooks integrati |
+| **Deploy Defense (Testudo)** | ⭐⭐⭐⭐⭐ | 4 badge operativi, hook attivi (S91) |
 | **Server Hardening** | ⭐⭐⭐ | Pianificato, da implementare |
 | **AI Security** | ⭐⭐⭐⭐ | Layer 4 attivo, 1-3-5 documentati |
 | **Testing** | ⭐⭐ | War game pianificato per futuro |
