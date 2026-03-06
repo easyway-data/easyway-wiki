@@ -38,10 +38,14 @@ Runbooks/        # Runbook operativi (RAG operations)
 
 ## Connessioni & PAT
 > **Guida completa**: `guides/connection-registry.md` — PAT status, scadenze, rinnovo, routing
-> **PAT file**: `C:\old\.env.local` (4 PAT segregati, mai committare)
+> **Gateway architecture (S88)**: tutte le API call passano via SSH gateway sul server
+> **PAT**: vivono SOLO su server `/opt/easyway/.env.secrets` — NON in locale
+> **Config**: `connections.yaml` sezione `gateway: mode: server`
+> **`.env.local` locale**: solo OPENROUTER_API_KEY e QDRANT (niente PAT)
 
 ## Regole platform-wide
 > **Guida completa**: `guides/polyrepo-git-workflow.md`
 > **GEDI** (dubbi architetturali): `C:\old\easyway\agents\agents\agent_gedi\manifest.json`
 > **Storia e contesto**: `agents/platform-operational-memory.md`
-> **Governance Git**: vedi Sezione 6 della guida polyrepo (regole G1-G11)
+> **Governance Git**: vedi Sezione 6 della guida polyrepo (regole G1-G12)
+> **G12 — PR Target Branch**: se il repo ha branch `develop`, le PR devono passare da li — mai diretto a `main`. Auto-detect dinamico (pipeline + ewctl).
