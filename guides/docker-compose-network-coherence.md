@@ -250,6 +250,77 @@ docker compose -f a.yml -f b.yml -f c.yml -p myproject up --dry-run
 
 ---
 
+## Docker Compose Governance Rules (S87)
+
+> Regole operative per evitare network split, container orfani, e volumi duplicati.
+
+### Regola 1: Project Name Unico
+
+| Chiave | Valore |
+|---|---|
+| **Project name** | `easyway-prod` |
+| **Come** | `COMPOSE_PROJECT_NAME=easyway-prod` nel `.env` di `~/easyway-infra/` |
+| **Perche** | Un solo owner di reti, volumi, container. Cambiare project name crea duplicati orfani |
+
+### Regola 2: Network con `name:` Esplicito
+
+```yaml
+networks:
+  easyway-net:
+    name: easyway-net    # SEMPRE. Mai senza name, mai external: true
+    driver: bridge
+```
+
+### Regola 3: MAI `docker run` per Servizi Compose
+
+| Comando | Quando |
+|---|---|
+| `docker compose -f docker-compose.apps.yml up -d <service>` | Creare/aggiornare un servizio |
+| `docker compose -f docker-compose.apps.yml restart <service>` | Restart senza cambi config |
+| `docker run` | MAI per servizi definiti nel compose. Solo per container one-shot/debug |
+
+**Eccezione S87**: container creati con project name diverso vanno prima migrati. Il docker run e accettabile come bridge temporaneo durante la migrazione.
+
+### Regola 4: Un Solo Compose File per Ambiente
+
+Oggi: `docker-compose.yml` (base) + `docker-compose.apps.yml` (prod) + `docker-compose.prod.yml` (overlay).
+Target: consolidare in `docker-compose.apps.yml` unico per produzione. Meno file = meno rischio di split.
+
+### Regola 5: Verifica Pre-Deploy
+
+Prima di ogni `docker compose up`:
+
+```bash
+# 1. Validate config
+docker compose -f docker-compose.apps.yml config --quiet
+
+# 2. Check network names (must have explicit name:)
+docker compose -f docker-compose.apps.yml config | grep -A2 "^networks:"
+
+# 3. Check project name
+echo $COMPOSE_PROJECT_NAME  # Must be easyway-prod
+```
+
+### Regola 6: Container Inventory Aggiornato
+
+Dopo ogni cambio compose: aggiornare `infrastructure/container-inventory.md` con stato reale.
+
+```bash
+docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
+```
+
+### Anti-Pattern da Evitare
+
+| Anti-Pattern | Conseguenza | Alternativa |
+|---|---|---|
+| `docker run` per servizio compose | Container fuori progetto, nome conflitto | `docker compose up -d <service>` |
+| Cambiare `-p` project name | Volumi orfani, reti duplicate | Sempre `easyway-prod` |
+| `external: true` in overlay | Network split (GEDI Case #25) | `name: easyway-net` |
+| `docker compose up` senza `.env` | Variabili mancanti, fail o default sbagliati | Sempre `source /opt/easyway/.env.secrets` prima |
+| Deploy senza `config --quiet` | Errori YAML silenti | Sempre validare prima |
+
+---
+
 ## Riferimenti
 
 - **PR #294** (easyway-infra): fix strutturale `name: easyway-net`

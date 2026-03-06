@@ -44,3 +44,4 @@ tags: [chronicle, index]
 | 2026-03-05 | [Session 82 — The Cartographer](2026-03-05-session-82-the-cartographer.md) | infrastructure | S82 |
 | 2026-03-05 | [Il Traduttore e l'Hextech](2026-03-05-hextech-deploy.md) | deploy | S84 |
 | 2026-03-06 | [La Grande Pulizia e il Nono Repo](2026-03-06-docker-cleanup-n8n-repo.md) | infrastructure | S86 |
+| 2026-03-06 | [Il Fortino e le Regole](2026-03-06-hardening-governance-session-87.md) | infrastructure | S87 |
