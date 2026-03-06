@@ -49,3 +49,4 @@ tags: [chronicle, index]
 | 2026-03-06 | [La Formazione Testudo e il Connettore](2026-03-06-deploy-quest-openrouter-session-91.md) | infrastructure | S91 |
 | 2026-03-06 | [La Source of Truth e la Presa con Due Etichette](2026-03-06-source-of-truth-session-92.md) | governance | S92 |
 | 2026-03-06 | [La Resurrezione di Qdrant e il Mazzo di Chiavi v2](2026-03-06-s93-qdrant-resurrection.md) | infrastructure | S93 |
+| 2026-03-06 | [L'Allineamento dei Chiavi e il Pattern LLM](2026-03-06-s94-pat-alignment.md) | governance | S94 |
