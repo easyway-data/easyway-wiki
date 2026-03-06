@@ -31,6 +31,32 @@ non autorizzati. L'install script distribuisce l'hook su tutti e 4 i repo server
 
 **PR #384** (easyway-infra) — WI #108.
 
+## Test Live sul Server — La Testudo Funziona
+
+Dopo l'installazione degli hook sui 4 repo server (`install-hooks.sh`), test dal vivo:
+
+```
+$ cd ~/easyway-portal && git checkout feat/test-rogue
+error: Your post-checkout hook blocked this checkout.
+UNAUTHORIZED CHECKOUT BLOCKED — branch 'feat/test-rogue' non autorizzato.
+Reverted to previous HEAD (main).
+Violation logged to /var/log/easyway/unauthorized-deploy.log
+```
+
+Il hook ha:
+1. Bloccato il checkout su un branch non autorizzato
+2. Revertato automaticamente a main
+3. Loggato la violazione con timestamp, branch, caller e parent command
+
+Secondo test — deploy senza seal:
+```
+$ ~/easyway-infra/scripts/deploy-gate.sh
+[Badge 1] DENIED — No deploy seal found at /opt/easyway/.deploy-token
+DEPLOY BLOCKED (missing badges: HUMAN_SEAL)
+```
+
+La formazione tiene. Quattro scudi, nessuna falla.
+
 ## Il BOM Invisibile
 
 Durante la creazione del WI su ADO via SSH, il JSON parsing falliva con
