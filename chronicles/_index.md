@@ -42,3 +42,4 @@ tags: [chronicle, index]
 | 2026-03-05 | [Session 75 — The Uncomfortable Truth](2026-03-05-the-uncomfortable-truth.md) | vision | S75 |
 | 2026-03-05 | [Session 78 — The Installable Engine](2026-03-05-pip-packaging-session-78.md) | milestone | S78 |
 | 2026-03-05 | [Session 82 — The Cartographer](2026-03-05-session-82-the-cartographer.md) | infrastructure | S82 |
+| 2026-03-05 | [Il Traduttore e l'Hextech](2026-03-05-hextech-deploy.md) | deploy | S84 |

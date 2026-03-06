@@ -126,42 +126,104 @@ curl -s "https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/wit/wiql?api
 6. **Merge strategy**: sempre no-fast-forward su branch protetti
 7. **MAX 2 tentativi API** per la stessa azione - se fallisce, fermati e chiedi aiuto
 
-## Ricette comuni
+## Golden Path: da zero a PR (flusso completo per agenti autonomi)
 
-### Creare un PBI e poi una PR
+Questo e' il flusso che OGNI agente deve seguire. Non inventare script, usa questi tool.
+
+### Fase 0: Setup (una volta per sessione)
 
 ```bash
-# 1. Crea il PBI
-npx tsx bin/easyway-ado.ts wi create "Product Backlog Item" "Descrizione del lavoro"
-# Output: Created #103 - Descrizione del lavoro
+# Assicurati di essere nel repo giusto
+cd C:/old/easyway/portal    # o wiki, agents, infra, ado
 
-# 2. Fai il lavoro sul feature branch
-git checkout -b feat/pbi-103-descrizione
-# ... modifiche ...
-git add . && git commit -m "PBI-103: descrizione"
-git push -u origin feat/pbi-103-descrizione
+# Allinea al branch target
+git fetch origin develop && git checkout develop && git pull  # portal
+git fetch origin main && git checkout main && git pull        # tutti gli altri
 
-# 3. Crea la PR linkando il WI
-npx tsx bin/easyway-ado.ts pr create easyway-wiki feat/pbi-103-descrizione --wi 103
+# Crea feature branch
+git checkout -b feat/nome-descrittivo
 ```
 
-### Controllare lo stato prima di lavorare
+### Fase 1: Lavora (codice, CSS, docs...)
 
-```bash
-# Briefing completo
-npx tsx bin/easyway-ado.ts briefing
+Fai le modifiche. Poi commit con ewctl:
 
-# Solo PBI aperti
-npx tsx bin/easyway-ado.ts wi list --type "Product Backlog Item"
-
-# PR attive (ci sono conflitti? qualcuno sta lavorando sugli stessi file?)
-npx tsx bin/easyway-ado.ts pr list
+```powershell
+# ewctl e' PowerShell (NON bash). Chiamalo cosi:
+pwsh -Command "cd C:/old/easyway/portal; Import-Module C:/old/easyway/agents/tools/ewctl/ewctl.psd1; ewctl commit"
 ```
 
-### Chiudere un PBI dopo il merge
+Se ewctl non funziona, usa git diretto (Iron Dome gira come pre-commit hook):
 
 ```bash
-npx tsx bin/easyway-ado.ts wi update 103 --state Done
+cd C:/old/easyway/portal
+git add -A
+git commit -m "feat(ui): descrizione della modifica"
+```
+
+### Fase 2: Crea PBI (Regola del Palumbo — PRIMA del push)
+
+```bash
+# Connettore bash (gestisce $ nell'URL e auth automatica)
+bash C:/old/easyway/agents/scripts/connections/ado.sh wi-create pbi "Titolo del PBI" --tags "UI; S84"
+
+# Output: Created #103 [Product Backlog Item] - Titolo del PBI
+```
+
+NON usare curl diretto per creare WI — il `$` nel tipo viene mangiato dalla shell.
+NON usare `Import-AgentSecrets` — carica secrets infra, non PAT ADO.
+
+### Fase 3: Push + PR
+
+```bash
+# Push
+git push -u origin feat/nome-descrittivo
+
+# PR con curl (specificare repo, source, target, WI)
+B64=$(bash C:/old/easyway/agents/scripts/ado-auth.sh pr)
+
+# Per portal: feat -> develop
+curl -s -X POST \
+  "https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/git/repositories/easyway-portal/pullrequests?api-version=7.1" \
+  -H "Authorization: Basic $B64" \
+  -H "Content-Type: application/json" \
+  -d '{"sourceRefName":"refs/heads/feat/nome-descrittivo","targetRefName":"refs/heads/develop","title":"Titolo PR","description":"PBI #103","workItemRefs":[{"id":"103"}]}'
+
+# Per wiki/agents/infra/ado: feat -> main
+curl -s -X POST \
+  "https://dev.azure.com/EasyWayData/EasyWay-DataPortal/_apis/git/repositories/easyway-wiki/pullrequests?api-version=7.1" \
+  -H "Authorization: Basic $B64" \
+  -H "Content-Type: application/json" \
+  -d '{"sourceRefName":"refs/heads/feat/nome-descrittivo","targetRefName":"refs/heads/main","title":"Titolo PR","description":"PBI #103","workItemRefs":[{"id":"103"}]}'
+```
+
+### Fase 4: STOP — non andare oltre
+
+Dopo aver creato la PR, FERMATI. NON:
+- Approvare la PR (serve ok umano)
+- Mergiare la PR (serve ok umano)
+- Completare la PR (serve ok umano)
+
+Comunica all'utente: PR creata, PBI linkato, pronta per review.
+
+## Ricette rapide
+
+```bash
+# Briefing progetto
+bash C:/old/easyway/agents/scripts/connections/ado.sh healthcheck
+npx --prefix C:/old/easyway/ado tsx C:/old/easyway/ado/bin/easyway-ado.ts briefing
+
+# Lista PBI aperti
+bash C:/old/easyway/agents/scripts/connections/ado.sh wi-search "UI"
+
+# Stati validi per un tipo WI (evita errori 400)
+bash C:/old/easyway/agents/scripts/connections/ado.sh wi-states pbi
+
+# Aggiorna stato WI
+bash C:/old/easyway/agents/scripts/connections/ado.sh wi-update 103 --state Done
+
+# Get WI dettaglio
+bash C:/old/easyway/agents/scripts/connections/ado.sh wi-get 103
 ```
 
 ## Troubleshooting
