@@ -116,9 +116,9 @@ to the correct PAT based on the action scope (principle of least privilege):
 All PATs live in `C:\old\.env.local` (Windows dev) or `/opt/easyway/.env.secrets` (server).
 **Mai committare. Mai hardcodare.**
 
-| Variable | Scopo | Stato (S87) | Note |
+| Variable | Scopo | Stato (S88) | Note |
 |----------|-------|-------------|------|
-| `AZURE_DEVOPS_EXT_PAT` | General (build, branch list, briefing) | **401 — SCADUTO** | Da rinnovare in ADO > User Settings > PAT |
+| `AZURE_DEVOPS_EXT_PAT` | General (build, branch list, briefing) | **OK** | Verificato S88 — 200 su projects, code, build, policy |
 | `ADO_PR_CREATOR_PAT` | PR create/update (Code R/W + PR Contribute) | OK | Usato da `ado-auth.sh pr` |
 | `ADO_WORKITEMS_PAT` | Work Items R/W | OK | Usato da `ado-auth.sh wi` |
 | `AZURE_DEVOPS_WI_PAT` | Alias legacy per Work Items | OK | Stesso scope di `ADO_WORKITEMS_PAT` |
@@ -128,7 +128,7 @@ All PATs live in `C:\old\.env.local` (Windows dev) or `/opt/easyway/.env.secrets
 
 **Come rinnovare un PAT ADO**:
 1. `dev.azure.com/EasyWayData` > User Settings > Personal Access Tokens
-2. Trovare il token scaduto, rigenerare con stessi scope
+2. Trovare il token, rigenerare con stessi scope
 3. Aggiornare `C:\old\.env.local` con il nuovo valore
 4. Se usato su server: aggiornare anche `/opt/easyway/.env.secrets`
 5. Se usato in pipeline: aggiornare Variable Group `EasyWay-Secrets` in ADO
