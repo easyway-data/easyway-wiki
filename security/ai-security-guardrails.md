@@ -1,6 +1,6 @@
 ---
 title: AI Security Guardrails
-tags: [domain/security, layer/reference, audience/dev, audience/architect, privacy/internal, language/it, ai-security, prompt-injection, guardrails, agents]
+tags: [domain/security, layer/reference, audience/dev, audience/architect, privacy/internal, language/it, ai-security, prompt-injection, guardrails, domain/agents]
 status: active
 updated: 2026-01-16
 redaction: []

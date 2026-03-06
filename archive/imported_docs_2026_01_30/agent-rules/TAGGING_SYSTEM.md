@@ -7,7 +7,7 @@ features:
   - hierarchical
   - metadata
 entities: []
-tags: [tagging, metadata, taxonomy, llm-optimization]
+tags: [tagging, metadata, process/taxonomy, llm-optimization]
 id: ew-archive-imported-docs-2026-01-30-agent-rules-tagging-system
 summary: TODO - aggiungere un sommario breve.
 status: draft

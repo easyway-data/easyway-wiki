@@ -3,7 +3,7 @@ title: Agent System Architecture - Complete Overview
 created: 2026-01-18
 updated: 2026-01-18
 status: active
-tags: [agents, architecture, governance, overview, presentation]
+tags: [domain/agents, domain/architecture, process/governance, overview, presentation]
 scope: architecture
 summary: Panoramica completa dell'architettura del sistema agenti EasyWayDataPortal con governance, issue tracking e continuous improvement
 related:

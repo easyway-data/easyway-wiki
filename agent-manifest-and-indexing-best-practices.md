@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-10-18'
 updated: '2025-10-18'
-tags: [best-practices, ai-readiness, universal, domain/control-plane, layer/spec, audience/dev, privacy/internal, language/it]
+tags: [process/best-practices, domain/ai-readiness, universal, domain/control-plane, layer/spec, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
   include: true

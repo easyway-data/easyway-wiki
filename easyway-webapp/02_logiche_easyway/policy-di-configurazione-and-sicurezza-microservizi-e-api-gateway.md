@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, security]
+tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, domain/security]
 llm:
   include: true
   pii: none

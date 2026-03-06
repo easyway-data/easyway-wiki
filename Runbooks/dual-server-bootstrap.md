@@ -4,7 +4,7 @@ title: Bootstrap Dual Server (Oracle Dev/Staging + Hetzner Prod)
 summary: Processo operativo ad alto livello per gestire l'approccio "dual server" e sapere dove recuperare gli artefatti di bootstrap.
 owner: team-platform
 status: draft
-tags: [runbook, ops, infra, language/it]
+tags: [artifact/runbook, domain/ops, domain/infra, language/it]
 created: '2026-01-25'
 updated: '2026-01-25'
 

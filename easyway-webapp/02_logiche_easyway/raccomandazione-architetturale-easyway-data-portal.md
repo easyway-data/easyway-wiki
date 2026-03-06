@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, architecture]
+tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, domain/architecture]
 title: raccomandazione architetturale easyway data portal
 llm:
   include: true

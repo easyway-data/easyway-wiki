@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [artifact-stored-procedure, domain/db, layer/reference, audience/dba, audience/dev, privacy/internal, language/it]
+tags: [artifact/artifact-stored-procedure, domain/db, layer/reference, audience/dba, audience/dev, privacy/internal, language/it]
 llm:
   include: true
   pii: none
@@ -258,7 +258,7 @@ CREATE OR ALTER PROCEDURE PORTAL.sp_debug_register_tenant_and_user
     @email NVARCHAR(255) = 'debuguser+demo@easyway.it',
     @name NVARCHAR(100) = 'Mario',
     @surname NVARCHAR(100) = 'Debug',
-    @password NVARCHAR(255) = 'HASHED_PASSWORD',
+    @password NVARCHAR(255) = '*****',
     @provider NVARCHAR(50) = NULL,
     @provider_user_id NVARCHAR(255) = NULL,
     @created_by NVARCHAR(255) = 'sp_debug_register_tenant_and_user'
@@ -329,7 +329,7 @@ EXEC PORTAL.sp_register_tenant_and_user
     @email = 'admin@acme.it',
     @name = 'Mario',
     @surname = 'Rossi',
-    @password = 'HASHED_PASSWORD',
+    @password = '*****',
     @created_by = 'API_GATEWAY';
 
 ```sql
@@ -340,7 +340,7 @@ EXEC PORTAL.sp_debug_register_tenant_and_user
     @email = 'debug@easyway.it',
     @name = 'Debug',
     @surname = 'User',
-    @password = 'DEBUG_HASH',
+    @password = '*****',
     @created_by = 'DEBUG_TOOL';
 ```sql
 
@@ -593,7 +593,7 @@ CREATE OR ALTER PROCEDURE PORTAL.sp_debug_register_tenant_and_user
     @email NVARCHAR(255) = 'debuguser+demo@easyway.it',
     @name NVARCHAR(100) = 'Mario',
     @surname NVARCHAR(100) = 'Debug',
-    @password NVARCHAR(255) = 'HASHED_PASSWORD',
+    @password NVARCHAR(255) = '*****',
     @provider NVARCHAR(50) = NULL,
     @provider_user_id NVARCHAR(255) = NULL,
     @created_by NVARCHAR(255) = 'sp_debug_register_tenant_and_user'
@@ -664,7 +664,7 @@ EXEC PORTAL.sp_register_tenant_and_user
     @email = 'admin@acme.it',
     @name = 'Mario',
     @surname = 'Rossi',
-    @password = 'HASHED_PASSWORD',
+    @password = '*****',
     @created_by = 'API_GATEWAY';
 
 ```sql
@@ -675,7 +675,7 @@ EXEC PORTAL.sp_debug_register_tenant_and_user
     @email = 'debug@easyway.it',
     @name = 'Debug',
     @surname = 'User',
-    @password = 'DEBUG_HASH',
+    @password = '*****',
     @created_by = 'DEBUG_TOOL';
 ```sql
 
@@ -921,7 +921,7 @@ CREATE OR ALTER PROCEDURE PORTAL.sp_debug_register_tenant_and_user
     @email NVARCHAR(255) = 'debuguser+demo@easyway.it',
     @name NVARCHAR(100) = 'Mario',
     @surname NVARCHAR(100) = 'Debug',
-    @password NVARCHAR(255) = 'HASHED_PASSWORD',
+    @password NVARCHAR(255) = '*****',
     @provider NVARCHAR(50) = NULL,
     @provider_user_id NVARCHAR(255) = NULL,
     @created_by NVARCHAR(255) = 'sp_debug_register_tenant_and_user'
@@ -992,7 +992,7 @@ EXEC PORTAL.sp_register_tenant_and_user
     @email = 'admin@acme.it',
     @name = 'Mario',
     @surname = 'Rossi',
-    @password = 'HASHED_PASSWORD',
+    @password = '*****',
     @created_by = 'API_GATEWAY';
 
 ```sql
@@ -1003,7 +1003,7 @@ EXEC PORTAL.sp_debug_register_tenant_and_user
     @email = 'debug@easyway.it',
     @name = 'Debug',
     @surname = 'User',
-    @password = 'DEBUG_HASH',
+    @password = '*****',
     @created_by = 'DEBUG_TOOL';
 ```sql
 
@@ -1257,7 +1257,7 @@ CREATE OR ALTER PROCEDURE PORTAL.sp_debug_register_tenant_and_user
     @email NVARCHAR(255) = 'debuguser+demo@easyway.it',
     @name NVARCHAR(100) = 'Mario',
     @surname NVARCHAR(100) = 'Debug',
-    @password NVARCHAR(255) = 'HASHED_PASSWORD',
+    @password NVARCHAR(255) = '*****',
     @provider NVARCHAR(50) = NULL,
     @provider_user_id NVARCHAR(255) = NULL,
     @created_by NVARCHAR(255) = 'sp_debug_register_tenant_and_user'
@@ -1328,7 +1328,7 @@ EXEC PORTAL.sp_register_tenant_and_user
     @email = 'admin@acme.it',
     @name = 'Mario',
     @surname = 'Rossi',
-    @password = 'HASHED_PASSWORD',
+    @password = '*****',
     @created_by = 'API_GATEWAY';
 
 ```sql
@@ -1339,7 +1339,7 @@ EXEC PORTAL.sp_debug_register_tenant_and_user
     @email = 'debug@easyway.it',
     @name = 'Debug',
     @surname = 'User',
-    @password = 'DEBUG_HASH',
+    @password = '*****',
     @created_by = 'DEBUG_TOOL';
 ```sql
 
@@ -1592,7 +1592,7 @@ CREATE OR ALTER PROCEDURE PORTAL.sp_debug_register_tenant_and_user
     @email NVARCHAR(255) = 'debuguser+demo@easyway.it',
     @name NVARCHAR(100) = 'Mario',
     @surname NVARCHAR(100) = 'Debug',
-    @password NVARCHAR(255) = 'HASHED_PASSWORD',
+    @password NVARCHAR(255) = '*****',
     @provider NVARCHAR(50) = NULL,
     @provider_user_id NVARCHAR(255) = NULL,
     @created_by NVARCHAR(255) = 'sp_debug_register_tenant_and_user'
@@ -1663,7 +1663,7 @@ EXEC PORTAL.sp_register_tenant_and_user
     @email = 'admin@acme.it',
     @name = 'Mario',
     @surname = 'Rossi',
-    @password = 'HASHED_PASSWORD',
+    @password = '*****',
     @created_by = 'API_GATEWAY';
 
 ```sql
@@ -1674,7 +1674,7 @@ EXEC PORTAL.sp_debug_register_tenant_and_user
     @email = 'debug@easyway.it',
     @name = 'Debug',
     @surname = 'User',
-    @password = 'DEBUG_HASH',
+    @password = '*****',
     @created_by = 'DEBUG_TOOL';
 ```sql
 
@@ -1920,7 +1920,7 @@ CREATE OR ALTER PROCEDURE PORTAL.sp_debug_register_tenant_and_user
     @email NVARCHAR(255) = 'debuguser+demo@easyway.it',
     @name NVARCHAR(100) = 'Mario',
     @surname NVARCHAR(100) = 'Debug',
-    @password NVARCHAR(255) = 'HASHED_PASSWORD',
+    @password NVARCHAR(255) = '*****',
     @provider NVARCHAR(50) = NULL,
     @provider_user_id NVARCHAR(255) = NULL,
     @created_by NVARCHAR(255) = 'sp_debug_register_tenant_and_user'
@@ -1991,7 +1991,7 @@ EXEC PORTAL.sp_register_tenant_and_user
     @email = 'admin@acme.it',
     @name = 'Mario',
     @surname = 'Rossi',
-    @password = 'HASHED_PASSWORD',
+    @password = '*****',
     @created_by = 'API_GATEWAY';
 
 ```sql
@@ -2002,7 +2002,7 @@ EXEC PORTAL.sp_debug_register_tenant_and_user
     @email = 'debug@easyway.it',
     @name = 'Debug',
     @surname = 'User',
-    @password = 'DEBUG_HASH',
+    @password = '*****',
     @created_by = 'DEBUG_TOOL';
 ```sql
 
@@ -2250,7 +2250,7 @@ CREATE OR ALTER PROCEDURE PORTAL.sp_debug_register_tenant_and_user
     @email NVARCHAR(255) = 'debuguser+demo@easyway.it',
     @name NVARCHAR(100) = 'Mario',
     @surname NVARCHAR(100) = 'Debug',
-    @password NVARCHAR(255) = 'HASHED_PASSWORD',
+    @password NVARCHAR(255) = '*****',
     @provider NVARCHAR(50) = NULL,
     @provider_user_id NVARCHAR(255) = NULL,
     @created_by NVARCHAR(255) = 'sp_debug_register_tenant_and_user'
@@ -2321,7 +2321,7 @@ EXEC PORTAL.sp_register_tenant_and_user
     @email = 'admin@acme.it',
     @name = 'Mario',
     @surname = 'Rossi',
-    @password = 'HASHED_PASSWORD',
+    @password = '*****',
     @created_by = 'API_GATEWAY';
 
 ```sql
@@ -2332,7 +2332,7 @@ EXEC PORTAL.sp_debug_register_tenant_and_user
     @email = 'debug@easyway.it',
     @name = 'Debug',
     @surname = 'User',
-    @password = 'DEBUG_HASH',
+    @password = '*****',
     @created_by = 'DEBUG_TOOL';
 ```sql
 
@@ -2585,7 +2585,7 @@ CREATE OR ALTER PROCEDURE PORTAL.sp_debug_register_tenant_and_user
     @email NVARCHAR(255) = 'debuguser+demo@easyway.it',
     @name NVARCHAR(100) = 'Mario',
     @surname NVARCHAR(100) = 'Debug',
-    @password NVARCHAR(255) = 'HASHED_PASSWORD',
+    @password NVARCHAR(255) = '*****',
     @provider NVARCHAR(50) = NULL,
     @provider_user_id NVARCHAR(255) = NULL,
     @created_by NVARCHAR(255) = 'sp_debug_register_tenant_and_user'
@@ -2656,7 +2656,7 @@ EXEC PORTAL.sp_register_tenant_and_user
     @email = 'admin@acme.it',
     @name = 'Mario',
     @surname = 'Rossi',
-    @password = 'HASHED_PASSWORD',
+    @password = '*****',
     @created_by = 'API_GATEWAY';
 
 ```sql
@@ -2667,7 +2667,7 @@ EXEC PORTAL.sp_debug_register_tenant_and_user
     @email = 'debug@easyway.it',
     @name = 'Debug',
     @surname = 'User',
-    @password = 'DEBUG_HASH',
+    @password = '*****',
     @created_by = 'DEBUG_TOOL';
 ```sql
 
@@ -2913,7 +2913,7 @@ CREATE OR ALTER PROCEDURE PORTAL.sp_debug_register_tenant_and_user
     @email NVARCHAR(255) = 'debuguser+demo@easyway.it',
     @name NVARCHAR(100) = 'Mario',
     @surname NVARCHAR(100) = 'Debug',
-    @password NVARCHAR(255) = 'HASHED_PASSWORD',
+    @password NVARCHAR(255) = '*****',
     @provider NVARCHAR(50) = NULL,
     @provider_user_id NVARCHAR(255) = NULL,
     @created_by NVARCHAR(255) = 'sp_debug_register_tenant_and_user'
@@ -2984,7 +2984,7 @@ EXEC PORTAL.sp_register_tenant_and_user
     @email = 'admin@acme.it',
     @name = 'Mario',
     @surname = 'Rossi',
-    @password = 'HASHED_PASSWORD',
+    @password = '*****',
     @created_by = 'API_GATEWAY';
 
 ```sql
@@ -2995,7 +2995,7 @@ EXEC PORTAL.sp_debug_register_tenant_and_user
     @email = 'debug@easyway.it',
     @name = 'Debug',
     @surname = 'User',
-    @password = 'DEBUG_HASH',
+    @password = '*****',
     @created_by = 'DEBUG_TOOL';
 ```sql
 

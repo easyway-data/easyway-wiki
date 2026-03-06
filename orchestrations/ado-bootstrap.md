@@ -2,7 +2,7 @@
 include: true
 owner: team-platform
 id: ado-bootstrap
-tags: [orchestration, ado, domain/control-plane, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it]
+tags: [domain/orchestration, domain/ado, domain/control-plane, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it]
 status: active
 title: Orchestration - ADO Bootstrap
 updated: 2026-01-16

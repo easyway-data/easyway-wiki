@@ -8,7 +8,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, artifact-stored-procedure, access-control]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, artifact/artifact-stored-procedure, access-control]
   - artifact/stored-procedure
 title: section access
 llm:

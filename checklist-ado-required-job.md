@@ -1,6 +1,6 @@
 ---
 title: ADO - Segnare un job come Required nelle PR
-tags: [ado, branch-policies, governance, domain/control-plane, layer/gate, audience/dev, audience/ops, privacy/internal, language/it, ci]
+tags: [domain/ado, branch-policies, process/governance, domain/control-plane, layer/gate, audience/dev, audience/ops, privacy/internal, language/it, domain/ci]
 status: active
 updated: 2026-02-20
 id: ew-checklist-ado-required-job

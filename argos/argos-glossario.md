@@ -4,7 +4,7 @@ title: ARGOS – Glossario Unificato (v1)
 summary: Glossario unificato dei termini, acronimi e definizioni chiave del framework ARGOS (es. Decision Trace, Noise Budget).
 status: active
 owner: team-platform
-tags: [argos, dq, agents, domain/control-plane, layer/reference, audience/non-expert, audience/dev, privacy/internal, language/it]
+tags: [domain/argos, domain/dq, domain/agents, domain/control-plane, layer/reference, audience/non-expert, audience/dev, privacy/internal, language/it]
 llm:
   include: true
   pii: none

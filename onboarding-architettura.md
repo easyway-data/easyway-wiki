@@ -4,7 +4,7 @@ title: EasyWay Data Portal — Onboarding & Architettura (Sintesi Unificata)
 summary: 'Documento su EasyWay Data Portal — Onboarding & Architettura (Sintesi Unificata).'
 status: active
 owner: team-platform
-tags: [domain/docs, layer/index, audience/non-expert, audience/dev, privacy/internal, language/it, onboarding, architecture, docs]
+tags: [domain/docs, layer/index, audience/non-expert, audience/dev, privacy/internal, language/it, domain/onboarding, domain/architecture, artifact/documentation]
 llm:
   include: true
   pii: none

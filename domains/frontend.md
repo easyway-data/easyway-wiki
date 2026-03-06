@@ -4,7 +4,7 @@ title: Dominio Frontend
 summary: Definizione del dominio Frontend: UI guidata per intent, UX "one-button", integrazione auth e dashboard operative.
 status: active
 owner: team-frontend
-tags: [domain/frontend, layer/reference, audience/dev, audience/non-expert, privacy/internal, language/it, agents, ux]
+tags: [domain/frontend, layer/reference, audience/dev, audience/non-expert, privacy/internal, language/it, domain/agents, domain/ux]
 llm:
   include: true
   pii: none

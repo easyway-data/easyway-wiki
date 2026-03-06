@@ -3,7 +3,7 @@ title: "Session 87 — Il Fortino e le Regole"
 date: 2026-03-06
 category: infrastructure
 session: S87
-tags: [hardening, docker-compose, governance, n8n, deploy, security]
+tags: [hardening, tech/docker-compose, process/governance, domain/n8n, domain/deploy, domain/security]
 ---
 
 # Session 87 — Il Fortino e le Regole

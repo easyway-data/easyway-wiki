@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, META/Privacy-Internal]
+tags: [layer/index, meta/privacy-internal]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with META/Privacy-Internal

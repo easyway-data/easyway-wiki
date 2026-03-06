@@ -4,7 +4,7 @@ title: Best Practice Operative e Integrazione
 summary: Documento su integrazione delle best-practice enterprise in EasyWayDataPortal.
 status: active
 owner: team-platform
-tags: [domain/control-plane, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, docs, dr, best-practices]
+tags: [domain/control-plane, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, artifact/documentation, domain/dr, process/best-practices]
 llm:
   include: true
   pii: none

@@ -7,7 +7,7 @@ features:
   - debugging
   - common-issues
 entities: []
-tags: [troubleshoot, faq, ado, pbi, export]
+tags: [troubleshoot, artifact/faq, domain/ado, pbi, export]
 id: ew-archive-imported-docs-2026-01-30-agent-rules-qa-troubleshooting
 summary: TODO - aggiungere un sommario breve.
 status: draft

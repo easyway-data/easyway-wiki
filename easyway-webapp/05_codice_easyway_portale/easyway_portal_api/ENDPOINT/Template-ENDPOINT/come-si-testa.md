@@ -1,7 +1,7 @@
 ---
 id: ew-come-si-testa
 title: come si testa
-tags: [domain/control-plane, layer/howto, audience/dev, privacy/internal, language/it, api, testing]
+tags: [domain/control-plane, layer/howto, audience/dev, privacy/internal, language/it, domain/api, domain/testing]
 owner: team-platform
 summary: 'Documento su come si testa.'
 status: active

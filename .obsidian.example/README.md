@@ -4,7 +4,7 @@ title: Obsidian Vault Template (README)
 summary: Istruzioni per usare .obsidian.example come template locale senza committare configurazioni personali.
 status: active
 owner: team-platform
-tags: [domain/docs, layer/reference, audience/dev, privacy/internal, language/it, obsidian]
+tags: [domain/docs, layer/reference, audience/dev, privacy/internal, language/it, domain/obsidian]
 llm:
   include: true
   pii: none

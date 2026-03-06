@@ -1,6 +1,6 @@
 ---
 title: EnforcerCheck - Guardrail allowed_paths in CI
-tags: [ci, guardrail, governance, domain/control-plane, layer/spec, audience/dev, privacy/internal, language/it]
+tags: [domain/ci, guardrail, process/governance, domain/control-plane, layer/spec, audience/dev, privacy/internal, language/it]
 status: active
 updated: 2026-02-20
 id: ew-enforcer-guardrail

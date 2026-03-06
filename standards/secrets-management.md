@@ -1,6 +1,6 @@
 ---
 owner: team-security
-tags: [domain/docs, layer/spec, audience/dev, privacy/internal, language/it, secrets, security]
+tags: [domain/docs, layer/spec, audience/dev, privacy/internal, language/it, domain/secrets, domain/security]
 status: active
 title: Standard Gestione Segreti (Azure Key Vault)
 summary: Linee guida per la gestione sicura dei segreti tramite Azure Key Vault e naming convention.

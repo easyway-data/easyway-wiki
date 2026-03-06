@@ -4,7 +4,7 @@ title: Deploy su Azure App Service – Pipeline & Variabili
 summary: Guida operativa per il deploy dell’API su App Service con slot e swap controllato
 status: active
 owner: team-platform
-tags: [deploy, azure, pipeline, domain/control-plane, layer/runbook, audience/ops, audience/dev, privacy/internal, language/it]
+tags: [domain/deploy, azure, domain/pipeline, domain/control-plane, layer/runbook, audience/ops, audience/dev, privacy/internal, language/it]
 llm:
   include: true
   pii: none

@@ -8,7 +8,7 @@ status: active
 owner: team-data
 created: '2025-01-01'
 updated: '2026-01-05'
-tags: [artifact-stored-procedure, domain/db, layer/index, audience/dba, audience/dev, privacy/internal, language/it]
+tags: [artifact/artifact-stored-procedure, domain/db, layer/index, audience/dba, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
   include: true

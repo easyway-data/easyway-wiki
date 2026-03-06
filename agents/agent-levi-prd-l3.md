@@ -3,7 +3,7 @@ id: ew-agents-agent-levi-prd-l3
 title: "PRD L3 — Agent Levi (The Sovereign Cleaner)"
 status: active
 owner: team-platform
-tags: [agent, domain/docs, layer/arm, level/L3, prd]
+tags: [domain/agents, domain/docs, layer/arm, level/L3, artifact/prd]
 created: 2026-02-24
 updated: 2026-02-24
 llm:

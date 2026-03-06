@@ -1,6 +1,6 @@
 ---
 title: Roadmap agent (retrieval, observability, infra, backend, release)
-tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, agents, rag, observability, infra]
+tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, domain/agents, domain/rag, domain/observability, domain/infra]
 status: active
 updated: 2026-02-12
 redaction: [email, phone, token]

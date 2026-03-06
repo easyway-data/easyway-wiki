@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, DOMAIN/DataLake]
+tags: [layer/index, domain/datalake]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with DOMAIN/DataLake

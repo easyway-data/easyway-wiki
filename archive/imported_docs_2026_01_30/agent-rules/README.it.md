@@ -7,7 +7,7 @@ features:
   - getting-started
   - architecture
 entities: []
-tags: [reference, overview, kernel, agents, ado]
+tags: [reference, overview, kernel, domain/agents, domain/ado]
 id: ew-archive-imported-docs-2026-01-30-agent-rules-readme-it
 summary: TODO - aggiungere un sommario breve.
 status: draft

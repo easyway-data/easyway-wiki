@@ -4,7 +4,7 @@ title: Docs DQ Kanban - Confluence Cloud (WHAT)
 summary: Export read-only da Confluence Cloud + creazione/aggiornamento pagina Kanban dedicata (HITL, WhatIf di default) per la DQ della documentazione.
 status: draft
 owner: team-platform
-tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, confluence, dq, kanban, governance]
+tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, confluence, domain/dq, process/kanban, process/governance]
 llm:
   redaction: [email, phone]
   include: true

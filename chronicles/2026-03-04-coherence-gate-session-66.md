@@ -3,7 +3,7 @@ title: "Session 66 — The Coherence Gate"
 date: 2026-03-04
 category: infrastructure
 session: S66
-tags: [docker, deploy, network, coherence-gate, gedi, cleanup]
+tags: [domain/docker, domain/deploy, network, coherence-gate, domain/gedi, process/cleanup]
 ---
 
 # Session 66 — The Coherence Gate

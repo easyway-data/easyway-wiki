@@ -3,7 +3,7 @@ title: "Session 73 — HALE-BOPP Online"
 date: 2026-03-05
 category: milestone
 session: S73
-tags: [hale-bopp, deploy, systemd, connection-registry, etl, infrastructure]
+tags: [domain/hale-bopp, domain/deploy, domain/systemd, connection-registry, domain/etl, domain/infrastructure]
 ---
 
 # Session 73 — HALE-BOPP Online

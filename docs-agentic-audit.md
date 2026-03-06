@@ -1,6 +1,6 @@
 ---
 title: Documentazione Agentica - Audit & Policy (Canonico)
-tags: [docs, governance, agentic, audit, policy, domain/docs, layer/spec, audience/dev, privacy/internal, language/it]
+tags: [artifact/documentation, process/governance, domain/agentic, domain/audit, domain/policy, domain/docs, layer/spec, audience/dev, privacy/internal, language/it]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

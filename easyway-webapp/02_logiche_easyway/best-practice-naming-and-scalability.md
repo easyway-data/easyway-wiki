@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/docs, layer/reference, audience/dev, privacy/internal, language/it, best-practices, naming, scalability]
+tags: [domain/docs, layer/reference, audience/dev, privacy/internal, language/it, process/best-practices, process/naming, scalability]
 llm:
   include: true
   pii: none

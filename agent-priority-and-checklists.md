@@ -1,6 +1,6 @@
 ---
 title: Agent Priority Rules e Checklists (human-in-the-loop)
-tags: [agents, governance, docs, domain/control-plane, layer/reference, audience/dev, privacy/internal, language/it]
+tags: [domain/agents, process/governance, artifact/documentation, domain/control-plane, layer/reference, audience/dev, privacy/internal, language/it]
 status: active
 updated: 2026-02-20
 id: ew-agent-priority-and-checklists

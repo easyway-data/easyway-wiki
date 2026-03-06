@@ -4,7 +4,7 @@ title: Agent-First Architecture con Vector Database
 summary: Architettura completa del portale EasyWay dove tutte le operazioni passano attraverso agent che interrogano un vector database (Azure AI Search) per knowledge retrieval, eliminando la necessità di query dirette dall'utente.
 owner: team-platform, team-architecture
 status: active
-tags: [domain/control-plane, layer/reference, audience/architect, audience/dev, privacy/internal, language/it, agents, vector-db, rag, azure-ai-search]
+tags: [domain/control-plane, layer/reference, audience/architect, audience/dev, privacy/internal, language/it, domain/agents, domain/vector-db, domain/rag, azure-ai-search]
 llm:
   include: true
   pii: none

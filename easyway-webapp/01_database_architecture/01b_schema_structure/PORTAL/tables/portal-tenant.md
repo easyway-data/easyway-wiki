@@ -4,7 +4,7 @@ title: db-table-portal-tenant
 summary: Anagrafica tenant (identità, stato e metadati di onboarding).
 status: draft
 owner: team-data
-tags: [domain/db, layer/reference, audience/dev, audience/dba, audience/non-expert, privacy/internal, language/it, multi-tenant]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, audience/non-expert, privacy/internal, language/it, domain/multi-tenant]
 llm:
   include: true
   pii: none

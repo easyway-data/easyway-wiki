@@ -6,7 +6,7 @@ status: draft
 type: prd
 category: agents
 domain: infrastructure
-tags: [agents, prd, level3, infra, terraform, evaluator-optimizer, working-memory, drift-check]
+tags: [domain/agents, artifact/prd, level3, domain/infra, terraform, process/evaluator-optimizer, working-memory, drift-check]
 priority: high
 audience:
   - agent-developers

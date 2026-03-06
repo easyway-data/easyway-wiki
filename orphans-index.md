@@ -4,7 +4,7 @@ summary: Pagine della Wiki senza link in ingresso/uscita (degree=0), per collega
 id: ew-orphans-index
 status: draft
 owner: team-platform
-tags: [domain/docs, layer/index, audience/dev, privacy/internal, language/it, docs]
+tags: [domain/docs, layer/index, audience/dev, privacy/internal, language/it, artifact/documentation]
 llm:
   chunk_hint: 250-400
   redaction: [email, phone]

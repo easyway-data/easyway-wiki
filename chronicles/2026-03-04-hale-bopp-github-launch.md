@@ -3,7 +3,7 @@ title: "Session 72 — HALE-BOPP GitHub Launch"
 date: 2026-03-04
 category: milestone
 session: S72
-tags: [hale-bopp, github, open-source, ci-cd]
+tags: [domain/hale-bopp, domain/github, open-source, domain/ci-cd]
 ---
 
 # HALE-BOPP GitHub Launch

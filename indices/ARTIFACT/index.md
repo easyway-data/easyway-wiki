@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, ARTIFACT/Index]
+tags: [layer/index, artifact/index]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with ARTIFACT/Index

@@ -4,7 +4,7 @@ title: DB Drift Check (WHAT)
 summary: Verifica la conformità degli oggetti database (tabelle, stored procedure) rispetto alla configurazione attesa, generando un report delle discrepanze (drift). Utile per gate di governance.
 status: active
 owner: team-data
-tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, quality, drift]
+tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, process/quality, drift]
 llm:
   include: true
   pii: none

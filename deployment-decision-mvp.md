@@ -4,7 +4,7 @@ title: Deployment decision (MVP) — EasyWay Data Portal
 summary: Decisione MVP di deploy (App Service o Container Apps) con motivazioni, link canonici e flag/gates CI necessari per un rilascio governato.
 status: active
 owner: team-platform
-tags: [docs, domain/control-plane, layer/spec, audience/non-expert, audience/ops, audience/dev, privacy/internal, language/it, decision]
+tags: [artifact/documentation, domain/control-plane, layer/spec, audience/non-expert, audience/ops, audience/dev, privacy/internal, language/it, decision]
 llm:
   include: true
   pii: none

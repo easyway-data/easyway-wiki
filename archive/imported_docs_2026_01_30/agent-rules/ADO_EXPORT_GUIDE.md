@@ -8,7 +8,7 @@ features:
   - export-print
   - pipeline
 entities: []
-tags: [ado, query, export, pbi, pipeline]
+tags: [domain/ado, query, export, pbi, domain/pipeline]
 id: ew-archive-imported-docs-2026-01-30-agent-rules-ado-export-guide
 summary: TODO - aggiungere un sommario breve.
 status: draft

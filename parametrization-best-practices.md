@@ -4,7 +4,7 @@ title: Parametrizzazione – Best Practices
 summary: Evitare hardcoded; usare env/variabili YAML e gates condizionati
 status: active
 owner: team-platform
-tags: [best-practice, config, domain/control-plane, layer/reference, audience/dev, audience/ops, privacy/internal, language/it]
+tags: [process/best-practices, config, domain/control-plane, layer/reference, audience/dev, audience/ops, privacy/internal, language/it]
 llm:
   include: true
   pii: none

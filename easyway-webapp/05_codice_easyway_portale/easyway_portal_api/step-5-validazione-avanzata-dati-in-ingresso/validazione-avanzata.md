@@ -1,7 +1,7 @@
 ---
 id: ew-validazione-avanzata
 title: validazione avanzata
-tags: [domain/control-plane, layer/spec, audience/dev, privacy/internal, language/it, validation, security]
+tags: [domain/control-plane, layer/spec, audience/dev, privacy/internal, language/it, validation, domain/security]
 owner: team-platform
 summary: 'Documento su validazione avanzata.'
 status: active

@@ -1,7 +1,7 @@
 ---
 id: ew-best-practice-scripting
 title: Scripting Best Practice (Cross-platform, PowerShell, Bash)
-tags: [onboarding, devx, scripting, crossplatform, ps1, bash, style, audience/dev, language/it]
+tags: [domain/onboarding, domain/devx, scripting, crossplatform, ps1, tech/bash, style, audience/dev, language/it]
 summary: Linee guida essenziali per scrivere/gestire script agentici portabili nel progetto EasyWay DataPortal.
 status: draft
 owner: team-platform

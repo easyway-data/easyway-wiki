@@ -3,7 +3,7 @@ title: "La Fabbrica — Phase 2 Infra + Phase 3a Il Grande Cleanup"
 date: 2026-03-04
 category: milestone
 session: 57
-tags: [la-fabbrica, polyrepo, migration, infrastructure, cleanup]
+tags: [la-fabbrica, domain/polyrepo, domain/migration, domain/infrastructure, process/cleanup]
 ---
 
 # La Fabbrica — Phase 2 Infra + Phase 3a Il Grande Cleanup

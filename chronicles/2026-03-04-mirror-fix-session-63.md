@@ -3,7 +3,7 @@ title: "Session 63 — The Last Mirror"
 date: 2026-03-04
 category: fix
 session: S63
-tags: [ci-cd, github-mirror, pipeline, polyrepo, cleanup]
+tags: [domain/ci-cd, github-mirror, domain/pipeline, domain/polyrepo, process/cleanup]
 ---
 
 # Session 63 — The Last Mirror

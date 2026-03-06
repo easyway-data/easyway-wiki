@@ -1,6 +1,6 @@
 ---
 title: UX – Usability Checklist (One‑Button)
-tags: [domain/ux, layer/howto, audience/dev, audience/non-expert, privacy/internal, language/it, ux, checklist]
+tags: [domain/ux, layer/howto, audience/dev, audience/non-expert, privacy/internal, language/it, artifact/checklist]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

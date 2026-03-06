@@ -1,7 +1,7 @@
 ---
 id: ew-create-json
 title: create json
-tags: [domain/control-plane, layer/howto, audience/dev, privacy/internal, language/it, configuration]
+tags: [domain/control-plane, layer/howto, audience/dev, privacy/internal, language/it, domain/configuration]
 owner: team-platform
 summary: 'Documento su create json.'
 status: active

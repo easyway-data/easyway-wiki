@@ -3,7 +3,7 @@ title: "Session 67 — Il Mazzo di Chiavi"
 date: 2026-03-04
 category: infrastructure
 session: 67
-tags: [pat, security, gedi, pipeline, deploy, ado-auth]
+tags: [domain/pat, domain/security, domain/gedi, domain/pipeline, domain/deploy, ado-auth]
 ---
 
 # Session 67 — Il Mazzo di Chiavi

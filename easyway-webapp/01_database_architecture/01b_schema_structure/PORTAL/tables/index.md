@@ -4,7 +4,7 @@ title: db-portal-tables-index
 summary: Blueprint/catalogo delle tabelle nello schema PORTAL (derivato da Flyway). Ogni tabella ha una pagina dedicata con scopo, campi logici/fisici e policy (tenanting/PII/RLS).
 status: draft
 owner: team-data
-tags: [domain/db, layer/index, audience/dev, audience/dba, audience/non-expert, privacy/internal, language/it, blueprint]
+tags: [domain/db, layer/index, audience/dev, audience/dba, audience/non-expert, privacy/internal, language/it, artifact/blueprint]
 llm:
   include: true
   pii: none

@@ -1,6 +1,6 @@
 ---
 title: UX Mock – Diario di Bordo (wf.excel-csv-upload)
-tags: [domain/ux, layer/spec, audience/dev, audience/non-expert, privacy/internal, language/it, ux, diary, use-case, argos]
+tags: [domain/ux, layer/spec, audience/dev, audience/non-expert, privacy/internal, language/it, diary, artifact/use-case, domain/argos]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

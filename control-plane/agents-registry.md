@@ -1,6 +1,6 @@
 ---
 title: Agents Registry (owner, domini, intent)
-tags: [domain/control-plane, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, agents, governance, n8n, ewctl, rag]
+tags: [domain/control-plane, layer/reference, audience/dev, audience/ops, privacy/internal, language/it, domain/agents, process/governance, domain/n8n, domain/ewctl, domain/rag]
 status: active
 updated: 2026-01-16
 redaction: [email, phone, token]

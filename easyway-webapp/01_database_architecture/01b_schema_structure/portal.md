@@ -1,7 +1,7 @@
 ---
 id: ew-portal
 title: portal
-tags: [domain/db, layer/spec, audience/dev, audience/dba, privacy/internal, language/it, portal]
+tags: [domain/db, layer/spec, audience/dev, audience/dba, privacy/internal, language/it, domain/portal]
 owner: team-platform
 summary: 'Documento su portal.'
 status: active

@@ -1,6 +1,6 @@
 ---
 title: n8n API Error Triage
-tags: [domain/control-plane, layer/orchestration, audience/dev, privacy/internal, language/it, n8n, api, errors]
+tags: [domain/control-plane, layer/orchestration, audience/dev, privacy/internal, language/it, domain/n8n, domain/api, errors]
 status: active
 updated: 2026-01-16
 redaction: [email, phone, token]

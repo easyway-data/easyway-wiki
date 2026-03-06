@@ -4,7 +4,7 @@ title: DB User Revoke (WHAT)
 summary: Revoca un utente DB in modo governato (WhatIf-by-default) e registra l'operazione per audit e compliance (registry/logs).
 status: active
 owner: team-data
-tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, security, iam]
+tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, domain/security, domain/iam]
 llm:
   include: true
   pii: none

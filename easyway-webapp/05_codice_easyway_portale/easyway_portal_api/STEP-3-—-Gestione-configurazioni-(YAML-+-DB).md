@@ -1,7 +1,7 @@
 ---
 id: ew-step-3---gestione-configurazioni-(yaml-+-db)
 title: STEP 3 - Gestione configurazioni (YAML + DB)
-tags: [domain/control-plane, layer/howto, audience/dev, audience/ops, privacy/internal, language/it, configuration, secrets]
+tags: [domain/control-plane, layer/howto, audience/dev, audience/ops, privacy/internal, language/it, domain/configuration, domain/secrets]
 owner: team-platform
 summary: 'Documento su STEP 3 - Gestione configurazioni (YAML + DB).'
 status: active

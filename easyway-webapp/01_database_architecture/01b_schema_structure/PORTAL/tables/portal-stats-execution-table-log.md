@@ -4,7 +4,7 @@ title: db-table-portal-stats-execution-table-log
 summary: Log per operazioni su tabelle (dettaglio per auditing tecnico).
 status: draft
 owner: team-data
-tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, observability]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, domain/observability]
 llm:
   include: true
   pii: none

@@ -1,7 +1,7 @@
 ---
 id: ew-docs
 title: docs
-tags: [domain/frontend, layer/reference, audience/dev, privacy/internal, language/it, docs]
+tags: [domain/frontend, layer/reference, audience/dev, privacy/internal, language/it, artifact/documentation]
 owner: team-platform
 summary: 'Documento su docs.'
 status: active

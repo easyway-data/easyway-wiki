@@ -1,7 +1,7 @@
 ---
 id: ew-policy-api-store-procedure-easyway-data-portal
 title: policy api store procedure easyway data portal
-tags: [domain/control-plane, layer/spec, audience/dev, audience/dba, privacy/internal, language/it, policy, api, stored-procedure]
+tags: [domain/control-plane, layer/spec, audience/dev, audience/dba, privacy/internal, language/it, domain/policy, domain/api, stored-procedure]
 owner: team-platform
 summary: 'Documento su policy api store procedure easyway data portal.'
 status: active

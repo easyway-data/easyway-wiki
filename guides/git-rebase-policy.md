@@ -2,7 +2,7 @@
 title: "Git Rebase Policy — Quando e Come"
 date: 2026-03-04
 category: devops
-tags: [git, rebase, policy, best-practice, gedi]
+tags: [domain/git, rebase, domain/policy, process/best-practices, domain/gedi]
 gedi_case: 22
 ---
 

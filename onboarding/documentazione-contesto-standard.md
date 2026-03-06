@@ -1,7 +1,7 @@
 ---
 id: ew-docs-contesto-standard
 title: Documentazione - Contesto standard (obbligatorio)
-tags: [onboarding, devx, docs, governance, agentic, audience/dev, language/it]
+tags: [domain/onboarding, domain/devx, artifact/documentation, process/governance, domain/agentic, audience/dev, language/it]
 summary: Pattern minimo per rendere ogni pagina auto-consistente e usabile da umani e agenti (source-of-truth, comandi, artefatti, gate, osservabilità).
 status: draft
 owner: team-platform

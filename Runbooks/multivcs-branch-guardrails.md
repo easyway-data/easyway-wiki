@@ -5,7 +5,7 @@ summary: Runbook operativo per impostare e verificare guardrail robusti su branc
 status: active
 owner: team-platform
 updated: 2026-02-15
-tags: [runbook, guardrail, git, ado, github, forgejo, governance, language/it, audience/dev, audience/ops]
+tags: [artifact/runbook, guardrail, domain/git, domain/ado, domain/github, domain/forgejo, process/governance, language/it, audience/dev, audience/ops]
 entities: []
 llm:
   include: true

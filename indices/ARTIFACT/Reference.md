@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, ARTIFACT/Reference]
+tags: [layer/index, artifact/reference]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with ARTIFACT/Reference

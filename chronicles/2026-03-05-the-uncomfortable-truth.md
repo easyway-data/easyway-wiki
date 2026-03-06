@@ -3,7 +3,7 @@ title: "The Uncomfortable Truth"
 date: 2026-03-05
 category: vision
 session: S75
-tags: [manifesto, product-map, competitive-analysis, philosophy, easyway-ado, mcp]
+tags: [manifesto, product-map, competitive-analysis, philosophy, easyway-ado, domain/mcp]
 ---
 
 # S75 — The Uncomfortable Truth

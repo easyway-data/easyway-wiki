@@ -6,7 +6,7 @@ status: active
 owner: team-platform
 created: '2026-03-05'
 updated: '2026-03-05'
-tags: [hale-bopp-argos, repos, circle-1, domain/policy, layer/engine, audience/dev, privacy/public, language/it]
+tags: [hale-bopp-argos, process/repos, circle-1, domain/policy, layer/engine, audience/dev, privacy/public, language/it]
 entities: []
 llm:
   include: true

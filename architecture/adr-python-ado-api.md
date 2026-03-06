@@ -6,7 +6,7 @@ status: accepted
 owner: team-platform
 created: '2026-03-05'
 updated: '2026-03-05'
-tags: [easyway-ado, easyway-agents, architecture, adr, domain/tooling, layer/sdk, audience/dev, privacy/internal, language/it]
+tags: [easyway-ado, easyway-agents, domain/architecture, artifact/adr, domain/tooling, layer/sdk, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
   include: true

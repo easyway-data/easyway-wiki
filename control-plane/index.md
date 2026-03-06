@@ -1,6 +1,6 @@
 ---
 title: Control Plane - Panoramica
-tags: [domain/control-plane, layer/index, audience/dev, audience/ops, privacy/internal, language/it, control-plane, orchestration, governance, n8n]
+tags: [domain/control-plane, layer/index, audience/dev, audience/ops, privacy/internal, language/it, control-plane, domain/orchestration, process/governance, domain/n8n]
 status: active
 updated: 2026-01-16
 redaction: []

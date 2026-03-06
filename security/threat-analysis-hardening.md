@@ -4,7 +4,7 @@ title: Threat Analysis & Hardening Plan
 summary: Analisi approfondita delle minacce di sicurezza (attacchi hacker esterni e agenti AI compromessi) con piano di hardening e contromisure prioritizzate
 status: active
 owner: team-platform
-tags: [domain/security, layer/reference, audience/ops, audience/admin, privacy/internal, language/it, security, hardening, threat-model]
+tags: [domain/security, layer/reference, audience/ops, audience/admin, privacy/internal, language/it, hardening, threat-model]
 llm:
   include: true
   pii: none

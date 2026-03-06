@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, DOMAIN/Agents]
+tags: [layer/index, domain/agents]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with DOMAIN/Agents

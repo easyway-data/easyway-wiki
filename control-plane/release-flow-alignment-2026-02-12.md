@@ -1,6 +1,6 @@
 ---
 title: Release Flow Alignment 2026-02-12 (Agent Release)
-tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, release, git, workflow, agents]
+tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, process/release, domain/git, process/workflow, domain/agents]
 status: active
 updated: 2026-02-12
 redaction: [email, phone]

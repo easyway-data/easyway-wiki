@@ -1,6 +1,6 @@
 ---
 title: Tag Taxonomy (Controllata)
-tags: [domain/docs, layer/spec, audience/dev, privacy/internal, language/it, taxonomy]
+tags: [domain/docs, layer/spec, audience/dev, privacy/internal, language/it, process/taxonomy]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

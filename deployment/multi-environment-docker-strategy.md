@@ -1,6 +1,6 @@
 ---
 title: Multi-Environment Docker Strategy (DEV / CERT / PROD)
-tags: [domain/deployment, layer/spec, audience/ops, audience/dev, privacy/internal, language/it, docker, environments, dev, cert, prod]
+tags: [domain/deployment, layer/spec, audience/ops, audience/dev, privacy/internal, language/it, domain/docker, environments, dev, cert, prod]
 status: active
 updated: 2026-02-27
 id: ew-deployment-multi-environment-docker-strategy

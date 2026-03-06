@@ -4,7 +4,7 @@ title: Oracle Cloud Agent - Software Bill of Materials (SBOM)
 summary: Inventario completo di tutti i software installati sul server Oracle Cloud.
 status: active
 owner: team-platform
-tags: [infrastructure, oracle-cloud, inventory, compliance, sbom]
+tags: [domain/infrastructure, domain/oracle-cloud, artifact/inventory, domain/compliance, sbom]
 updated: 2026-01-26
 llm:
   include: true

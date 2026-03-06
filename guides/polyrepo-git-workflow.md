@@ -5,7 +5,7 @@ updated: 2026-03-05
 status: active
 category: guides
 domain: infrastructure
-tags: [git, polyrepo, workflow, governance, pr, branch, domain/platform, layer/how-to, audience/dev, audience/agent, privacy/internal, language/it]
+tags: [domain/git, domain/polyrepo, process/workflow, process/governance, process/pr, domain/branch, domain/platform, layer/how-to, audience/dev, audience/agent, privacy/internal, language/it]
 entities: [easyway-portal, easyway-wiki, easyway-agents, easyway-infra, easyway-ado]
 llm:
   include: true

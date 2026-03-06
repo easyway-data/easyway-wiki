@@ -1,6 +1,6 @@
 ---
 title: Domini - Panoramica
-tags: [domain/docs, layer/index, audience/dev, audience/non-expert, privacy/internal, language/it, domains, agents, governance]
+tags: [domain/docs, layer/index, audience/dev, audience/non-expert, privacy/internal, language/it, domains, domain/agents, process/governance]
 status: active
 updated: 2026-01-16
 redaction: []

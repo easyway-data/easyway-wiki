@@ -4,7 +4,7 @@ title: ARGOS – Change & Versioning (v1)
 summary: Guida al versionamento SemVer e al rollout controllato (Shadow/Canary/A-B) per le policy e i componenti ARGOS.
 status: active
 owner: team-platform
-tags: [argos, dq, agents, domain/control-plane, layer/spec, audience/dev, privacy/internal, language/it, versioning]
+tags: [domain/argos, domain/dq, domain/agents, domain/control-plane, layer/spec, audience/dev, privacy/internal, language/it, versioning]
 llm:
   include: true
   pii: none

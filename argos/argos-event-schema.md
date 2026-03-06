@@ -4,7 +4,7 @@ title: ARGOS – Event Schema Addendum (v1)
 summary: Specifica degli eventi canonici emessi da ARGOS (es. argos.run.completed, argos.gate.decision) per l'integrazione nel Correlation Fabric.
 status: active
 owner: team-platform
-tags: [argos, dq, agents, domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, event]
+tags: [domain/argos, domain/dq, domain/agents, domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, event]
 llm:
   include: true
   pii: none

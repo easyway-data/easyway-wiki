@@ -4,7 +4,7 @@ title: DB Generate Docs (WHAT)
 summary: Rigenera artefatti di documentazione DB (diagramma JSON, indici Wiki) in modo governato e sincronizzato con lo stato reale del database.
 status: active
 owner: team-data
-tags: [domain/db, layer/orchestration, audience/dev, audience/dba, privacy/internal, language/it, docs]
+tags: [domain/db, layer/orchestration, audience/dev, audience/dba, privacy/internal, language/it, artifact/documentation]
 llm:
   include: true
   pii: none

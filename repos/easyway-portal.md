@@ -6,7 +6,7 @@ status: active
 owner: team-platform
 created: '2026-03-05'
 updated: '2026-03-05'
-tags: [easyway-portal, repos, circle-3, domain/portal, layer/application, audience/dev, privacy/internal, language/it]
+tags: [easyway-portal, process/repos, circle-3, domain/portal, layer/application, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
   include: true

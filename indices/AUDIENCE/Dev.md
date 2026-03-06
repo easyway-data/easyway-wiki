@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, AUDIENCE/Dev]
+tags: [layer/index, audience/dev]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with AUDIENCE/Dev

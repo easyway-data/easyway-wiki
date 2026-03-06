@@ -3,7 +3,7 @@ title: "Session 71 — The Hardening"
 date: 2026-03-04
 category: infrastructure
 session: S71
-tags: [branch-protection, pipeline, ci-cd, ado, github, governance]
+tags: [branch-protection, domain/pipeline, domain/ci-cd, domain/ado, domain/github, process/governance]
 ---
 
 # Session 71 — The Hardening

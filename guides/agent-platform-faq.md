@@ -5,7 +5,7 @@ updated: 2026-02-19
 status: active
 category: guide
 domain: platform
-tags: [faq, qa, agents, secrets, l2, l3, rag, qdrant, deepseek, troubleshooting]
+tags: [artifact/faq, qa, domain/agents, domain/secrets, l2, l3, domain/rag, domain/qdrant, deepseek, troubleshooting]
 priority: high
 audience: [platform-engineers, agent-developers, ops]
 ---

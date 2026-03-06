@@ -4,7 +4,7 @@ title: db-table-portal-section-access
 summary: Autorizzazioni per sezione/funzionalità (ACL) per profilo/tenant.
 status: draft
 owner: team-data
-tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, security]
+tags: [domain/db, layer/reference, audience/dev, audience/dba, privacy/internal, language/it, domain/security]
 llm:
   include: true
   pii: none

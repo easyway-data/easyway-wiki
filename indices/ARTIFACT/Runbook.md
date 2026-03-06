@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, ARTIFACT/Runbook]
+tags: [layer/index, artifact/runbook]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with ARTIFACT/Runbook

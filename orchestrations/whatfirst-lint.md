@@ -4,7 +4,7 @@ title: WHAT-first Lint (WHAT)
 summary: Lint dei requisiti WHAT-first (manifest/intents/ux_prompts) con report machine-readable.
 status: draft
 owner: team-platform
-tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, governance, lint]
+tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, process/governance, lint]
 llm:
   include: true
   pii: none

@@ -4,7 +4,7 @@ title: DB Migrate (SQL Diretto) (WHAT)
 summary: Esegue migrazione database su target in modo governato (con approvazione human-in-the-loop per produzione) usando approccio Git + SQL diretto e produce esito strutturato per audit.
 status: active
 owner: team-data
-tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, migration, sql]
+tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, domain/migration, tech/sql]
 llm:
   include: true
   pii: none

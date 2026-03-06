@@ -8,7 +8,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [artifact-function, domain/db, layer/reference, audience/dba, privacy/internal, language/it]
+tags: [artifact/artifact-function, domain/db, layer/reference, audience/dba, privacy/internal, language/it]
   - artifact/function
 title: function
 llm:

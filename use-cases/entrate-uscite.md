@@ -1,6 +1,6 @@
 ---
 title: Use Case – Entrate/Uscite (One‑Button UX)
-tags: [domain/ux, layer/spec, audience/non-expert, audience/dev, privacy/internal, language/it, use-case, ux, argos, agents]
+tags: [domain/ux, layer/spec, audience/non-expert, audience/dev, privacy/internal, language/it, artifact/use-case, domain/argos, domain/agents]
 status: active
 updated: 2026-01-16
 redaction: [email, phone]

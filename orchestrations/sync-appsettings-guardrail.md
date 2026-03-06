@@ -4,7 +4,7 @@ title: Sync AppSettings Guardrail (WHAT)
 summary: Sincronizza App Settings con guardrail e approvazione governance obbligatoria su main/prod.
 status: draft
 owner: team-platform
-tags: [domain/control-plane, layer/orchestration, audience/ops, privacy/internal, language/it, deploy, governance]
+tags: [domain/control-plane, layer/orchestration, audience/ops, privacy/internal, language/it, domain/deploy, process/governance]
 llm:
   include: true
   pii: none

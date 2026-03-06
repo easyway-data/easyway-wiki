@@ -1,7 +1,7 @@
 ---
 id: ew-glossario-errori-faq
 title: Glossario EasyWay & FAQ Errori Tipici
-tags: [onboarding, faq, devx, audience/dev, language/it]
+tags: [domain/onboarding, artifact/faq, domain/devx, audience/dev, language/it]
 summary: Glossario di termini chiave usati in EasyWay DataPortal e soluzioni rapide agli errori più frequenti per chi sviluppa/contribuisce.
 status: draft
 owner: team-platform

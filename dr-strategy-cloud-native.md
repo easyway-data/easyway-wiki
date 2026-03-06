@@ -4,7 +4,7 @@ title: Strategia Cloud-Native Disaster Recovery (approccio operativo)
 summary: Analisi operativa di cosa riusare dagli standard aziendali per DR e cosa aggiungere in EasyWayDataPortal, con deliverable prioritizzati e stima fasi.
 status: active
 owner: team-platform
-tags: [docs, domain/docs, layer/blueprint, audience/ops, audience/dev, privacy/internal, language/it, dr]
+tags: [artifact/documentation, domain/docs, layer/blueprint, audience/ops, audience/dev, privacy/internal, language/it, domain/dr]
 llm:
   include: true
   pii: none

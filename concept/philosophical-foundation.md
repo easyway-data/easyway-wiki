@@ -1,7 +1,7 @@
 ---
 owner: team-platform
 id: ew-philosophical-foundation
-tags: [philosophy, vision, culture, language/it, privacy/internal]
+tags: [philosophy, process/vision, culture, language/it, privacy/internal]
 status: living-document
 title: Fondamenta Filosofiche di EasyWay
 summary: Riflessione filosofica sull'essenza di EasyWay - non una fabbrica di idee, ma un organismo vivente di pensiero incarnato

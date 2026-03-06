@@ -1,6 +1,6 @@
 ---
 title: Security Framework & Enterprise RBAC
-tags: [security, rbac, infrastructure, compliance, audit, acl]
+tags: [domain/security, domain/rbac, domain/infrastructure, domain/compliance, domain/audit, acl]
 category: infrastructure
 related:
   - infra/server-standards

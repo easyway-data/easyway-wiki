@@ -6,7 +6,7 @@ status: active
 owner: team-platform
 created: '2026-03-05'
 updated: '2026-03-06'
-tags: [repos, registry, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
+tags: [process/repos, registry, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
   include: true

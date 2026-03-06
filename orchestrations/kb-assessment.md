@@ -4,7 +4,7 @@ title: KB Assessment (WHAT)
 summary: Verifica la qualità tecnica della Knowledge Base (recipe JSONL, link validi, campi obbligatori) e produce un report di assessment.
 status: active
 owner: team-platform
-tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, kb, governance]
+tags: [domain/docs, layer/orchestration, audience/dev, privacy/internal, language/it, kb, process/governance]
 llm:
   include: true
   pii: none

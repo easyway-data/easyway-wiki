@@ -5,7 +5,7 @@ updated: 2026-02-27T18:00:00Z
 status: active
 category: reference
 domain: platform
-tags: [platform, operations, git, powershell, deploy, secrets, lessons-learned, qdrant, gitea, deepseek, server, ssh]
+tags: [platform, domain/operations, domain/git, tech/powershell, domain/deploy, domain/secrets, lessons-learned, domain/qdrant, domain/gitea, deepseek, server, ssh]
 priority: high
 audience:
   - all-agents

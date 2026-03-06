@@ -5,7 +5,7 @@ updated: 2026-02-17
 status: active
 category: standards
 domain: agents
-tags: [agents, design-patterns, architecture, best-practices, agentic, anthropic, workflow]
+tags: [domain/agents, design-patterns, domain/architecture, process/best-practices, domain/agentic, anthropic, process/workflow]
 priority: critical
 audience:
   - agent-developers

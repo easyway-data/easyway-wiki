@@ -4,7 +4,7 @@ title: Release Preflight Security (WHAT)
 summary: Esegue una batteria di controlli di sicurezza (pre-flight) prima del rilascio in produzione e restituisce un esito strutturato (Pass/Fail).
 status: active
 owner: team-platform
-tags: [domain/control-plane, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it, security, compliance, audit, release]
+tags: [domain/control-plane, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it, domain/security, domain/compliance, domain/audit, process/release]
 llm:
   include: true
   pii: none

@@ -4,7 +4,7 @@ title: Agent Runtime Environment Standard
 summary: Proposal per standardizzare l'esecuzione degli agenti usando Docker e uv, garantendo consistenza tra Local, Oracle e Hetzner.
 owner: team-platform
 status: proposal
-tags: [standard, architecture, python, powershell, docker, domain/docs, layer/spec, audience/dev, privacy/internal, language/it]
+tags: [artifact/standard, domain/architecture, tech/python, tech/powershell, domain/docker, domain/docs, layer/spec, audience/dev, privacy/internal, language/it]
 updated: 2026-01-26
 llm:
   include: true

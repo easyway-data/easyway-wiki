@@ -1,6 +1,6 @@
 ---
 title: Verifica CI – ewctl gates e Flyway (branch non-main)
-tags: [ci, gates, ewctl, flyway, domain/control-plane, layer/gate, audience/dev, audience/ops, privacy/internal, language/it]
+tags: [domain/ci, process/gates, domain/ewctl, domain/flyway, domain/control-plane, layer/gate, audience/dev, audience/ops, privacy/internal, language/it]
 status: active
 id: ew-ci-verifica-ewctl-gates-e-flyway
 summary: Runbook per verificare su branch non-main che i governance gates via ewctl e gli stage Flyway producano gli artifact attesi e logghino correttamente.

@@ -3,7 +3,7 @@ title: "Session 68 — La Grande Potatura"
 date: 2026-03-04
 category: infrastructure
 session: 68
-tags: [branch-cleanup, github-mirror, pat, security, credential-store]
+tags: [branch-cleanup, github-mirror, domain/pat, domain/security, credential-store]
 ---
 
 # Session 68 — La Grande Potatura

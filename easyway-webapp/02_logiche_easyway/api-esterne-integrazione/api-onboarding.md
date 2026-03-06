@@ -6,7 +6,7 @@ status: active
 owner: team-docs
 created: '2025-01-01'
 updated: '2025-01-01'
-tags: [domain/control-plane, layer/reference, audience/dev, privacy/internal, language/it, api, onboarding]
+tags: [domain/control-plane, layer/reference, audience/dev, privacy/internal, language/it, domain/api, domain/onboarding]
 title: api onboarding
 llm:
   include: true

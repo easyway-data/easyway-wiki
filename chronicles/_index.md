@@ -1,7 +1,7 @@
 ---
 title: "Chronicles Index"
 date: 2026-03-03
-tags: [chronicle, index]
+tags: [artifact/chronicle, index]
 ---
 
 # Chronicles — Indice Cronologico

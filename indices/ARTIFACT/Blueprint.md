@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, ARTIFACT/Blueprint]
+tags: [layer/index, artifact/blueprint]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with ARTIFACT/Blueprint

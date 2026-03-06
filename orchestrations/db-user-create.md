@@ -4,7 +4,7 @@ title: DB User Create (WHAT)
 summary: Crea o aggiorna un utente database in modo governato, supportando audit log, rotazione credenziali e integrazione opzionale con Key Vault.
 status: active
 owner: team-data
-tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, security, iam]
+tags: [domain/db, layer/orchestration, audience/dba, privacy/internal, language/it, domain/security, domain/iam]
 llm:
   include: true
   pii: none

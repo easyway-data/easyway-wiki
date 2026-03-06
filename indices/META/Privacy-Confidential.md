@@ -1,5 +1,5 @@
 ---
-tags: [layer/index, META/Privacy-Confidential]
+tags: [layer/index, meta/privacy-confidential]
 updated: 2026-01-16
 owner: team-platform
 summary: Index of all pages tagged with META/Privacy-Confidential

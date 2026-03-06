@@ -4,7 +4,7 @@ title: logiche-easyway-index
 summary: Indice delle logiche EasyWay (login/onboarding, audit/logging, notifiche, API esterne, policy).
 status: active
 owner: team-platform
-tags: [domain/frontend, layer/index, audience/dev, privacy/internal, language/it, docs]
+tags: [domain/frontend, layer/index, audience/dev, privacy/internal, language/it, artifact/documentation]
 llm:
   include: true
   pii: none

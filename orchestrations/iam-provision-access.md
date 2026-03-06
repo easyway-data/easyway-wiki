@@ -4,7 +4,7 @@ title: IAM Provision Access (WHAT)
 summary: Provisioning end-to-end di accessi tecnici (DB, Datalake) con integrazione Key Vault, RBAC e approvazione human-in-the-loop per ambienti sensibili.
 status: active
 owner: team-platform
-tags: [domain/security, layer/orchestration, audience/ops, privacy/internal, language/it, iam, audit, governance]
+tags: [domain/security, layer/orchestration, audience/ops, privacy/internal, language/it, domain/iam, domain/audit, process/governance]
 llm:
   include: true
   pii: none

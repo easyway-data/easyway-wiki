@@ -5,7 +5,7 @@ updated: 2026-02-26T00:00:00Z
 status: active
 category: guide
 domain: api
-tags: [agents, dashboard, backoffice, run-history, cron, ado-issue]
+tags: [domain/agents, dashboard, backoffice, run-history, tech/cron, ado-issue]
 priority: high
 audience:
   - developers

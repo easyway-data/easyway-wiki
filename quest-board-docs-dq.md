@@ -4,7 +4,7 @@ title: Quest Board - Documentazione (DQ + Kanban)
 summary: Kanban per la revisitazione della documentazione usando metriche DQ (frontmatter/tags/links/WHAT-first + connettivita' grafo) e remediation guidata.
 status: draft
 owner: team-platform
-tags: [domain/docs, layer/spec, audience/dev, privacy/internal, language/it, quest, kanban, dq, governance]
+tags: [domain/docs, layer/spec, audience/dev, privacy/internal, language/it, quest, process/kanban, domain/dq, process/governance]
 llm:
   redaction: [email, phone]
   include: true

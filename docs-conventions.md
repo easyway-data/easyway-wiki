@@ -4,7 +4,7 @@ title: EasyWayData Portal - Regole Semplici (La Nostra Bibbia)
 summary: Regole per mantenere la Wiki chiara e machine-readable (naming, struttura, link, esempi).
 status: active
 owner: team-docs
-tags: [docs, conventions, governance, domain/docs, layer/reference, audience/dev, privacy/internal, language/it]
+tags: [artifact/documentation, conventions, process/governance, domain/docs, layer/reference, audience/dev, privacy/internal, language/it]
 llm:
   include: true
   pii: none

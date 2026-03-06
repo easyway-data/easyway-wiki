@@ -1,6 +1,6 @@
 ---
 title: Release Use Cases — Rilasci Selettivi e Interventi Urgenti
-tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, release, git, workflow, use-cases, hotfix, certfix, selective-release]
+tags: [domain/control-plane, layer/spec, audience/dev, audience/ops, privacy/internal, language/it, process/release, domain/git, process/workflow, use-cases, hotfix, certfix, selective-release]
 status: active
 updated: 2026-02-27
 id: ew-control-plane-release-use-cases

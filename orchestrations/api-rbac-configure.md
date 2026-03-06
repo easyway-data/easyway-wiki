@@ -4,7 +4,7 @@ title: API RBAC Configure (WHAT)
 summary: Configura e verifica RBAC/scopes per endpoint API sensibili (docs/db/notifications) in modo governato.
 status: draft
 owner: team-platform
-tags: [domain/api, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it, security, rbac]
+tags: [domain/api, layer/orchestration, audience/dev, audience/ops, privacy/internal, language/it, domain/security, domain/rbac]
 llm:
   include: true
   pii: none

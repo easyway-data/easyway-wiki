@@ -1,7 +1,7 @@
 ---
 title: Workflow Agentico & Deployment
 summary: Il flusso sacro di sviluppo e rilascio gestito dagli Agenti AI (Hybrid Core).
-tags: [workflow, agent, governance, ad-devops, pr, release]
+tags: [process/workflow, domain/agents, process/governance, ad-devops, process/pr, process/release]
 owner: team-platform
 status: active
 created: '2026-02-16'

@@ -4,7 +4,7 @@ title: Blueprint – Replicare EasyWay Data Portal
 summary: Guida passo‑passo per applicare lo stack EasyWay su un nuovo progetto
 status: active
 owner: team-platform
-tags: [domain/docs, layer/blueprint, audience/dev, privacy/internal, language/it, blueprint, onboarding]
+tags: [domain/docs, layer/blueprint, audience/dev, privacy/internal, language/it, artifact/blueprint, domain/onboarding]
 llm:
   include: true
   pii: none

@@ -1,7 +1,7 @@
 ---
 id: ew-easyway-webapp-05-codice-easyway-portale-readme
 title: readme
-tags: [domain/frontend, layer/index, audience/dev, privacy/internal, language/it, readme]
+tags: [domain/frontend, layer/index, audience/dev, privacy/internal, language/it, artifact/readme]
 owner: team-platform
 summary: 'Documento su readme.'
 status: active
