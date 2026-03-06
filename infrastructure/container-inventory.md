@@ -5,7 +5,7 @@ summary: Mappa completa dei container Docker sul server Oracle ARM, con ruolo, i
 status: active
 owner: team-platform
 created: '2026-03-06'
-updated: '2026-03-06'  # Session 86 - cleanup + stats update
+updated: '2026-03-06'  # Session 93 - Qdrant v1.16.2 upgrade + naming fix
 tags: [domain/infrastructure, layer/reference, audience/ops, audience/dev, privacy/internal, language/it, docker, containers, server]
 entities: []
 llm:
@@ -36,7 +36,7 @@ Tutti gestiti da docker compose. Avvio: `cd ~/easyway-infra && docker compose -f
 | `easyway-runner` | `agent-runner` | `easyway-prod-agent-runner` | Agent framework — 31+ agenti AI, skills, ewctl | — | easyway-net | ~3.8 GB immagine. Contiene agents + wiki mount |
 | `easyway-gateway-caddy` | `caddy` | `caddy:2.8-alpine` | Reverse proxy principale — routing HTTP/HTTPS, basic auth, compressione | 80, 443, 2019 | easyway-net | Caddyfile in `/etc/caddy/Caddyfile`. Admin API su 2019 |
 | `easyway-orchestrator` | `n8n` | `n8nio/n8n:1.123.20` | Workflow automation — webhook ADO, notifiche, orchestrazione agenti | 5678 | easyway-net | Backend PostgreSQL. Accessible via `/n8n/` (Caddy) |
-| `easyway-memory` | `qdrant` | `qdrant/qdrant:v1.12.4` | Vector database — RAG wiki, knowledge base agenti | 6333 (internal) | easyway-net | API key required. ~168K chunks |
+| `easyway-memory` | `qdrant` | `qdrant/qdrant:v1.16.2` | Vector database — RAG wiki, knowledge base agenti | 6333 (internal) | easyway-net | API key required. ~168K chunks. Upgraded S93: v1.9.0/v1.12.4 non supportavano storage format `InRamChunkedMmap` |
 | `easyway-meta-db` | `postgres` | `postgres:15.10-alpine` | Database relazionale — backend per n8n workflows | — | easyway-net | User: n8n, DB: n8n |
 | `easyway-storage` | `azurite` | `azurite:3.29.0` | Azure Blob Storage emulator — storage documenti | 10000-10002 | easyway-net | Usato da agent-runner |
 | `easyway-storage-s3` | `minio` | `minio:RELEASE.2024-01-31` | Object storage S3-compatible — backup, file sovereign | 9000, 9001 | easyway-net | Console su :9001. Unhealthy (non critico) |
