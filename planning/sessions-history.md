@@ -44,6 +44,8 @@ type: planning
 | S86 | 2026-03-06 | Docker cleanup + easyway-n8n 9th repo | #358, #359 | — |
 | S87 | 2026-03-06 | Il Fortino e le Regole — hardening + governance | #360 | #104 |
 | S88-89 | 2026-03-06 | Il Gateway e il Punto Unico — SSH proxy + G12 Branch Guard | #368-#372 | #106 |
+| S90 | 2026-03-06 | Deploy Quest Testudo II + CLI server + OpenRouter test | — | #108 |
+| S91 | 2026-03-06 | Testudo deploy + ado-curl BOM fix + OpenRouter connector | #384-#388 | #108, #110, #111 |
 
 ---
 
