@@ -36,6 +36,10 @@ Runbooks/        # Runbook operativi (RAG operations)
 - Aggiornare `_index.md` quando si creano nuovi file nelle sottocartelle
 - MAI committare `.obsidian/` o file canvas
 
+## Connessioni & PAT
+> **Guida completa**: `guides/connection-registry.md` — PAT status, scadenze, rinnovo, routing
+> **PAT file**: `C:\old\.env.local` (4 PAT segregati, mai committare)
+
 ## Regole platform-wide
 > **Guida completa**: `guides/polyrepo-git-workflow.md`
 > **GEDI** (dubbi architetturali): `C:\old\easyway\agents\agents\agent_gedi\manifest.json`

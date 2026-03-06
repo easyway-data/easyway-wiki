@@ -2594,3 +2594,36 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche Docker socket nel container n8n? A: I workflow infra (health report, census) devono interrogare Docker. Socket montato read-only. n8n puo usare `curl --unix-socket` per l'API Docker.
 - Q: Perche easyway-n8n e Circle 3? A: Contiene riferimenti infrastrutturali interni (IP server, whitelist container, soglie alert). Non ha senso renderlo public.
 - Q: Perche factory.yml nella wiki e non in infra? A: E una mappa dell'ecosistema, knowledge — la wiki e la casa naturale per la documentazione.
+
+### Session 87 — COMPLETATA (2026-03-06)
+
+**Data**: 2026-03-06
+**Cosa**: PR merge (#358, #359), PR #360 hardening, deploy n8n server, Docker Compose Governance, PBI #104
+
+**Perche**:
+- PR #358 (infra compose) e #359 (wiki) pendenti da S86 — merge necessario per consolidare
+- PR #359 aveva 3 conflitti da risolvere manualmente — wiki tocca file condivisi
+- Server hardening (PBI #104) necessitava di deploy user, ForceCommand, RBAC, sudoers
+- n8n su server richiedeva nuovo volume easyway-n8n + Docker socket per monitoring workflow
+- Mancava governance esplicita per Docker Compose nel polyrepo — rischio di conflitti overlay
+
+**Come**:
+1. **PR #358 merge**: easyway-infra compose update (n8n volume + Docker socket). Gia merged.
+2. **PR #359 merge**: easyway-wiki con 3 conflitti risolti (inventory, security, n8n card, factory, chronicle). Merged.
+3. **PR #360 creata**: easyway-infra hardening scripts (deploy user, ForceCommand, RBAC, sudoers). Da approvare.
+4. **Deploy n8n server**: nuovo volume easyway-n8n + Docker socket read-only per workflow monitoring.
+5. **2 workflow n8n importati**: Health Report (salute Docker giornaliera) + Census Watchdog (container vs whitelist).
+6. **Server hardening PBI #104**: deploy user segregato, ForceCommand, RBAC config, sudoers. Testato.
+7. **Docker Compose Governance**: 6 regole documentate in wiki per evitare conflitti compose overlay nel polyrepo.
+8. **Backlog**: 5 nuovi item — multi-agent conflict prevention, email service sovereign, La Valigetta (portable platform), manifesto messaging review, Docker Compose Governance Rules.
+
+| PR | Repo | Contenuto | Stato |
+|---|---|---|---|
+| #358 | easyway-infra | n8n compose update | Merged |
+| #359 | easyway-wiki | 3 conflitti risolti, inventory+security+n8n | Merged |
+| #360 | easyway-infra | Hardening scripts (deploy user, ForceCommand, RBAC) | Da approvare |
+
+**Q&A**:
+- Q: Perche 6 regole di Compose Governance? A: Nel polyrepo con 9 repo, gli overlay compose possono generare conflitti se non c'e una convenzione. Le 6 regole coprono: naming rete, volume mount, profiles, build context, env files, override precedence.
+- Q: Perche ForceCommand per il deploy user? A: Limita il deploy user a eseguire SOLO lo script deploy-shell.sh — nessun accesso shell interattivo, nessun SCP/SFTP. Mitiga il bypass scoperto in S85.
+- Q: La Valigetta cos'e? A: Iniziativa futura per rendere l'intera piattaforma portabile su qualsiasi server — un tar.gz con compose + secrets + bootstrap che ricostruisce tutto.
