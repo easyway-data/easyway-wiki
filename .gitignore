@@ -5,3 +5,6 @@ out/
 
 # Repo semaphore (agent lock)
 .semaphore.json
+
+# Brainstorm enforcement markers (local artefacts)
+.brainstorm-reports/
