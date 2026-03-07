@@ -1,0 +1,71 @@
+# wiki-queries.yaml — Query set per Wiki Health Monitor (marginalia eval)
+#
+# Uso:
+#   marginalia eval snapshot wiki/ wiki-queries.yaml snapshots/snap-YYYY-MM-DD.json
+#   marginalia eval compare snapshots/snap-before.json snapshots/snap-after.json
+#
+# Ogni query testa se la wiki risponde correttamente a una domanda operativa.
+# Le query con "expected" misurano precision/recall; senza expected misurano solo coverage.
+# Verdict: IMPROVED (score +5%), NEUTRAL, DEGRADED (score -5%)
+
+queries:
+
+  # --- Governance & Processo ---
+  - text: "come creare una pull request su Azure DevOps"
+    expected: ["guides/agent-ado-operations.md", "guides/polyrepo-git-workflow.md"]
+
+  - text: "regole per commit e branch protetti"
+    expected: ["guides/git-rebase-policy.md", "guides/polyrepo-git-workflow.md"]
+
+  - text: "ciclo completo da idea a produzione"
+    expected: ["guides/idea-to-production.md"]
+
+  - text: "come funziona il deploy su server"
+    expected: ["guides/deploy-quest-testudo-ii.md"]
+
+  # --- Architettura Agentica ---
+  - text: "livelli degli agenti L1 L2 L3 L4"
+    expected: ["guides/agentic-architecture-enterprise.md"]
+
+  - text: "come ricordano gli agenti memory ledger context truth"
+    expected: ["guides/agent-context-truth-memory-ledger.md"]
+
+  - text: "gnosis framework sovereign kortex"
+    expected: ["guides/gnosis-framework.md"]
+
+  - text: "SDLC agentico master EasyWay"
+    expected: ["guides/agentic-sdlc-master.md"]
+
+  - text: "manifest agente architettura design standards"
+    expected: ["agents/agent-design-standards.md"]
+
+  # --- Infrastruttura ---
+  - text: "connessioni PAT secrets autenticazione"
+    expected: ["guides/connection-registry.md"]
+
+  - text: "docker compose network coherence"
+    expected: ["guides/docker-compose-network-coherence.md"]
+
+  - text: "pipeline CI CD Azure DevOps agent"
+    expected: ["guides/pipeline-arm64-single-pool-serialization.md"]
+
+  # --- Operativo ---
+  - text: "semaforo repository concorrenza sessioni"
+    expected: ["guides/repo-semaphore.md"]
+
+  - text: "come usare marginalia eval wiki health"
+    expected: ["repos/marginalia.md"]
+
+  - text: "GEDI principi filosofici manifesto"
+    expected: ["agents/platform-operational-memory.md"]
+
+  # --- Domande aperte (solo coverage, no expected) ---
+  - text: "errore connessione database SQL Server"
+
+  - text: "come aggiungere un nuovo agente al sistema"
+
+  - text: "sicurezza RBAC permessi ruoli"
+
+  - text: "Qdrant vettoriale wiki indicizzazione"
+
+  - text: "sprint planning backlog iniziative"

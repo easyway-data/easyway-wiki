@@ -52,3 +52,5 @@ tags: [artifact/chronicle, index]
 | 2026-03-06 | [L'Allineamento dei Chiavi e il Pattern LLM](2026-03-06-s94-pat-alignment.md) | governance | S94 |
 | 2026-03-06 | [Il Sesto Senso e le Sentinelle](2026-03-06-s95-gemini-watchdog.md) | infrastructure | S95 |
 | 2026-03-06 | [Levi 2.1 e il Hierarchies Game](2026-03-06-levi-hierarchies-game.md) | milestone | S96 |
+| 2026-03-06 | [G14 Enforcement e il Tag Cleanup](2026-03-06-g14-enforcement-tag-cleanup.md) | governance | S97 |
+| 2026-03-07 | [Gnosis Framework e il Wiki Health Monitor](2026-03-07-gnosis-framework-wiki-health.md) | milestone | S98 |
