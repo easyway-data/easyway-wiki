@@ -1,0 +1,785 @@
+{
+  "version": 1,
+  "createdAt": "2026-03-07T16:11:39.097801+00:00",
+  "vaultPaths": [
+    "C:/old/easyway/wiki"
+  ],
+  "docs": 609,
+  "topK": 5,
+  "minScore": 0.1,
+  "queriesFile": "C:/old/easyway/wiki/wiki-queries.yaml",
+  "summary": {
+    "queries": 20,
+    "avg_top1_score": 0.2869,
+    "avg_mean_score": 0.21,
+    "coverage": 1.0,
+    "queries_with_results": 20,
+    "precision_at_k": 0.2733,
+    "recall_at_k": 0.7333,
+    "evaluated_queries": 15
+  },
+  "queries": [
+    {
+      "text": "come creare una pull request su Azure DevOps",
+      "expected": [
+        "guides/agent-ado-operations.md",
+        "guides/polyrepo-git-workflow.md"
+      ],
+      "results": [
+        {
+          "path": "archive/imported_docs_2026_01_30/wiki/azure-devops-code-wiki.md",
+          "title": "Azure DevOps – Pubblicare la Wiki dal Repo (Code Wiki)",
+          "score": 0.2005
+        },
+        {
+          "path": "indices/TECH/Azure.md",
+          "title": "📄 Azure",
+          "score": 0.1552
+        },
+        {
+          "path": "orchestrations/ado-bootstrap.md",
+          "title": "Orchestration - ADO Bootstrap",
+          "score": 0.1439
+        },
+        {
+          "path": "Patterns/agent-assisted-pr.md",
+          "title": "agent-assisted-pr",
+          "score": 0.1415
+        },
+        {
+          "path": "archive/imported_docs_2026_01_30/ci/azure-devops-secrets.md",
+          "title": "Azure DevOps – Variable Group (Secrets)",
+          "score": 0.1412
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2005,
+        "mean_score": 0.1565,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "hits": 0
+      }
+    },
+    {
+      "text": "regole per commit e branch protetti",
+      "expected": [
+        "guides/git-rebase-policy.md",
+        "guides/polyrepo-git-workflow.md"
+      ],
+      "results": [
+        {
+          "path": "Runbooks/multivcs-branch-guardrails.md",
+          "title": "Multi-VCS Branch Guardrails (ADO, GitHub, Forgejo)",
+          "score": 0.2722
+        },
+        {
+          "path": "guides/polyrepo-git-workflow.md",
+          "title": "Polyrepo Git Workflow - Guida Operativa Completa",
+          "score": 0.2315
+        },
+        {
+          "path": "best-practices/git-merge-strategies.md",
+          "title": "git-merge-strategies",
+          "score": 0.2159
+        },
+        {
+          "path": "control-plane/release-flow-alignment-2026-02-12.md",
+          "title": "Release Flow Alignment 2026-02-12 (Agent Release)",
+          "score": 0.1701
+        },
+        {
+          "path": "guides/git-rebase-policy.md",
+          "title": "Git Rebase Policy — Quando e Come",
+          "score": 0.167
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2722,
+        "mean_score": 0.2113,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "hits": 2
+      }
+    },
+    {
+      "text": "ciclo completo da idea a produzione",
+      "expected": [
+        "guides/idea-to-production.md"
+      ],
+      "results": [
+        {
+          "path": "guides/idea-to-production.md",
+          "title": "Idea to Production — Il Ciclo Agentico Completo",
+          "score": 0.2011
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2011,
+        "mean_score": 0.2011,
+        "results_count": 1,
+        "found": true,
+        "precision_at_k": 1.0,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "come funziona il deploy su server",
+      "expected": [
+        "guides/deploy-quest-testudo-ii.md"
+      ],
+      "results": [
+        {
+          "path": "indices/PROCESS/Deploy.md",
+          "title": "📄 Deploy",
+          "score": 0.2734
+        },
+        {
+          "path": "archive/imported_docs_2026_01_30/agent-rules/DEPLOY_RECIPES_GUIDE.md",
+          "title": "🚀 Deploy Recipes - Quick Reference",
+          "score": 0.2716
+        },
+        {
+          "path": "chronicles/2026-03-04-la-fabbrica-phase-3b-cicd.md",
+          "title": "La Fabbrica Phase 3b — CI/CD Migration + Deploy Multi-Repo",
+          "score": 0.2181
+        },
+        {
+          "path": "deployment/multi-environment-docker-strategy.md",
+          "title": "Multi-Environment Docker Strategy (DEV / CERT / PROD)",
+          "score": 0.1924
+        },
+        {
+          "path": "guides/deploy-quest-testudo-ii.md",
+          "title": "deploy-quest-testudo-ii",
+          "score": 0.1848
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2734,
+        "mean_score": 0.2281,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "livelli degli agenti L1 L2 L3 L4",
+      "expected": [
+        "guides/agentic-architecture-enterprise.md"
+      ],
+      "results": [
+        {
+          "path": "agent-output-validation-ci.md",
+          "title": "Validazione Output Agenti in CI",
+          "score": 0.1279
+        },
+        {
+          "path": "quest-board-excel-csv.md",
+          "title": "Quest Board – Excel/CSV Upload (L1→L5)",
+          "score": 0.1257
+        },
+        {
+          "path": "indices/AUDIENCE/Non-Expert.md",
+          "title": "📄 Non-Expert",
+          "score": 0.1103
+        },
+        {
+          "path": "repos/easyway-agents.md",
+          "title": "'Repo: easyway-agents'",
+          "score": 0.1019
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.1279,
+        "mean_score": 0.1164,
+        "results_count": 4,
+        "found": true,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "hits": 0
+      }
+    },
+    {
+      "text": "come ricordano gli agenti memory ledger context truth",
+      "expected": [
+        "guides/agent-context-truth-memory-ledger.md"
+      ],
+      "results": [
+        {
+          "path": "guides/agent-context-truth-memory-ledger.md",
+          "title": "Agent Context Truth & Memory Ledger",
+          "score": 0.4312
+        },
+        {
+          "path": "guides/gnosis-framework.md",
+          "title": "Gnosis Framework - Il Sistema Nervoso Agentico",
+          "score": 0.2231
+        },
+        {
+          "path": "concept/agent-runtime-lifecycle.md",
+          "title": "Agent Runtime Lifecycle & Memory Architecture",
+          "score": 0.1622
+        },
+        {
+          "path": "chronicles/2026-03-07-gnosis-framework-wiki-health.md",
+          "title": "Gnosis Framework e il Wiki Health Monitor",
+          "score": 0.155
+        },
+        {
+          "path": "standards/multi-agent-protocol.md",
+          "title": "multi-agent-protocol",
+          "score": 0.1217
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.4312,
+        "mean_score": 0.2186,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "gnosis framework sovereign kortex",
+      "expected": [
+        "guides/gnosis-framework.md"
+      ],
+      "results": [
+        {
+          "path": "chronicles/2026-03-07-gnosis-framework-wiki-health.md",
+          "title": "Gnosis Framework e il Wiki Health Monitor",
+          "score": 0.3718
+        },
+        {
+          "path": "guides/gnosis-framework.md",
+          "title": "Gnosis Framework - Il Sistema Nervoso Agentico",
+          "score": 0.3299
+        },
+        {
+          "path": "sovereign-architecture.md",
+          "title": "Sovereign Architecture (The Brain) 🧠",
+          "score": 0.1447
+        },
+        {
+          "path": "chronicles/2026-03-07-brainstorm-skill-wiki-health.md",
+          "title": "Il Brainstorm e il Battito della Wiki",
+          "score": 0.1242
+        },
+        {
+          "path": "UX/valentino-framework.md",
+          "title": "valentino-framework",
+          "score": 0.1144
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.3718,
+        "mean_score": 0.217,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "SDLC agentico master EasyWay",
+      "expected": [
+        "guides/agentic-sdlc-master.md"
+      ],
+      "results": [
+        {
+          "path": "planning/n8n-webhook-integration/prd.md",
+          "title": "prd",
+          "score": 0.2263
+        },
+        {
+          "path": "easyway-webapp/01-database-architecture.md",
+          "title": "Database Architecture Master",
+          "score": 0.1838
+        },
+        {
+          "path": "planning/n8n-webhook-integration/product-brief.md",
+          "title": "product-brief",
+          "score": 0.1748
+        },
+        {
+          "path": "guides/agentic-sdlc-master.md",
+          "title": "agentic-sdlc-master",
+          "score": 0.1056
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2263,
+        "mean_score": 0.1726,
+        "results_count": 4,
+        "found": true,
+        "precision_at_k": 0.25,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "manifest agente architettura design standards",
+      "expected": [
+        "agents/agent-design-standards.md"
+      ],
+      "results": [
+        {
+          "path": "standards/agent-architecture-standard.md",
+          "title": "Agent Architecture Standard",
+          "score": 0.2054
+        },
+        {
+          "path": "agents/agent-design-standards.md",
+          "title": "Agent Design Standards — EasyWay Platform",
+          "score": 0.157
+        },
+        {
+          "path": "control-plane/agents-manifest-audit.md",
+          "title": "Agents Manifest Audit (gap list)",
+          "score": 0.1541
+        },
+        {
+          "path": "standards/INFRASTRUCTURE_STANDARDS.md",
+          "title": "EasyWay Infrastructure Standards 🏗️",
+          "score": 0.1461
+        },
+        {
+          "path": "standards/workflow-agentic.md",
+          "title": "Workflow Agentico & Deployment",
+          "score": 0.1336
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2054,
+        "mean_score": 0.1592,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "connessioni PAT secrets autenticazione",
+      "expected": [
+        "guides/connection-registry.md"
+      ],
+      "results": [
+        {
+          "path": "archive/imported_docs_2026_01_30/agent-rules/ADO_SETUP_GUIDE.md",
+          "title": "ADO Configuration Setup Guide",
+          "score": 0.2403
+        },
+        {
+          "path": "guides/agent-ado-operations.md",
+          "title": "agent-ado-operations",
+          "score": 0.2332
+        },
+        {
+          "path": "guides/connection-registry.md",
+          "title": "connection-registry",
+          "score": 0.194
+        },
+        {
+          "path": "security/secrets-management.md",
+          "title": "Secrets Management — Agent Platform",
+          "score": 0.1642
+        },
+        {
+          "path": "AGENTS.md",
+          "title": "AGENTS",
+          "score": 0.1503
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2403,
+        "mean_score": 0.1964,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "docker compose network coherence",
+      "expected": [
+        "guides/docker-compose-network-coherence.md"
+      ],
+      "results": [
+        {
+          "path": "chronicles/2026-03-04-coherence-gate-session-66.md",
+          "title": "Session 66 — The Coherence Gate",
+          "score": 0.4432
+        },
+        {
+          "path": "guides/docker-compose-network-coherence.md",
+          "title": "docker-compose-network-coherence",
+          "score": 0.3626
+        },
+        {
+          "path": "standards/yaml-docker-standard.md",
+          "title": "YAML & Docker Compose Standard",
+          "score": 0.3334
+        },
+        {
+          "path": "repos/easyway-infra.md",
+          "title": "'Repo: easyway-infra'",
+          "score": 0.2797
+        },
+        {
+          "path": "archive/imported_docs_2026_01_30/DOCKER_COMPOSE_TUTORIAL.md",
+          "title": "Docker Compose per Principianti - Guida EasyWay",
+          "score": 0.2139
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.4432,
+        "mean_score": 0.3266,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "pipeline CI CD Azure DevOps agent",
+      "expected": [
+        "guides/pipeline-arm64-single-pool-serialization.md"
+      ],
+      "results": [
+        {
+          "path": "archive/imported_docs_2026_01_30/wiki/azure-devops-code-wiki.md",
+          "title": "Azure DevOps – Pubblicare la Wiki dal Repo (Code Wiki)",
+          "score": 0.264
+        },
+        {
+          "path": "archive/imported_docs_2026_01_30/ci/azure-devops-secrets.md",
+          "title": "Azure DevOps – Variable Group (Secrets)",
+          "score": 0.2326
+        },
+        {
+          "path": "indices/TECH/Azure.md",
+          "title": "📄 Azure",
+          "score": 0.2289
+        },
+        {
+          "path": "easyway-webapp/10-ai-agents.md",
+          "title": "10 ai agents",
+          "score": 0.214
+        },
+        {
+          "path": "orchestrations/ado-bootstrap.md",
+          "title": "Orchestration - ADO Bootstrap",
+          "score": 0.2123
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.264,
+        "mean_score": 0.2304,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "hits": 0
+      }
+    },
+    {
+      "text": "semaforo repository concorrenza sessioni",
+      "expected": [
+        "guides/repo-semaphore.md"
+      ],
+      "results": [
+        {
+          "path": "guides/repo-semaphore.md",
+          "title": "Repo Semaphore - Semaforo di Stato Repository",
+          "score": 0.4122
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.4122,
+        "mean_score": 0.4122,
+        "results_count": 1,
+        "found": true,
+        "precision_at_k": 1.0,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "come usare marginalia eval wiki health",
+      "expected": [
+        "repos/marginalia.md"
+      ],
+      "results": [
+        {
+          "path": "repos/marginalia.md",
+          "title": "marginalia — Markdown Vault Quality Scanner & Linker",
+          "score": 0.4318
+        },
+        {
+          "path": "chronicles/2026-03-07-gnosis-framework-wiki-health.md",
+          "title": "Gnosis Framework e il Wiki Health Monitor",
+          "score": 0.194
+        },
+        {
+          "path": "chronicles/2026-03-07-brainstorm-skill-wiki-health.md",
+          "title": "Il Brainstorm e il Battito della Wiki",
+          "score": 0.1493
+        },
+        {
+          "path": "archive/imported_docs_2026_01_30/wiki/azure-devops-code-wiki.md",
+          "title": "Azure DevOps – Pubblicare la Wiki dal Repo (Code Wiki)",
+          "score": 0.1274
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.4318,
+        "mean_score": 0.2256,
+        "results_count": 4,
+        "found": true,
+        "precision_at_k": 0.25,
+        "recall_at_k": 1.0,
+        "hits": 1
+      }
+    },
+    {
+      "text": "GEDI principi filosofici manifesto",
+      "expected": [
+        "agents/platform-operational-memory.md"
+      ],
+      "results": [
+        {
+          "path": "archive/imported_docs_2026_01_30/caa/DOCUMENTATION_VALIDATION_REPORT_2026-01-14.md",
+          "title": "Documentation Validation Report",
+          "score": 0.1451
+        },
+        {
+          "path": "concept/philosophical-foundation.md",
+          "title": "Fondamenta Filosofiche di EasyWay",
+          "score": 0.1442
+        },
+        {
+          "path": "caa/easyCAA-overview.md",
+          "title": "EasyCAA Overview",
+          "score": 0.125
+        },
+        {
+          "path": "archive/imported_docs_2026_01_30/security/SECURITY_DEV_CHECKLIST.md",
+          "title": "Security Development Checklist",
+          "score": 0.1135
+        },
+        {
+          "path": "chronicles/2026-03-04-la-fabbrica-chiude.md",
+          "title": "La Fabbrica Chiude — Phase 3c Complete",
+          "score": 0.11
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.1451,
+        "mean_score": 0.1276,
+        "results_count": 5,
+        "found": true,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "hits": 0
+      }
+    },
+    {
+      "text": "errore connessione database SQL Server",
+      "expected": [],
+      "results": [
+        {
+          "path": "easyway-webapp/01_database_architecture/db-migrations.md",
+          "title": "Gestione Migrazioni Database (Git + SQL Diretto)",
+          "score": 0.2672
+        },
+        {
+          "path": "Runbooks/agent-chat-retention.md",
+          "title": "agent-chat-retention",
+          "score": 0.2166
+        },
+        {
+          "path": "easyway-webapp/01_database_architecture/why-not-flyway.md",
+          "title": "Perché NON usare Flyway per questo progetto",
+          "score": 0.2002
+        },
+        {
+          "path": "easyway-webapp/01_database_architecture/flyway.md",
+          "title": "Flyway - DevOps per il Database (EasyWay) [DEPRECATO]",
+          "score": 0.1808
+        },
+        {
+          "path": "archive/imported_docs_2026_01_30/SERVER_BOOTSTRAP_PROTOCOL.md",
+          "title": "🛡️ Server Bootstrap & Security Protocol",
+          "score": 0.1478
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2672,
+        "mean_score": 0.2025,
+        "results_count": 5,
+        "found": true
+      }
+    },
+    {
+      "text": "come aggiungere un nuovo agente al sistema",
+      "expected": [],
+      "results": [
+        {
+          "path": "standards/agent-architecture-standard.md",
+          "title": "Agent Architecture Standard",
+          "score": 0.2541
+        },
+        {
+          "path": "standards/workflow-agentic.md",
+          "title": "Workflow Agentico & Deployment",
+          "score": 0.2038
+        },
+        {
+          "path": "blueprints/blueprint-agente-llm.md",
+          "title": "blueprint agente llm",
+          "score": 0.2023
+        },
+        {
+          "path": "orchestrations/agent-scaffold.md",
+          "title": "Orchestrazione - Agent Scaffold (WHAT)",
+          "score": 0.172
+        },
+        {
+          "path": "Patterns/agent-assisted-pr.md",
+          "title": "agent-assisted-pr",
+          "score": 0.1472
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2541,
+        "mean_score": 0.1959,
+        "results_count": 5,
+        "found": true
+      }
+    },
+    {
+      "text": "sicurezza RBAC permessi ruoli",
+      "expected": [],
+      "results": [
+        {
+          "path": "orchestrations/api-rbac-configure.md",
+          "title": "API RBAC Configure (WHAT)",
+          "score": 0.2524
+        },
+        {
+          "path": "db-user-access-management.md",
+          "title": "Gestione Accessi DB (Contained Users & Ruoli PORTAL)",
+          "score": 0.2082
+        },
+        {
+          "path": "infra/security-framework.md",
+          "title": "Security Framework & Enterprise RBAC",
+          "score": 0.1913
+        },
+        {
+          "path": "easyway-webapp/05_codice_easyway_portale/security-and-observability.md",
+          "title": "Security Middleware & Observability",
+          "score": 0.1693
+        },
+        {
+          "path": "Runbooks/multivcs-rbac-bootstrap.md",
+          "title": "Multi-VCS RBAC Bootstrap (ADO, GitHub, Forgejo)",
+          "score": 0.1597
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2524,
+        "mean_score": 0.1962,
+        "results_count": 5,
+        "found": true
+      }
+    },
+    {
+      "text": "Qdrant vettoriale wiki indicizzazione",
+      "expected": [],
+      "results": [
+        {
+          "path": "guides/knowledge-api-guide.md",
+          "title": "Knowledge API — Guida GET /api/knowledge",
+          "score": 0.2595
+        },
+        {
+          "path": "ai/knowledge-vettoriale-easyway.md",
+          "title": "Knowledge base vettoriale in EasyWay DataPortal (AI/RAG/LLM)",
+          "score": 0.1893
+        },
+        {
+          "path": "chronicles/2026-03-06-s93-qdrant-resurrection.md",
+          "title": "Session 93 — La Resurrezione di Qdrant e il Mazzo di Chiavi v2",
+          "score": 0.1455
+        },
+        {
+          "path": "archive/imported_docs_2026_01_30/PLAYGROUND_SETUP.md",
+          "title": "EasyWay Playground Setup - Complete Guide",
+          "score": 0.1146
+        },
+        {
+          "path": "logs/reports/anchors-20260118192123.md",
+          "title": "anchors-20260118192123",
+          "score": 0.1081
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.2595,
+        "mean_score": 0.1634,
+        "results_count": 5,
+        "found": true
+      }
+    },
+    {
+      "text": "sprint planning backlog iniziative",
+      "expected": [],
+      "results": [
+        {
+          "path": "archive/imported_docs_2026_01_30/agent-rules/SPRINT_BACKLOG_GUIDE.md",
+          "title": "🏃 Sprint & Backlog Queries - Guide",
+          "score": 0.4594
+        },
+        {
+          "path": "ado-operating-model.md",
+          "title": "Azure DevOps Operating Model (Hybrid)",
+          "score": 0.2443
+        },
+        {
+          "path": "repos/easyway-wiki.md",
+          "title": "'Repo: easyway-wiki'",
+          "score": 0.198
+        },
+        {
+          "path": "planning/n8n-webhook-resolver/sprint-plan.md",
+          "title": "sprint-plan",
+          "score": 0.1596
+        },
+        {
+          "path": "planning/test-rag-verify/sprint-plan.md",
+          "title": "sprint-plan",
+          "score": 0.1524
+        }
+      ],
+      "metrics": {
+        "top1_score": 0.4594,
+        "mean_score": 0.2427,
+        "results_count": 5,
+        "found": true
+      }
+    }
+  ]
+}
