@@ -5,7 +5,7 @@ summary: Iniziative e task pending che diventeranno Epic/PBI su ADO quando pront
 status: active
 owner: team-platform
 created: '2026-03-04'
-updated: '2026-03-06'  # Session 88 - Branch Guard Framework
+updated: '2026-03-07'  # Session 102 - Platform Health Report
 tags: [process/planning, process/backlog, process/roadmap, initiatives, domain/platform, layer/reference, audience/dev, privacy/internal, language/it]
 entities: []
 llm:
@@ -82,7 +82,8 @@ Phase 3c chiusa Session 62. Tutte le PR merged, tutti i repo su main.
 | ~~Docker compose: .env server mancante~~ | ~~Alta~~ | Risolto S85: `~/easyway-infra/.env` gia creato in S84 con tutte le variabili (verificato). Nessuna azione necessaria |
 | ~~Docker compose: container name conflict~~ | ~~Alta~~ | Risolto S85: tutti i container sono sotto compose (progetto `easyway-prod`). 5 container `easyway-cert-*` zombie da rimuovere + `easyway-seq` orfano. Wiki: `infrastructure/container-inventory.md` |
 | **n8n job: container census (watchdog)** | Media | S85-S86: template creato in `easyway-n8n/workflows/infra/container-census-watchdog.json`. Da importare in n8n e attivare. Prerequisito: Docker socket montato nel container n8n o SSH |
-| **n8n job: Docker Health Daily Report** | **Alta** | S86: template creato in `easyway-n8n/workflows/infra/docker-health-report.json`. Da importare in n8n e attivare. Prerequisito: Docker socket montato nel container n8n o SSH. Soglie: disco>70%, cache>5GB, container unhealthy, volumi orfani |
+| ~~n8n job: Docker Health Daily Report~~ | ~~Alta~~ | Superato da Platform Health Report (sotto). Template `docker-health-report.json` resta come base |
+| **n8n job: Platform Health Report** | **Alta** | S102: evoluzione di docker-health-report. 6 check paralleli: (1) System stats (disco, RAM, load, uptime), (2) Docker stats (containers, system df, dangling), (3) Service HTTP endpoints (portal, n8n, API → HTTP code), (4) Qdrant health (collection status, point count, delta vs baseline 124k), (5) ADO PAT validity (3 PAT → HTTP code), (6) ADO Agent status (systemctl/process). Soglie alert: disco>70%, container unhealthy, cache>5GB, Qdrant non green o punti<100k, endpoint non-200, PAT non-200, agent non running. Template base: `easyway-n8n/workflows/infra/docker-health-report.json`. Prerequisiti: Docker socket montato, `/opt/easyway/.env.secrets` accessibile, `WEBHOOK_ALERT_URL` configurata |
 | ~~Caddy reverse proxy: Internal Server Error~~ | ~~Alta~~ | Risolto S85: verificato — HTTP 200 dall'esterno e internamente. Container `easyway-portal` ha alias DNS `frontend` su `easyway-net`. Caddy reverse_proxy funziona correttamente |
 | **Email service sovereign** | Media | S87: servizio email dal server. Opzioni: (1) n8n + SMTP relay esterno (Brevo/Gmail, 5 min, parzialmente sovereign), (2) n8n + Postfix container (30 min, 100% sovereign, richiede SPF/DKIM su DNS), (3) Mailu full mail server (2-4h, overkill per ora). Caso d'uso primario: alert automatici (health report, PR da approvare, secrets in scadenza). Raccomandazione: partire con n8n + relay, migrare a Postfix quando serve sovereign completo |
 | **Deploy workflow: compose vs docker run** | Media | S84: il container portal era stato creato con `docker run` (immagine `easyway/frontend:latest`), non con compose (che genera `easyway-infra-frontend:latest`). Il deploy ha richiesto `docker tag` + `docker rm` + `docker run` manuale. Standardizzare: o tutto compose o tutto docker run con script. Documentare in `.cursorrules` Step 3 il metodo effettivo |
