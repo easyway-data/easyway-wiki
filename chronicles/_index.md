@@ -56,3 +56,4 @@ tags: [artifact/chronicle, index]
 | 2026-03-07 | [Gnosis Framework e il Wiki Health Monitor](2026-03-07-gnosis-framework-wiki-health.md) | milestone | S98 |
 | 2026-03-07 | [Il Brainstorm e il Battito della Wiki](2026-03-07-brainstorm-skill-wiki-health.md) | milestone | S99 |
 | 2026-03-07 | [Il Wrapper e il Fantasma dell'ArtifactLink](2026-03-07-ado-api-artifactlink-ghost.md) | milestone | S101 |
+| 2026-03-07 | [Il Check-up e la Lista dei Desideri](2026-03-07-platform-health-report.md) | infrastructure | S102 |

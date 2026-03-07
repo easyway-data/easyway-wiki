@@ -1,7 +1,7 @@
 ---
 title: "Platform Operational Memory — EasyWay"
 created: 2026-02-18
-updated: 2026-03-07T16:00:00Z
+updated: 2026-03-07T19:30:00Z
 status: active
 category: reference
 domain: platform
@@ -2959,3 +2959,29 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche Python e non TypeScript per il wrapper? A: Zero dipendenze (stdlib only), stessa strategia di pr-complete.py. Il CLI TypeScript resta per MCP/IDE, Python per scripting/SSH.
 - Q: ADO auto-crea sempre ArtifactLinks? A: Si, quando PR ha `workItemRefs`. Anche build pipeline e commit (AB#) creano ArtifactLinks. WI #122 ne aveva 45 (16 PR, commit, build).
 - Q: Serve ancora wi-link-pr manuale? A: Si, per link retroattivi (PR create senza workItemRefs) o cross-repo. Ma con check-before-add idempotente.
+
+## Session 102 — COMPLETATA (2026-03-07) "Il Check-up e la Lista dei Desideri"
+
+**Cosa**: Deploy ado-api.py sul server, verifica PAT (tutti OK), platform health check completo, backlog n8n Platform Health Report.
+
+**Perche**:
+- ado-api.py era merged (PR #457) ma non ancora deployato sul server
+- ADO_PR_CREATOR_PAT sospettato di HTTP 203 in S101 — da verificare
+- Health check periodico per visibilita sullo stato della piattaforma
+- Automatizzare il check come workflow n8n ricorrente
+
+**Come**:
+1. **Deploy ado-api.py**: `git fetch origin main && git reset --hard origin/main` su `~/easyway-ado/`. Verificato con `--help` — 9 subcomandi operativi
+2. **PAT check**: tutti e 3 (ADO_PAT, ADO_PR_CREATOR_PAT, ADO_WORKITEMS_PAT) rispondono HTTP 200 su projects e PR endpoints. Il 203 di S101 era transitorio
+3. **Platform health check**: disco 38%, RAM 2.7G/23G, load 0.02, uptime 41gg. 9/10 container OK. MinIO unhealthy (healthcheck Docker, non il servizio). Qdrant green ma punti calati (124,891 vs 167,970). ADO Agent process running ma systemd inactive. 23GB Docker reclaimabili
+4. **Backlog**: aggiunta entry "n8n job: Platform Health Report" (6 check paralleli, soglie alert) in initiatives-backlog.md. docker-health-report segnato come superato
+
+| Artifact | Path/URL | Stato |
+|----------|----------|-------|
+| initiatives-backlog.md | wiki/planning/initiatives-backlog.md | Aggiornato (Platform Health Report) |
+| MEMORY.md | memory/MEMORY.md | Aggiornato (health report tabellare pref) |
+
+**Q&A**:
+- Q: Perche tutti i PAT OK ora e non in S101? A: Probabilmente glitch transitorio (network, token cache ADO). Verificato su 2 endpoint diversi (projects e PR list) — tutti 200
+- Q: Perche Qdrant ha perso 43k punti? A: Da investigare — probabilmente re-index parziale o collection ricreata. Non bloccante, ma da monitorare
+- Q: Perche non costruire subito il workflow n8n? A: Prerequisiti da risolvere prima (Docker socket nel container n8n, WEBHOOK_ALERT_URL). Meglio pianificare che fare a meta
