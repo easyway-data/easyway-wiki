@@ -49,4 +49,7 @@ Questa pagina serve come **punto di raccolta (landing zone)** per tutto ciò che
 *Storico dei documenti elaborati e loro nuova posizione.*
 
 - [x] `dominio+dns.md` → Integrato in [[infrastructure/scelta-dominio-dns.md]] (2026-02-02)
+- [x] `ANALISI_SDLC_AGENTE.md` + `USECASE_EASYWAY_AGENTIC_SDLC_NARRATIVE.md` → Consolidati in `portal/docs/EASYWAY_AGENTIC_SDLC_MASTER.md` v2.0 (2026-02-21). Originali rimossi.
+- [x] `SOVEREIGN_AGENTIC_FRAMEWORK_VISION` → Non trovato nel codebase (S101 check). Nessuna azione richiesta.
+- [x] `INFRASTRUCTURE_AUDIT_2026-01-28.md` → KEEP in `wiki/Runbooks/`. 47 righe, baseline operativa valida (S101 check).
 

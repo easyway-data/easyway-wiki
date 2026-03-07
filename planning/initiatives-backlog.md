@@ -209,6 +209,9 @@ Fonte: `C:\old\EasyWayDataPortal-archive\` (127 file, 1.2 MB, no git)
 
 | Item | Completato | Sessione |
 |---|---|---|
+| **ado-api.py Python wrapper per ADO REST API (9 subcomandi)** | 2026-03-07 | S101 |
+| **ArtifactLink bug investigation: 3 root causes ($expand, bidirezionale, case)** | 2026-03-07 | S101 |
+| **Inbox cleanup: SOVEREIGN_AGENTIC/AUDIT/ANALISI_SDLC verificati** | 2026-03-07 | S101 |
 | **Wiki repos/ section: 8 schede repo + _index.md + tag taxonomy** | 2026-03-05 | S81 |
 | **ADR: Python per ADO batch API** | 2026-03-05 | S81 |
 | **ADO backlog cleanup: 12 PBI chiusi + 9 PBI creati sotto Feature vuote** | 2026-03-05 | S81 |
