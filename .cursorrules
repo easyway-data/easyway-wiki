@@ -40,6 +40,24 @@ Runbooks/        # Runbook operativi (RAG operations)
 - Aggiornare `_index.md` quando si creano nuovi file nelle sottocartelle
 - MAI committare `.obsidian/` o file canvas
 
+## Wiki Health Monitor (marginalia)
+> **Tool**: marginalia (pip install -e C:\old\easyway\marginalia)
+> **Exe Windows**: `C:/Users/EBELVIGLS/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0/LocalCache/local-packages/Python312/Scripts/marginalia.exe`
+> **Alias**: `MARG="<path-sopra>"`
+>
+> **Snapshot (da wiki root)**:
+> ```bash
+> $MARG eval snapshot . --queries wiki-queries.yaml --out snapshots/snap-SXX-<label>.json
+> ```
+> **Compare con baseline**:
+> ```bash
+> $MARG eval compare --before snapshots/snap-S98-baseline.json --after snapshots/snap-SXX-<label>.json
+> ```
+> **ATTENZIONE**: il vault e il PRIMO arg posizionale (`.`), queries con `--queries`, output con `--out`. NON passare queries come posizionale.
+> **Queries**: `wiki-queries.yaml` (20 query operative)
+> **Snapshots**: `snapshots/` (baseline S98: 607 doc, 100% coverage, 73% recall)
+> **Processo**: prendere snapshot ad ogni sessione significativa, confrontare con baseline per rilevare degradazione.
+
 ## Connessioni & PAT
 > **Guida completa**: `guides/connection-registry.md` — PAT status, scadenze, rinnovo, routing
 > **Gateway architecture (S88)**: tutte le API call passano via SSH gateway sul server

@@ -50,6 +50,10 @@ type: planning
 | S93 | 2026-03-06 | Qdrant resurrection + ado-auth.sh auto-detect + PAT routing + n8n .cursorrules | #400-#403 | #113 |
 | S94 | 2026-03-06 | PAT router alignment (GEDI #38) + pat-health-check + LLM integration guide | #403-#406 | #114 |
 | S95 | 2026-03-06 | Gemini API + docker-health-report + pat-health-check cron (GEDI #39) | #407-#410 | #115 |
+| S96 | 2026-03-06 | Levi 2.1 hierarchies game + tag cleanup | — | — |
+| S97 | 2026-03-06 | G14 enforcement + tag cleanup pipeline | — | — |
+| S98 | 2026-03-07 | Gnosis Framework + Wiki Health Monitor + semaphore + marginalia | #443-#445 | Epic #123 |
+| S99 | 2026-03-07 | Workspace brainstorm v1.0 + wiki health snapshot S99 + marginalia docs | — | Epic #123 |
 
 ---
 

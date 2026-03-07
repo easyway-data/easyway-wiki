@@ -1,7 +1,7 @@
 ---
 title: "Platform Operational Memory — EasyWay"
 created: 2026-02-18
-updated: 2026-03-06T23:30:00Z
+updated: 2026-03-07T16:00:00Z
 status: active
 category: reference
 domain: platform
@@ -2898,3 +2898,34 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche AI_DBA_Governance_MVP.md non importato? A: E per hale-bopp-db, non Gnosis — lasciato nell'inbox
 - Q: Come rendere antifragili i rischi del framework? A: GEDI Case #42 — Sovereign Maturity Gate (prerequisiti misurabili prima di L4/L5) + Wiki Pruning Cycle (ogni ~10 sessioni)
 - Q: Branch develop su marginalia? A: Da creare quando il progetto raggiunge beta — annotato nella scheda repo
+
+## Session 99 — COMPLETATA (2026-03-07) "Brainstorm Skill e Wiki Health"
+
+**Cosa**: process.workspace-brainstorm v1.0 implementato (da planned a active), wiki health snapshot S99 post-merge, backlog aggiornato con brainstorm enforcement gates, marginalia documentato in tooling + .cursorrules.
+
+**Perche**:
+- La skill workspace-brainstorm era l'unica "planned" nel registry — prerequisito SDLC per Full-Track development
+- Le PR #443/#444/#445 (S98) dovevano essere mergiate e il wiki health monitor confrontato con baseline
+- I passaggi marginalia non erano documentati — rischio di errore sintassi ad ogni utilizzo
+
+**Come**:
+1. **Invoke-WorkspaceBrainstorm.ps1**: skill PowerShell in `skills/process/`, 4 scenari testati (DryRun, natural description, wiki path, PBI#). Analizza wiki coverage, repo dependencies (factory.yml-aware), ADO WI (graceful degradation). Output: gaps/risks/dependencies/roster/verdict (GO/CAUTION/STOP)
+2. **Antifragilita**: `ConvertTo-SafeArray` helper — qualsiasi input diventa array JSON-safe (mai null). ADO auth solo da env var (framework connections), nessun path hardcodato
+3. **Registry update**: v0.1.0 planned → v1.0.0 active
+4. **Wiki health snapshot S99**: post-merge PR #443, verdict NEUTRAL (stabile). 608 doc (+1), Gnosis query +0.048, coverage 100%, recall 73%
+5. **Backlog**: brainstorm enforcement v1 (warning in SDLC Orchestrator) + v2 (blocking in PR pipeline)
+6. **Documentazione**: marginalia in tooling.md + .cursorrules wiki (sintassi, alias, processo)
+
+| Artifact | Path/URL | Stato |
+|----------|----------|-------|
+| Invoke-WorkspaceBrainstorm.ps1 | agents/skills/process/Invoke-WorkspaceBrainstorm.ps1 | Active v1.0.0 |
+| Skills registry | agents/skills/registry.json | v2.16.0 (brainstorm active) |
+| Snapshot S99 | wiki/snapshots/snap-S99-post-merge.json | Salvato |
+| Backlog brainstorm gates | wiki/planning/initiatives-backlog.md | Aggiunto |
+| .cursorrules wiki | wiki/.cursorrules | Aggiornato (marginalia) |
+| tooling.md | memory/tooling.md | Aggiornato |
+
+**Q&A**:
+- Q: Perche non LLM nel brainstorm v1? A: Determinismo prima — wiki scan + repo detection + ADO query sono sufficienti. LLM opzionale in v2 per enrichment
+- Q: Perche NEUTRAL nel compare e non IMPROVED? A: Il merge S98 aggiunge guide nuove ma il modello TF-IDF locale non indicizza contenuto semantico profondo — miglioramento visibile su Gnosis query (+0.048), stabile altrove
+- Q: Come rendere brainstorm obbligatorio? A: Due gate nel backlog — v1 warning nell'SDLC Orchestrator, v2 blocking nel PrGuardian
