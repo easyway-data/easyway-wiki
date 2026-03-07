@@ -14,6 +14,7 @@
 | **ADO Organization** | `https://dev.azure.com/EasyWayData` | L'organizzazione Azure DevOps |
 | **ADO Project** | `EasyWay-DataPortal` | Il progetto dentro l'org |
 | **ado-auth.sh** | `easyway-ado/scripts/ado-auth.sh` | PAT routing + B64 + BOM-safe curl wrapper. Auto-detect env (server/local) |
+| **ado-api.py** | `easyway-ado/scripts/ado-api.py` | Python wrapper per ADO API — zero quoting issues, stessa PAT routing |
 
 ## PAT Routing — Chi fa cosa (OBBLIGATORIO)
 
@@ -60,7 +61,7 @@ ado-curl wi POST "..." -d '[...]'
 | HTTP 203 (redirect HTML) | PAT scaduto | Rinnovare su ADO > User Settings > PAT |
 | JSON parse error | BOM in risposta | Usare `ado-curl` invece di `curl` diretto |
 
-## Metodo di approccio: MCP > CLI > Connettori > curl
+## Metodo di approccio: MCP > CLI > Python > Connettori bash > curl
 
 Quando devi interagire con ADO, usa questo ordine di preferenza:
 
@@ -107,7 +108,39 @@ Il CLI trova il PAT automaticamente in questo ordine:
 2. File `.env` nella directory corrente
 3. `C:\old\.env.local` (Windows) / `~/.env.local` (Linux)
 
-### 3. Connettori bash (auth gia integrata, best practice per scripting)
+### 3. Python wrapper `ado-api.py` (raccomandato per API complesse)
+
+Per operazioni con JSON complesso (WI create, link, PR create), **preferire Python** a bash/curl.
+Zero dipendenze esterne, stessa PAT routing di `ado-auth.sh`, BOM-safe.
+
+```bash
+# Path
+ADO_API="C:/old/easyway/ado/scripts/ado-api.py"     # Windows
+ADO_API="~/easyway-ado/scripts/ado-api.py"            # Server
+
+# Work Items
+python3 $ADO_API wi create "Fix login bug" --type Bug --tags "frontend;S101"
+python3 $ADO_API wi create "My Epic" --type Epic --tags "gnosis"
+python3 $ADO_API wi create "Child PBI" --parent 123
+python3 $ADO_API wi get 97
+python3 $ADO_API wi update 97 --state Active
+python3 $ADO_API wi link-pr 97 418 --repo easyway-portal
+python3 $ADO_API wi list-links 97    # Debug: mostra tutte le relations
+
+# Pull Requests
+python3 $ADO_API pr create easyway-wiki feat/my-branch main "feat: my feature" --wi 97
+python3 $ADO_API pr get 418
+python3 $ADO_API pr complete 418 --strategy noFastForward
+python3 $ADO_API pr list --repo easyway-wiki --status active
+
+# Output: --format json (default) o --format id (solo ID)
+WI_ID=$(python3 $ADO_API -f id wi create "New PBI")
+```
+
+**Perche Python > bash per API**: nessun problema di quoting `$`, JSON serializzato da `dict` nativi,
+gestione errori strutturata, idempotenza su ArtifactLink (check-before-add).
+
+### 4. Connettori bash (auth gia integrata, best practice per scripting semplice)
 
 I connettori in `easyway-agents/scripts/connections/` gestiscono auth, PAT routing e error handling.
 Sono la **best practice** per operazioni da script, cron, pipeline o quando il CLI non funziona.
@@ -143,7 +176,7 @@ bash connections/server.sh exec "cmd"        # Comando su server
 **Perche connettori > curl diretto**: il connettore `ado-auth.sh` seleziona automaticamente il PAT giusto
 per l'azione richiesta (wi, pr, build, github) usando il PAT router. Non devi sapere quale PAT usare.
 
-### 4. curl diretto (ultimo resort)
+### 5. curl diretto (ultimo resort)
 
 Solo se connettori, CLI e MCP non sono disponibili:
 

@@ -2929,3 +2929,33 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: Perche non LLM nel brainstorm v1? A: Determinismo prima — wiki scan + repo detection + ADO query sono sufficienti. LLM opzionale in v2 per enrichment
 - Q: Perche NEUTRAL nel compare e non IMPROVED? A: Il merge S98 aggiunge guide nuove ma il modello TF-IDF locale non indicizza contenuto semantico profondo — miglioramento visibile su Gnosis query (+0.048), stabile altrove
 - Q: Come rendere brainstorm obbligatorio? A: Due gate nel backlog — v1 warning nell'SDLC Orchestrator, v2 blocking nel PrGuardian
+
+## Session 101 — COMPLETATA (2026-03-07) "ado-api.py e il Fantasma dell'ArtifactLink"
+
+**Cosa**: Creato `ado-api.py` Python wrapper per ADO REST API (9 subcomandi), investigato e risolto bug ArtifactLink (3 root causes), cleanup inbox wiki (3 doc verificati/archiviati).
+
+**Perche**:
+- Il quoting bash/SSH per JSON ADO API era strutturalmente fragile ($ escape, BOM, nested quotes)
+- Il 400 "already exists" su wi-link-pr con 0 relations visibili era un bug bloccante per l'automazione WI-PR linking
+- L'inbox wiki aveva documenti pendenti da sessioni precedenti da verificare/archiviare
+
+**Come**:
+1. **ado-api.py**: Python wrapper stdlib-only in `easyway-ado/scripts/`, stessa PAT routing di `ado-auth.sh`. Subcomandi: wi create/get/update/link-pr/list-links, pr create/get/complete/list. Output JSON/ID. Zero quoting issues.
+2. **ArtifactLink investigation (3 root causes)**:
+   - Bug 1: `$expand` in bash URL interpretato come variabile vuota — fix: usare `%24expand`
+   - Bug 2: ADO auto-crea ArtifactLinks bidirezionali quando PR ha `workItemRefs` — il nostro link manuale duplicava uno auto-creato
+   - Bug 3: URL comparison case-sensitive (`%2F` vs `%2f`) — fix: `_normalize_artifact_url()` in ado-api.py
+3. **Inbox cleanup**: SOVEREIGN_AGENTIC non trovato (nessun merge), INFRASTRUCTURE_AUDIT (47 righe, KEEP), ANALISI_SDLC+USECASE gia consolidati in MASTER v2.0
+
+| Artifact | Path/URL | Stato |
+|----------|----------|-------|
+| ado-api.py | ado/scripts/ado-api.py | Nuovo |
+| ado-auth.sh | ado/scripts/ado-auth.sh | Aggiornato (%24expand warning) |
+| agent-ado-operations.md | wiki/guides/agent-ado-operations.md | Aggiornato (sezione Python) |
+| GEDI Casebook | agents/agents/agent_gedi/GEDI_CASEBOOK.md | Case #44 |
+| docs-analysis-inbox.md | wiki/docs-analysis-inbox.md | Aggiornato (3 item completati) |
+
+**Q&A**:
+- Q: Perche Python e non TypeScript per il wrapper? A: Zero dipendenze (stdlib only), stessa strategia di pr-complete.py. Il CLI TypeScript resta per MCP/IDE, Python per scripting/SSH.
+- Q: ADO auto-crea sempre ArtifactLinks? A: Si, quando PR ha `workItemRefs`. Anche build pipeline e commit (AB#) creano ArtifactLinks. WI #122 ne aveva 45 (16 PR, commit, build).
+- Q: Serve ancora wi-link-pr manuale? A: Si, per link retroattivi (PR create senza workItemRefs) o cross-repo. Ma con check-before-add idempotente.
