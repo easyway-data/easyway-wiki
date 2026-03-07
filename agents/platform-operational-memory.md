@@ -1,7 +1,7 @@
 ---
 title: "Platform Operational Memory — EasyWay"
 created: 2026-02-18
-updated: 2026-02-27T18:00:00Z
+updated: 2026-03-06T23:30:00Z
 status: active
 category: reference
 domain: platform
@@ -2824,3 +2824,77 @@ pwsh agents/skills/planning/Invoke-SDLCOrchestrator.ps1
 - Q: GEMINI.md empty = Antigravity without rules? A: "Un estintore chiuso a chiave" — filled with governance G1-G13 + polyrepo architecture
 - Q: Hierarchies game results? A: 501 tags (388 flat!), 2034 links, 149 orphans, hub=index.md, auth=start-here.md
 - Q: WI associato? A: #115
+
+---
+
+## Session 97 — COMPLETATA (2026-03-06) "G14 Enforcement e il Tag Cleanup"
+
+**Cosa**: G14 enforcement across all agents, ado-auth.sh high-level commands (wi-create, pr-create, pr-complete), Levi 2.2 tag migration (180 mappings, 907 files), Iron Dome false positive handling, Antigravity 3rd G14 violation escalation.
+
+**Perche**:
+- Tag chaos (515 tags, 77% flat) degradava qualita RAG/Qdrant
+- Antigravity creava scratch scripts nonostante G14 — 3 violazioni, documentazione insufficiente
+- Shell escaping hell rendeva impossibile creare WI/PR via SSH senza errori
+- Iron Dome bloccava commit con password placeholder in documentazione SQL
+
+**Come**:
+1. **ado-auth.sh high-level**: `wi-create`, `pr-create`, `pr-complete` — JSON via python3, zero shell escaping
+2. **Levi 2.2**: `--fix-tags`/`--apply` integrato in levi-scan.py, 6 namespace, 180 tag mappings
+3. **Tag migration**: processati 907 file across wiki, agents, infra, portal, ado, n8n
+4. **G14 HARD BLOCK**: GEMINI.md aggiornato con comandi espliciti copia-incolla, conteggio violazioni, escalation warning
+5. **Iron Dome**: anonymized credential placeholders in stored-procedure.md with `*****`
+6. **GEDI**: 2 consultazioni (Iron Dome false positives, Antigravity enforcement)
+
+| PR | Repo | Target | Contenuto | Stato |
+|---|---|---|---|---|
+| #424 | easyway-ado | main | pr-complete subcommand | Da approvare |
+| #426 | easyway-wiki | main | Tag migration (namespace cleanup) | Da approvare |
+| #427 | easyway-agents | main | Levi 2.2 (--fix-tags) | Da approvare |
+| #428 | easyway-infra | main | Tag migration (namespace cleanup) | Da approvare |
+
+**Q&A**:
+- Q: Shell escaping hell root cause? A: JSON inside bash inside SSH — fix: python3 serialization inside bash functions
+- Q: Why integrate tag migration in Levi instead of separate script? A: User: "come mai crei script non possiamo metterlo in levi?" — single canonical tool
+- Q: Antigravity 3 violations despite G14? A: Documentation alone insufficient — added explicit command examples + HARD BLOCK
+- Q: Iron Dome false positive on `@password`? A: GEDI proposed 3 solutions: Levi --sanitize, Iron Dome allowlist, `*****` convention
+
+## Session 98 — COMPLETATA (2026-03-07) "Gnosis Framework e il Wiki Health Monitor"
+
+**Cosa**: Gnosis Framework creato (3 layer + Sovereign vision), Wiki Health Monitor operativo (marginalia eval + wiki-queries.yaml), GEDI Case #42 (antifragilita rischi), semaforo repo, wi-create Epic/Feature, marginalia pushato a hale-bopp-data.
+
+**Perche**:
+- 3 documenti inbox (#inbox-easyway) da importare in wiki — architettura agentica frammentata in file sparsi
+- Mancava un framework unificato che collegasse chi sono gli agenti (L1), come costruiscono (L2), come ricordano (L3)
+- La wiki cresceva senza strumenti di verifica della salute — rischio degradazione silenziosa (GEDI Case #41)
+- Sessioni parallele sullo stesso terminale senza coordinazione — rischio conflitti
+
+**Come**:
+1. **Gnosis Framework**: `guides/gnosis-framework.md` — documento master che unifica L1 (architettura enterprise), L2 (idea-to-production), L3 (context truth + memory ledger) + visione Sovereign
+2. **Importazione inbox**: `AGENTIC_ARCHITECTURE_ENTERPRISE_PRD.md` → `guides/agentic-architecture-enterprise.md`, `AGENT_MEMORY_CONTEXT_TRUTH_ANALYSIS.md` → `guides/agent-context-truth-memory-ledger.md`
+3. **GEDI Case #42**: analisi antifragilita dei 2 rischi Gnosis — Sovereign Maturity Gate (prerequisiti misurabili) + Wiki Pruning Cycle (feedback negativo)
+4. **Semaforo repo**: `.semaphore.json` per repo (gitignored), stati green/yellow/red, guida `guides/repo-semaphore.md`, regola in MEMORY.md
+5. **Wiki Health Monitor**: `wiki-queries.yaml` (20 query), primo snapshot baseline (607 doc, coverage 100%, recall 73%)
+6. **marginalia**: fix exclude bug (48/48 test), push a `hale-bopp-data/marginalia`, scheda repo wiki aggiornata (levi-md → marginalia)
+7. **wi-create upgrade**: supporto Epic, Feature, parent_id (gerarchia automatica)
+8. **Skills registry**: `process.workspace-brainstorm` v0.1.0 (planned), registry v2.16.0
+9. **ADO Epic #123**: "Gnosis Framework - Implementazione" creata
+
+| Artifact | Path/URL | Stato |
+|----------|----------|-------|
+| gnosis-framework.md | guides/gnosis-framework.md | Attivo |
+| agentic-architecture-enterprise.md | guides/agentic-architecture-enterprise.md | Attivo |
+| agent-context-truth-memory-ledger.md | guides/agent-context-truth-memory-ledger.md | Attivo |
+| repo-semaphore.md | guides/repo-semaphore.md | Attivo |
+| wiki-queries.yaml | wiki-queries.yaml | Attivo |
+| Snapshot baseline S98 | snapshots/snap-S98-baseline.json | Attivo |
+| marginalia repo | github.com/hale-bopp-data/marginalia | Pushato |
+| GEDI Case #42 | GEDI_CASEBOOK.md | Documentato |
+| ADO Epic #123 | Gnosis Framework - Implementazione | New |
+| wi-create Epic/Feature | ado-auth.sh | Aggiornato |
+| process.workspace-brainstorm | skills/registry.json v2.16.0 | Planned |
+
+**Q&A**:
+- Q: Perche non importare SOVEREIGN_AGENTIC_FRAMEWORK_VISION come file wiki separato? A: Troppo overlap con L3 (Memory Ledger) — integrato come sezione "Visione Sovereign" nel gnosis-framework.md
+- Q: Perche AI_DBA_Governance_MVP.md non importato? A: E per hale-bopp-db, non Gnosis — lasciato nell'inbox
+- Q: Come rendere antifragili i rischi del framework? A: GEDI Case #42 — Sovereign Maturity Gate (prerequisiti misurabili prima di L4/L5) + Wiki Pruning Cycle (ogni ~10 sessioni)
+- Q: Branch develop su marginalia? A: Da creare quando il progetto raggiunge beta — annotato nella scheda repo

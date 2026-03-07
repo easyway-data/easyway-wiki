@@ -1,0 +1,7 @@
+.obsidian/
+.trash/
+*.canvas
+out/
+
+# Repo semaphore (agent lock)
+.semaphore.json

@@ -43,6 +43,7 @@ Questo crea un legame navigabile tra la pagina e i repo coinvolti.
 | hale-bopp-db | 1 (Open source) | Python | Running | [scheda](hale-bopp-db.md) |
 | hale-bopp-etl | 1 (Open source) | Python | Running | [scheda](hale-bopp-etl.md) |
 | hale-bopp-argos | 1 (Open source) | Python | Running | [scheda](hale-bopp-argos.md) |
+| marginalia | 1 (Open source) | Python | Alpha | [scheda](marginalia.md) |
 
 ## Relazione con product-map
 
