@@ -39,6 +39,15 @@ Il codice è strutturato per essere letto e modificato dall'Intelligenza Artific
 - **Blueprints**: Modelli chiari.
 - **Test E2E**: Feedback immediato per l'Agente.
 
+### D. The Unified Portal (Voss & Sinek Doctrine)
+Il concetto di "Sito Vetrina" è abolito. La parte pubblica è la vista non autenticata del Portale Operativo (Dogfooding Estremo).
+- **Integrità (Sinek)**: Non "vendiamo" un'infrastruttura, la "mostriamo" scendendo in campo con la stessa tecnologia che offriamo al cliente. Le interfacce marketing manipolative tradiscono il nostro "Perché".
+- **Empatia Tattica (Voss)**: Rifiutiamo fermamente l'"arroganza dell'ingegneria cruda". Il Portale deve essere una "Master Console" potente (Cyber/Agentica) ma estremamente elegante, accogliente e rassicurante visivamente (tramite Glassmorphism e animazioni) per non terrorizzare la mente primitiva dell'utente. Vogliamo che l'utente si senta ammesso a un'armeria d'elite, non di fronte a un prompt incomprensibile.
+
+### E. The Guardian of Intent (GEDI Governance)
+Mentre Valentino cuce l'aspetto visivo, **GEDI (La Coscienza)** valida l'intento.
+Nessun design radicale viene rilasciato se GEDI determina che esso scade nell'arroganza tecnica (violando Voss) o nel marketing ingannevole (violando Sinek). Valentino costruisce la UI; GEDI si assicura che l'anima Sovereign Symbiosis rimanga incorrotta.
+
 ---
 
 ## 2. The Quality Shield (I Guardiani) 🛡️
